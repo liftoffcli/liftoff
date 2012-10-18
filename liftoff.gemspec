@@ -8,7 +8,6 @@ Gem::Specification.new do |gem|
   gem.version       = Liftoff::VERSION
   gem.authors       = ["Mark Adams", "Gordon Fontenot"]
   gem.email         = ["mark@thoughtbot.com"]
-  gem.platform      = GEM::Platform::RUBY
   gem.description   = %q{CLI for setting up new Xcode projects.}
   gem.summary       = %q{Provides a variety of commands for automating simple Xcode settings for new projects.}
   gem.homepage      = ""
