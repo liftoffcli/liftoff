@@ -35,7 +35,7 @@ end
 
 command :todo do |c|
 	c.syntax = 'liftoff todo [options]'
-	c.summary = 'Add a build phase shell script that treats "TODO:" and "FIXME:" as warnings.'
+	c.summary = 'Add a build script to treat TODO and FIXME as warnings.'
 	c.description = ''
 	c.example 'description', 'command example'
 	c.option '--some-switch', 'Some switch that does something'
