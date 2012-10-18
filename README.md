@@ -1,29 +1,47 @@
 # Liftoff
 
-TODO: Write a gem description
+**Liftoff is a CLI for configuring sensible defaults for new Xcode projects.**
+
+* Add default .gitignore and .gitattributes files. [Xcode and git: bridging the gap](http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap).
+* Treat warnings as errors for release schemes.
+* Enable all warnings.
+* Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings](http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4).
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'liftoff'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install liftoff
 
 ## Usage
 
-TODO: Write usage instructions here
+Liftoff adds the `liftoff` command to your PATH:
 
-## Contributing
+```
+$ liftoff
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    CLI for customizing new Xcode projects
+
+    Commands:
+      all                  Run all possible commands.               
+      git                  Add default .gitignore and .gitattributes files.
+      help                 Display global or [command] help documentation.
+      releasewarnings      Treat all warnings as errors in release schemes.
+      todo                 Add a build phase shell script that treats "TODO:" and "FIXME:" as warnings.
+      warnings             Enable all warnings.
+
+    Global Options:
+      -h, --help           Display help documentation 
+      -v, --version        Display version information 
+      -t, --trace          Display backtrace when an error occurs 
+```
+
+## About
+
+The liftoff gem is maintained by Mark Adams and Gordon Fontenot. It was written by [thoughtbot, inc](http://thoughtbot.com/).
+
+![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
+
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+## License
+
+Liftoff is Copyright (c) 2012 thoughtbot, inc. It is free software, and may be redistributed under the terms specified in the LICENSE file.

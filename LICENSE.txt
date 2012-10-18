@@ -1,4 +1,4 @@
-Copyright (c) 2012 Mark Adams
+Copyright (c) 2012 thoughtbot, inc.
 
 MIT License
 
