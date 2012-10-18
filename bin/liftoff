@@ -8,9 +8,9 @@ require 'liftoff'
 HighLine.track_eof = false
 
 program :version, Liftoff::VERSION
-program :description, 'CLI for setting up new Xcode projects'
+program :description, 'CLI for customizing new Xcode projects'
 
-program :help, 'Author', 'Mark Adams <mark@thoughtbot.com>'
+program :help, 'Authors', 'Mark Adams <mark@thoughtbot.com>'
 program :help, 'Website', 'http://www.thoughtbot.com'
 program :help_formatter, :compact
 
