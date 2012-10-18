@@ -11,17 +11,6 @@ command :all do |c|
 	end
 end
 
-command :git do |c|
-	c.syntax = 'liftoff git [options]'
-	c.summary = 'Add default .gitignore and .gitattributes files.'
-	c.description = ''
-	c.example 'description', 'command example'
-	c.option '--some-switch', 'Some switch that does something'
-	c.action do |args, options|
-		puts 'Does git stuff'
-	end
-end
-
 command :releasewarnings do |c|
 	c.syntax = 'liftoff releasewarnings [options]'
 	c.summary = 'Treat all warnings as errors in release schemes.'
@@ -54,3 +43,9 @@ command :warnings do |c|
 		puts 'Enables all warnings'
 	end
 end
+
+require 'commands/all'
+require 'commands/git'
+require 'commands/releasewarnings'
+require 'commands/todo'
+require 'commands/warnings'
