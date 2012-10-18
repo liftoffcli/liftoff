@@ -25,7 +25,7 @@ $ liftoff
       git                  Add default .gitignore and .gitattributes files.
       help                 Display global or [command] help documentation.
       releasewarnings      Treat all warnings as errors in release schemes.
-      todo                 Add a build phase shell script that treats "TODO:" and "FIXME:" as warnings.
+      todo                 Add a build script to treat TODO and FIXME as warnings.
       warnings             Enable all warnings.
 
     Global Options:
