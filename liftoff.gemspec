@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Provides a variety of commands for automating simple Xcode settings for new projects.}
   gem.homepage      = ""
   
-  gem.add_dependency "commander", "-> 4.1.2"
+  gem.add_dependency "commander", "~> 4.1.2"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
