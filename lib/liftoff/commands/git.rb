@@ -34,16 +34,20 @@ command :git do |c|
 	c.description = ''
 	
 	c.action do |args, options|
-		unless Dir["*.xcodeproj"]
+		if Dir["*.xcodeproj"].empty?
 			puts "Could not find an Xcode project file. You need to run me from a valid project directory."
 			exit
 		end
 		
-		generate_gitignore
-		generate_gitattributes
+		generate_files
 	end
 	
 	private
+	
+	def generate_files
+		generate_gitignore
+		generate_gitattributes
+	end
 	
 	def generate_gitignore
 		File.open(".gitignore", "a") do |file|
