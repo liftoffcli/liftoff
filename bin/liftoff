@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'commander/import'
-
 $:.push File.expand_path("../../lib", __FILE__)
 require 'liftoff'
 
@@ -15,5 +13,3 @@ program :help, 'Website', 'http://www.thoughtbot.com'
 program :help_formatter, :compact
 
 default_command :help
-
-require 'liftoff/commands'
