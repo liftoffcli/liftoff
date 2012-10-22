@@ -6,7 +6,7 @@ class XcodeprojHelper
   
   def initialize
     @project = Xcodeproj::Project.new(xcode_project_file)
-    @target = find_target
+    @target = project_target
   end
   
   def add_shell_script(script)
