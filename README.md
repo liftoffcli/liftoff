@@ -13,7 +13,7 @@
 
 ## Usage
 
-Liftoff adds the `liftoff` command to your PATH:
+Liftoff adds the `liftoff` command to your PATH. These commands are meant to be run in directories containing existing Xcode projects.
 
 ```
 $ liftoff
