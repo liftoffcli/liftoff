@@ -3,6 +3,7 @@
 **Liftoff is a CLI for configuring opinionated defaults for new Xcode projects.**
 
 * Add default .gitignore and .gitattributes files. Read more about this in our blog post: [Xcode and git: bridging the gap](http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap).
+* Set the indentation level (4 spaces by default. No tabs, the way God intended)
 * Treat warnings as errors for release schemes.
 * Enable `-Wall` for all build schemes
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings](http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4).
@@ -24,6 +25,7 @@ $ liftoff
       all                  Run all possible commands.
       git                  Add default .gitignore and .gitattributes files.
       help                 Display global or [command] help documentation.
+      indentation          Set project indentation level
       releasewarnings      Treat all warnings as errors in release schemes.
       todo                 Add a build script to treat TODO and FIXME as warnings.
       warnings             Enable all warnings.

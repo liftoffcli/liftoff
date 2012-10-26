@@ -26,6 +26,14 @@ class XcodeprojHelper
     save_changes
   end
 
+  def set_indentation_level(level)
+    project_attributes = @project.main_group.attributes
+    project_attributes['indentWidth'] = level
+    project_attributes['tabWidth'] = level
+    project_attributes['usesTabs'] = 0
+    save_changes
+  end
+
   private
 
   def project_target
