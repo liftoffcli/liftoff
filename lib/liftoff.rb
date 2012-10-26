@@ -3,5 +3,5 @@ require 'liftoff/xcodeproj_helper'
 require 'liftoff/commands'
 
 module Liftoff
-	VERSION = '0.2'
+  VERSION = '0.2'
 end
