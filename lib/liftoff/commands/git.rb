@@ -50,14 +50,24 @@ command :git do |c|
   end
 
   def generate_gitignore
-    File.open(".gitignore", "a") do |file|
-      file.write(GITIGNORE_CONTENTS)
-    end
+    write_unique_contents_to_file(GITIGNORE_CONTENTS, '.gitignore')
   end
 
   def generate_gitattributes
-    File.open(".gitattributes", "a") do |file|
-      file.write(GITATTRIBUTES_CONTENTS)
+    write_unique_contents_to_file(GITATTRIBUTES_CONTENTS, '.gitattributes')
+  end
+
+  def write_unique_contents_to_file(contents, filename)
+    if File.exists? filename
+      current_file_contents = File.read(filename).split("\n")
+    else
+      current_file_contents = []
+    end
+
+    new_contents = current_file_contents + contents.split("\n")
+
+    File.open(filename, "w") do |file|
+      file.write(new_contents.uniq.join("\n"))
     end
   end
 end
