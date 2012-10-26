@@ -1,10 +1,10 @@
 # Liftoff
 
-**Liftoff is a CLI for configuring sensible defaults for new Xcode projects.**
+**Liftoff is a CLI for configuring opinionated defaults for new Xcode projects.**
 
-* Add default .gitignore and .gitattributes files. [Xcode and git: bridging the gap](http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap).
+* Add default .gitignore and .gitattributes files. Read more about this in our blog post: [Xcode and git: bridging the gap](http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap).
 * Treat warnings as errors for release schemes.
-* Enable all warnings.
+* Enable `-Wall` for all build schemes
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings](http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4).
 
 ## Installation
@@ -21,7 +21,7 @@ $ liftoff
     CLI for customizing new Xcode projects
 
     Commands:
-      all                  Run all possible commands.               
+      all                  Run all possible commands.
       git                  Add default .gitignore and .gitattributes files.
       help                 Display global or [command] help documentation.
       releasewarnings      Treat all warnings as errors in release schemes.
@@ -29,9 +29,9 @@ $ liftoff
       warnings             Enable all warnings.
 
     Global Options:
-      -h, --help           Display help documentation 
-      -v, --version        Display version information 
-      -t, --trace          Display backtrace when an error occurs 
+      -h, --help           Display help documentation
+      -v, --version        Display version information
+      -t, --trace          Display backtrace when an error occurs
 ```
 
 ## About
