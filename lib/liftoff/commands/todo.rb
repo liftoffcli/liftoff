@@ -1,6 +1,6 @@
 TODO_WARNING_SCRIPT = <<WARNING
 KEYWORDS="TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:"
-find "${SRCROOT}" \\( -name "*.h" -or -name "*.m" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
+find "${SRCROOT}" -ipath "${SRCROOT}/vendor" -prune -o \\( -name "*.h" -or -name "*.m" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
 WARNING
 
 command :todo do |c|
