@@ -8,8 +8,8 @@ HighLine.track_eof = false
 program :version, Liftoff::VERSION
 program :description, 'CLI for customizing new Xcode projects'
 
-program :help, 'Author', 'Mark Adams <mark@thoughtbot.com>, Gordon Fontenot <gordon@thoughtbot.com>'
+program :help, 'Authors', 'Mark Adams <mark@thoughtbot.com>, Gordon Fontenot <gordon@thoughtbot.com>'
 program :help, 'Website', 'http://www.thoughtbot.com'
 program :help_formatter, :compact
 
-default_command :help
+default_command :all

@@ -1,5 +1,10 @@
 require 'xcodeproj'
 
+TODO_WARNING_SCRIPT = <<WARNING
+KEYWORDS="TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:"
+find "${SRCROOT}" -ipath "${SRCROOT}/vendor" -prune -o \\( -name "*.h" -or -name "*.m" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
+WARNING
+
 class XcodeprojHelper
 
   XCODE_PROJECT_PATH = Dir.glob("*.xcodeproj")
@@ -7,11 +12,6 @@ class XcodeprojHelper
   def initialize
     @project = Xcodeproj::Project.new(xcode_project_file)
     @target = project_target
-  end
-
-  def add_shell_script(script)
-    @target.shell_script_build_phases.new('name' => 'Warn for TODO and FIXME comments', 'shellScript' => script)
-    save_changes
   end
 
   def treat_warnings_as_errors
@@ -32,6 +32,10 @@ class XcodeprojHelper
     project_attributes['tabWidth'] = level
     project_attributes['usesTabs'] = 0
     save_changes
+  end
+
+  def add_todo_script_phase
+    add_shell_script_build_phase(TODO_WARNING_SCRIPT, 'Warn for TODO and FIXME comments')
   end
 
   private
@@ -58,6 +62,11 @@ class XcodeprojHelper
     end
 
     @xcode_project_file
+  end
+
+  def add_shell_script_build_phase(script, name)
+    @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
+    save_changes
   end
 
   def save_changes
