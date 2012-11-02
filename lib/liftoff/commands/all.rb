@@ -1,10 +1,14 @@
 command :all do |c|
-  c.syntax = 'liftoff all [options]'
+  c.syntax = 'liftoff all'
   c.summary = 'Run all possible commands.'
-  c.description = ''
-  c.example 'description', 'command example'
-  c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
-    puts 'All'
+    git_helper = GitHelper.new
+    git_helper.generate_files
+
+    xcode_helper = XcodeprojHelper.new
+    xcode_helper.set_indentation_level 4
+    xcode_helper.treat_warnings_as_errors
+    xcode_helper.add_todo_script_phase
+    xcode_helper.enable_all_warnings
   end
 end
