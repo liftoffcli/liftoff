@@ -6,7 +6,6 @@ find "${SRCROOT}" -ipath "${SRCROOT}/vendor" -prune -o \\( -name "*.h" -or -name
 WARNING
 
 class XcodeprojHelper
-
   XCODE_PROJECT_PATH = Dir.glob("*.xcodeproj")
 
   def initialize
@@ -49,34 +48,33 @@ class XcodeprojHelper
       available_targets = @project.targets.to_a
       available_targets.delete_if { |t| t.name =~ /Tests$/ }
       @project_target = available_targets.first
-
       if @project_target.nil?
         raise 'Could not locate a target in the given project.'
       end
     end
-
     @project_target
   end
 
   def xcode_project_file
     @xcode_project_file ||= XCODE_PROJECT_PATH.first
-
     if @xcode_project_file.nil?
        raise 'Can not run in a directory without an .xcodeproj file'
     end
-
     @xcode_project_file
   end
 
   def add_shell_script_build_phase(script, name)
-    unless @target.build_phases.to_a.index { |phase| phase.name == name }
+    unless build_phase_exists_with_name name
       @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
       save_changes
     end
   end
 
+  def build_phase_exists_with_name(name)
+    @target.build_phases.to_a.index { |phase| phase.name == name }
+  end
+
   def save_changes
     @project.save_as xcode_project_file
   end
-
 end

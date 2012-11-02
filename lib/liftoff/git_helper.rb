@@ -26,12 +26,12 @@ build/
 *.dep
 GITIGNORE
 
-GITATTRIBUTES_CONTENTS = "*.pbxproj binary merge=union"
+GITATTRIBUTES_CONTENTS = '*.pbxproj binary merge=union'
 
 class GitHelper
   def initialize
-    if Dir["*.xcodeproj"].empty?
-      puts "Could not find an Xcode project file. You need to run me from a valid project directory."
+    if Dir['*.xcodeproj'].empty?
+      puts 'Could not find an Xcode project file. You need to run me from a valid project directory.'
       exit
     end
   end
@@ -62,7 +62,7 @@ class GitHelper
 
     new_contents = current_file_contents + contents.split("\n")
 
-    File.open(filename, "w") do |file|
+    File.open(filename, 'w') do |file|
       file.write(new_contents.uniq.join("\n"))
     end
   end
