@@ -69,8 +69,10 @@ class XcodeprojHelper
   end
 
   def add_shell_script_build_phase(script, name)
-    @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
-    save_changes
+    unless @target.build_phases.to_a.index { |phase| phase.name == name }
+      @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
+      save_changes
+    end
   end
 
   def save_changes
