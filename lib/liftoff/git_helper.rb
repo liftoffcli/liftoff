@@ -44,10 +44,12 @@ class GitHelper
   private
 
   def generate_gitignore
+    say 'Writing .gitignore'
     write_unique_contents_to_file(GITIGNORE_CONTENTS, '.gitignore')
   end
 
   def generate_gitattributes
+    say 'Writing .gitattributes'
     write_unique_contents_to_file(GITATTRIBUTES_CONTENTS, '.gitattributes')
   end
 

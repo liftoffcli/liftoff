@@ -15,11 +15,13 @@ class XcodeprojHelper
   end
 
   def treat_warnings_as_errors
+    say 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
     @target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
     save_changes
   end
 
   def enable_all_warnings
+    say 'Setting -Wall for all builds'
     @target.build_configurations.each do |configuration|
       configuration.build_settings['WARNING_CFLAGS'] = '-Wall'
     end
@@ -27,6 +29,7 @@ class XcodeprojHelper
   end
 
   def set_indentation_level(level)
+    say "Setting the project indentation level to #{level} spaces"
     project_attributes = @project.main_group.attributes
     project_attributes['indentWidth'] = level
     project_attributes['tabWidth'] = level
@@ -35,6 +38,7 @@ class XcodeprojHelper
   end
 
   def add_todo_script_phase
+    say 'Adding shell script build phase to warn on TODO and FIXME comments'
     add_shell_script_build_phase(TODO_WARNING_SCRIPT, 'Warn for TODO and FIXME comments')
   end
 
