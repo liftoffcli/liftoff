@@ -4,8 +4,6 @@ command :git do |c|
   c.description = ''
 
   c.action do |args, options|
-    helper = GitHelper.new
-    helper.generate_files
+    GitHelper.new.generate_files
   end
-
 end

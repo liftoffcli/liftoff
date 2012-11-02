@@ -4,7 +4,6 @@ command :releasewarnings do |c|
   c.description = ''
 
   c.action do |args, options|
-    helper = XcodeprojHelper.new
-    helper.treat_warnings_as_errors
+    XcodeprojHelper.new.treat_warnings_as_errors
   end
 end

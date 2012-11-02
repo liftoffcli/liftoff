@@ -4,7 +4,6 @@ command :warnings do |c|
   c.description = ''
 
   c.action do |args, options|
-    helper = XcodeprojHelper.new
-    helper.enable_all_warnings
+    XcodeprojHelper.new.enable_all_warnings
   end
 end

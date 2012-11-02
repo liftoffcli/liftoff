@@ -4,7 +4,6 @@ command :todo do |c|
   c.description = ''
 
   c.action do |args, options|
-    helper = XcodeprojHelper.new
-    helper.add_todo_script_phase
+    XcodeprojHelper.new.add_todo_script_phase
   end
 end

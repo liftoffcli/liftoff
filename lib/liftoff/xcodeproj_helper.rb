@@ -6,7 +6,6 @@ find "${SRCROOT}" -ipath "${SRCROOT}/vendor" -prune -o \\( -name "*.h" -or -name
 WARNING
 
 class XcodeprojHelper
-
   XCODE_PROJECT_PATH = Dir.glob("*.xcodeproj")
 
   def initialize
@@ -69,14 +68,17 @@ class XcodeprojHelper
   end
 
   def add_shell_script_build_phase(script, name)
-    unless @target.build_phases.to_a.index { |phase| phase.name == name }
+    unless build_phase_exists_with_name name
       @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
       save_changes
     end
   end
 
+  def build_phase_exists_with_name(name)
+    @target.build_phases.to_a.index { |phase| phase.name == name }
+  end
+
   def save_changes
     @project.save_as xcode_project_file
   end
-
 end
