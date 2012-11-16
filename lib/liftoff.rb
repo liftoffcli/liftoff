@@ -4,5 +4,5 @@ require 'liftoff/git_helper'
 require 'liftoff/commands'
 
 module Liftoff
-  VERSION = '0.5'
+  VERSION = '0.5.1'
 end
