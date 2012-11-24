@@ -9,7 +9,6 @@ GITIGNORE_CONTENTS = <<GITIGNORE
 *.perspective
 *.perspectivev3
 *.pbxuser
-*.xcworkspace
 xcuserdata
 
 # Build products
