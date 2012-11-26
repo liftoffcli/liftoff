@@ -2,7 +2,7 @@ command :all do |c|
   c.syntax = 'liftoff all'
   c.summary = 'Run all possible commands. (Default)'
   c.action do |args, options|
-    if args
+    unless args.empty?
       say "I don't know what to do with that!"
       say 'Run liftoff help to see a list of available commands'
       exit
