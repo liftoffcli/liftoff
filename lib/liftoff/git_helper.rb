@@ -23,6 +23,10 @@ build/
 *~
 *.dat
 *.dep
+
+# Cocoapods
+Pods
+Podfile.lock
 GITIGNORE
 
 GITATTRIBUTES_CONTENTS = '*.pbxproj binary merge=union'
