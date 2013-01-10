@@ -1,4 +1,4 @@
-# Liftoff
+# Liftoff [![Gem Version](https://badge.fury.io/rb/liftoff.png)](http://badge.fury.io/rb/liftoff)
 
 **Liftoff is a CLI for configuring opinionated defaults for new Xcode projects.**
 
