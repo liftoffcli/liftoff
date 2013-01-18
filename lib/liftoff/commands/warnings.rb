@@ -1,9 +1,9 @@
 command :warnings do |c|
-  c.syntax = 'liftoff warnings [options]'
+  c.syntax = 'liftoff warnings'
   c.summary = 'Enable all warnings.'
   c.description = ''
 
-  c.action do |args, options|
+  c.action do
     XcodeprojHelper.new.enable_all_warnings
   end
 end
