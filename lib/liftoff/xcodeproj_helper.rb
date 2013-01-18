@@ -45,6 +45,14 @@ class XcodeprojHelper
     save_changes
   end
 
+  def enable_static_analyzer
+    say 'Turning on Static Analyzer at the project level'
+    @project.build_configurations.each do |configuration|
+      configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
+    end
+    save_changes
+  end
+
   def set_indentation_level(level)
     say "Setting the project indentation level to #{level} spaces"
     project_attributes = @project.main_group.attributes

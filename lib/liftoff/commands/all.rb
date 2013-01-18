@@ -15,5 +15,6 @@ command :all do |c|
     xcode_helper.treat_warnings_as_errors
     xcode_helper.add_todo_script_phase
     xcode_helper.enable_hosey_warnings
+    xcode_helper.enable_static_analyzer
   end
 end
