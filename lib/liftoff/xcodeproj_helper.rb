@@ -92,6 +92,10 @@ class XcodeprojHelper
        raise 'Can not run in a directory without an .xcodeproj file'
     end
 
+    if @xcode_project_file == 'Pods.xcodeproj'
+      raise 'Can not run in the Pods directory. $ cd .. maybe?'
+    end
+
     @xcode_project_file
   end
 
