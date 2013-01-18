@@ -5,12 +5,12 @@
 * Add default .gitignore and .gitattributes files. Read more about this in our blog post: [Xcode and git: bridging the gap][xcode-gitattributes]
 * Set the indentation level (4 spaces by default. No tabs, the way God intended)
 * Treat warnings as errors for release schemes
-* Enable [Hosey level warnings][hosey-warnings] at the project level
+* Enable [Hosey-level warnings][hosey-warnings] at the project level
 * Turn on Static Analysis for the project
-* Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings][dealocated-todo]
+* Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings][deallocated-todo]
 
 [xcode-gitattributes]: http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap
-[dealocated-todo]: http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4
+[deallocated-todo]: http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4
 [hosey-warnings]: http://boredzo.org/blog/archives/2009-11-07/warnings
 
 ## Installation
