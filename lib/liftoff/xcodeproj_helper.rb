@@ -2,7 +2,7 @@ require 'xcodeproj'
 
 TODO_WARNING_SCRIPT = <<WARNING
 KEYWORDS="TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:"
-find "${SRCROOT}" -ipath "${SRCROOT}/pods" -prune -o \\( -name "*.h" -or -name "*.m" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
+find "${SRCROOT}" -ipath "${SRCROOT}/pods" -prune -o \\( -name "*.h" -or -name "*.m" -or -name "*.mm" -or -name "*.c" -or -name "*.cpp" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
 WARNING
 
 HOSEY_WARNINGS = %w(
