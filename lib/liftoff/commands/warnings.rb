@@ -4,6 +4,6 @@ command :warnings do |c|
   c.description = ''
 
   c.action do
-    XcodeprojHelper.new.enable_all_warnings
+    XcodeprojHelper.new.enable_hosey_warnings
   end
 end
