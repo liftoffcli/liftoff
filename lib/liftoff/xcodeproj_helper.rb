@@ -24,18 +24,6 @@ HOSEY_WARNINGS = %w(
   GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
 )
 
-module Xcodeproj
-  class Project
-    module Object
-      class PBXNativeTarget
-        def to_s
-          self.name
-        end
-      end
-    end
-  end
-end
-
 class XcodeprojHelper
   XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
@@ -86,20 +74,10 @@ class XcodeprojHelper
 
   def project_target
     @project_target ||= choose_item("target", available_targets)
-
-    if @project_target.nil?
-      raise 'Could not locate a target in the given project.'
-    end
-
-    @project_target
   end
 
   def xcode_project_file
     @xcode_project_file ||= choose_item('Xcode project', XCODE_PROJECTS)
-
-    if @xcode_project_file.nil?
-       raise 'Can not run in a directory without an .xcodeproj file'
-    end
 
     if @xcode_project_file == 'Pods.xcodeproj'
       raise 'Can not run in the Pods directory. $ cd .. maybe?'
@@ -109,7 +87,9 @@ class XcodeprojHelper
   end
 
   def choose_item(title, objects)
-    if objects.count == 1
+    if objects.empty?
+      raise "Could not locate #{title}"
+    elsif objects.size == 1
       objects.first
     else
       choose("Which #{title} would you like to modify?") do |menu|
@@ -120,8 +100,7 @@ class XcodeprojHelper
   end
 
   def available_targets
-    available_targets = @project.targets.to_a
-    available_targets.delete_if { |t| t.name =~ /Tests$/ }
+    @project.targets.to_a.delete_if { |t| t.name.end_with?('Tests') }
   end
 
   def add_shell_script_build_phase(script, name)
