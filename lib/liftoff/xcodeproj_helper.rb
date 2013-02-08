@@ -25,7 +25,7 @@ HOSEY_WARNINGS = %w(
 )
 
 class XcodeprojHelper
-  XCODE_PROJECT_PATH = Dir.glob("*.xcodeproj")
+  XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
   def initialize
     @project = Xcodeproj::Project.new(xcode_project_file)
@@ -73,31 +73,34 @@ class XcodeprojHelper
   private
 
   def project_target
-    if @project_target.nil?
-      available_targets = @project.targets.to_a
-      available_targets.delete_if { |t| t.name =~ /Tests$/ }
-      @project_target = available_targets.first
-
-      if @project_target.nil?
-        raise 'Could not locate a target in the given project.'
-      end
-    end
-
-    @project_target
+    @project_target ||= choose_item("target", available_targets)
   end
 
   def xcode_project_file
-    @xcode_project_file ||= XCODE_PROJECT_PATH.first
-
-    if @xcode_project_file.nil?
-       raise 'Can not run in a directory without an .xcodeproj file'
-    end
+    @xcode_project_file ||= choose_item('Xcode project', XCODE_PROJECTS)
 
     if @xcode_project_file == 'Pods.xcodeproj'
       raise 'Can not run in the Pods directory. $ cd .. maybe?'
     end
 
     @xcode_project_file
+  end
+
+  def choose_item(title, objects)
+    if objects.empty?
+      raise "Could not locate #{title}"
+    elsif objects.size == 1
+      objects.first
+    else
+      choose("Which #{title} would you like to modify?") do |menu|
+        menu.index = :number
+        objects.map { |object| menu.choice(object) }
+      end
+    end
+  end
+
+  def available_targets
+    @project.targets.to_a.delete_if { |t| t.name.end_with?('Tests') }
   end
 
   def add_shell_script_build_phase(script, name)
