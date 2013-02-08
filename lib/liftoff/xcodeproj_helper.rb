@@ -24,8 +24,20 @@ HOSEY_WARNINGS = %w(
   GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
 )
 
+module Xcodeproj
+  class Project
+    module Object
+      class PBXNativeTarget
+        def to_s
+          self.name
+        end
+      end
+    end
+  end
+end
+
 class XcodeprojHelper
-  XCODE_PROJECT_PATH = Dir.glob("*.xcodeproj")
+  XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
   def initialize
     @project = Xcodeproj::Project.new(xcode_project_file)
@@ -73,21 +85,17 @@ class XcodeprojHelper
   private
 
   def project_target
-    if @project_target.nil?
-      available_targets = @project.targets.to_a
-      available_targets.delete_if { |t| t.name =~ /Tests$/ }
-      @project_target = available_targets.first
+    @project_target ||= choose_item("target", available_targets)
 
-      if @project_target.nil?
-        raise 'Could not locate a target in the given project.'
-      end
+    if @project_target.nil?
+      raise 'Could not locate a target in the given project.'
     end
 
     @project_target
   end
 
   def xcode_project_file
-    @xcode_project_file ||= XCODE_PROJECT_PATH.first
+    @xcode_project_file ||= choose_item('Xcode project', XCODE_PROJECTS)
 
     if @xcode_project_file.nil?
        raise 'Can not run in a directory without an .xcodeproj file'
@@ -98,6 +106,22 @@ class XcodeprojHelper
     end
 
     @xcode_project_file
+  end
+
+  def choose_item(title, objects)
+    if objects.count == 1
+      objects.first
+    else
+      choose("Which #{title} would you like to modify?") do |menu|
+        menu.index = :number
+        objects.map { |object| menu.choice(object) }
+      end
+    end
+  end
+
+  def available_targets
+    available_targets = @project.targets.to_a
+    available_targets.delete_if { |t| t.name =~ /Tests$/ }
   end
 
   def add_shell_script_build_phase(script, name)
