@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_dependency 'commander', '~> 4.1.2'
-  gem.add_dependency 'xcodeproj', '~> 0.3.4'
+  gem.add_dependency 'xcodeproj', '~> 0.5.1'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
