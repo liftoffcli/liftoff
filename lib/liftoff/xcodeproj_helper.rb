@@ -58,10 +58,10 @@ class XcodeprojHelper
 
   def set_indentation_level(level)
     say "Setting the project indentation level to #{level} spaces"
-    project_attributes = @project.main_group.attributes
-    project_attributes['indentWidth'] = level
-    project_attributes['tabWidth'] = level
-    project_attributes['usesTabs'] = 0
+    main_group = @project.main_group
+    main_group.indent_width = level.to_s
+    main_group.tab_width = level.to_s
+    main_group.uses_tabs = '0'
     save_changes
   end
 
@@ -105,13 +105,14 @@ class XcodeprojHelper
 
   def add_shell_script_build_phase(script, name)
     unless build_phase_exists_with_name name
-      @target.shell_script_build_phases.new('name' => name, 'shellScript' => script)
+      build_phase = @target.new_shell_script_build_phase(name)
+      build_phase.shell_script = script
       save_changes
     end
   end
 
   def build_phase_exists_with_name(name)
-    @target.build_phases.to_a.index { |phase| phase.name == name }
+    @target.build_phases.to_a.index { |phase| phase.display_name == name }
   end
 
   def save_changes
