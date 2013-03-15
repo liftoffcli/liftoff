@@ -3,13 +3,87 @@
 $:.push File.expand_path("../../lib", __FILE__)
 require 'liftoff'
 
-HighLine.track_eof = false
+DEFAULT_INDENTATION_LEVEL = 4
 
-program :version, Liftoff::VERSION
-program :description, 'CLI for customizing new Xcode projects'
+module Liftoff
+  class LaunchPad
+    def initialize(argv)
+      parse_options(argv)
+    end
 
-program :help, 'Authors', 'Mark Adams <mark@thoughtbot.com>, Gordon Fontenot <gordon@thoughtbot.com>'
-program :help, 'Website', 'http://www.thoughtbot.com'
-program :help_formatter, :compact
+    def liftoff
+      display_help if @opts[:help]
+      display_version if @opts[:version]
 
-default_command :all
+      generate_git if @opts[:git] || run_all?
+      set_indentation(@opts[:indentation]) if @opts[:indentation] || run_all?
+      turn_on_errors if @opts[:errors] || run_all?
+      add_todo_script if @opts[:todo] || run_all?
+      set_warning_level if @opts[:warnings] || run_all?
+      turn_on_analysis if @opts[:staticanalyzer] || run_all?
+    end
+
+    private
+
+    def parse_options(argv)
+      @opts = Slop.parse(argv, :strict => true, :multiple_switches => true) do
+        on :v, :version, 'Print the version'
+        on :a, :all, 'Run all commands (Default)'
+        on :g, :git, 'Add default .gitignore and .gitattributes files'
+        on :i, :indentation=, 'Set the indentation level (in spaces, defaults to 4)', :argument => :optional, :as => Integer do |argv|
+          fetch_option(:indentation).value = argv || DEFAULT_INDENTATION_LEVEL
+        end
+        on :e, :error, 'Treat warnings as errors (Only for release configurations)'
+        on :t, :todo, 'Add a build script to turn TODO and FIXME comments into warnings'
+        on :w, :warnings, 'Turn on Hosey warnings at the project level'
+        on :s, :staticanalyzer, 'Turn on static analysis for the project'
+        on :h, :help, 'Display this help message'
+      end
+    end
+
+    def display_help
+      puts @opts.help
+      exit
+    end
+
+    def display_version
+      puts "Version: #{Liftoff::VERSION}"
+      exit
+    end
+
+    def generate_git
+      GitHelper.new.generate_files
+    end
+
+    def set_indentation(level)
+      level ||= DEFAULT_INDENTATION_LEVEL
+      xcode_helper.set_indentation_level(level)
+    end
+
+    def turn_on_errors
+      xcode_helper.treat_warnings_as_errors
+    end
+
+    def add_todo_script
+      xcode_helper.add_todo_script_phase
+    end
+
+    def set_warning_level
+      xcode_helper.enable_hosey_warnings
+    end
+
+    def turn_on_analysis
+      xcode_helper.enable_static_analyzer
+    end
+
+    def run_all?
+      @opts.to_hash.values.compact.empty? || @opts[:all]
+    end
+
+    def xcode_helper
+      @xcode_helper ||= XcodeprojHelper.new
+    end
+  end
+end
+
+Liftoff::LaunchPad.new(ARGV).liftoff

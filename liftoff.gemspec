@@ -10,9 +10,9 @@ Gem::Specification.new do |gem|
   gem.email         = ['mark@thoughtbot.com', 'gordon@thoughtbot.com']
   gem.description   = %q{CLI for setting up new Xcode projects.}
   gem.summary       = %q{Provides a variety of commands for automating simple Xcode settings for new projects.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/thoughtbot/liftoff"
 
-  gem.add_dependency 'commander', '~> 4.1.2'
+  gem.add_dependency 'slop', '~> 3.4.4'
   gem.add_dependency 'xcodeproj', '~> 0.5.1'
 
   gem.files         = `git ls-files`.split($/)
