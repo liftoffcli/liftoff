@@ -33,13 +33,13 @@ class XcodeprojHelper
   end
 
   def treat_warnings_as_errors
-    puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
+    say 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
     @target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
     save_changes
   end
 
   def enable_hosey_warnings
-    puts 'Setting Hosey warnings at the project level'
+    say 'Setting Hosey warnings at the project level'
     @project.build_configurations.each do |configuration|
       HOSEY_WARNINGS.each do |setting|
         configuration.build_settings[setting] = 'YES'
@@ -49,7 +49,7 @@ class XcodeprojHelper
   end
 
   def enable_static_analyzer
-    puts 'Turning on Static Analyzer at the project level'
+    say 'Turning on Static Analyzer at the project level'
     @project.build_configurations.each do |configuration|
       configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
     end
@@ -57,7 +57,7 @@ class XcodeprojHelper
   end
 
   def set_indentation_level(level)
-    puts "Setting the project indentation level to #{level} spaces"
+    say "Setting the project indentation level to #{level} spaces"
     main_group = @project.main_group
     main_group.indent_width = level.to_s
     main_group.tab_width = level.to_s
@@ -66,7 +66,7 @@ class XcodeprojHelper
   end
 
   def add_todo_script_phase
-    puts 'Adding shell script build phase to warn on TODO and FIXME comments'
+    say 'Adding shell script build phase to warn on TODO and FIXME comments'
     add_shell_script_build_phase(TODO_WARNING_SCRIPT, 'Warn for TODO and FIXME comments')
   end
 
