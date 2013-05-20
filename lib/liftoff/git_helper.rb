@@ -27,6 +27,10 @@ build/
 # Cocoapods
 Pods
 Podfile.lock
+
+# AppCode specific files
+.idea/
+*.iml
 GITIGNORE
 
 GITATTRIBUTES_CONTENTS = '*.pbxproj binary merge=union'
