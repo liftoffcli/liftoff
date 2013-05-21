@@ -26,7 +26,6 @@ build/
 
 # Cocoapods
 Pods
-Podfile.lock
 
 # AppCode specific files
 .idea/
