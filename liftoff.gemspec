@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/thoughtbot/liftoff'
 
   gem.add_dependency 'slop', '~> 3.4.4'
-  gem.add_dependency 'xcodeproj', '~> 0.5.1'
+  gem.add_dependency 'xcodeproj', '~> 0.14.1'
   gem.add_dependency 'highline', '~> 1.6'
 
   gem.files         = `git ls-files`.split($/)

@@ -30,7 +30,7 @@ class XcodeprojHelper
   XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
   def initialize
-    @project = Xcodeproj::Project.new(xcode_project_file)
+    @project = Xcodeproj::Project.open(xcode_project_file)
     @target = project_target
   end
 
@@ -118,6 +118,6 @@ class XcodeprojHelper
   end
 
   def save_changes
-    @project.save_as xcode_project_file
+    @project.save xcode_project_file
   end
 end
