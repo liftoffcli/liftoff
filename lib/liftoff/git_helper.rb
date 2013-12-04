@@ -33,7 +33,7 @@ Pods
 *.iml
 GITIGNORE
 
-GITATTRIBUTES_CONTENTS = '*.pbxproj binary merge=union'
+GITATTRIBUTES_CONTENTS = '*.pbxproj merge=union'
 
 class GitHelper
   def initialize
