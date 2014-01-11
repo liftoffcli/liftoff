@@ -104,7 +104,7 @@ module Liftoff
     end
 
     def turn_on_all_options
-      %w(git error todo warnings staticanalyzer directorystructure).each do |option|
+      %w(git error todo warnings staticanalyzer).each do |option|
         @opts.fetch_option(option.to_sym).value = true
       end
 
