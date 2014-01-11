@@ -33,6 +33,10 @@ module Liftoff
         if @opts[:staticanalyzer]
           enable_static_analyzer
         end
+
+        if @opts[:directorystructure]
+          generate_directory_structure
+        end
       end
     end
 
@@ -50,6 +54,7 @@ module Liftoff
         on :t, :todo, 'Add a build script to turn TODO and FIXME comments into warnings'
         on :w, :warnings, 'Turn on Hosey warnings at the project level'
         on :s, :staticanalyzer, 'Turn on static analysis for the project'
+        on :d, :directorystructure, 'Generate the directory structure'
         on :h, :help, 'Display this help message'
       end
 
@@ -90,12 +95,16 @@ module Liftoff
       xcode_helper.enable_static_analyzer
     end
 
+    def generate_directory_structure
+      xcode_helper.generate_directory_structure
+    end
+
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new
     end
 
     def turn_on_all_options
-      %w(git error todo warnings staticanalyzer).each do |option|
+      %w(git error todo warnings staticanalyzer directorystructure).each do |option|
         @opts.fetch_option(option.to_sym).value = true
       end
 
