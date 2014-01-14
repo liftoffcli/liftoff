@@ -1,3 +1,5 @@
+require 'json'
+
 module Liftoff
   class LaunchPad
     def initialize(argv)
@@ -95,11 +97,35 @@ module Liftoff
     end
 
     def turn_on_all_options
-      %w(git error todo warnings staticanalyzer).each do |option|
-        @opts.fetch_option(option.to_sym).value = true
-      end
+      settings = settings_from_file Dir.pwd + "/.liftoffrc"
+      settings = settings_from_file( ENV['HOME'] + "/.liftoffrc" ) if not settings 
+      settings = default_settings if not settings 
 
-      @opts.fetch_option(:indentation).value ||= DEFAULT_INDENTATION_LEVEL
+      settings.each do |option, value|
+        @opts.fetch_option(option.to_sym).value = value
+      end
     end
+
+    def settings_from_file(path)
+      if File.exists? path
+        puts "Reading liftoff configurations from #{path}"
+        settings = JSON.parse IO.read path
+      else 
+        # maybe show warning in verbose mode
+        puts "No .liftoffrc found at #{path}"
+      end
+    end
+
+    def default_settings
+      settings = {  
+        :git => true, 
+        :error => true,
+        :todo => true,
+        :warnings => true,
+        :staticanalyzer => true,
+        :indentation => DEFAULT_INDENTATION_LEVEL
+      }
+    end
+
   end
 end
