@@ -34,6 +34,19 @@ Usage: liftoff [options]
     -h, --help                Display this help message
 ```
 
+### Configuration - .liftoffrc
+
+You can use the `.liftoffrc` file to speedup your workflow by defining your favorite settings for liftoff. Liftoff will look for config files in the local directory, as well as the home directory. If neither are found, it will use the internal configuration. The default liftoffrc looks like the following:
+
+```YAML
+git: true
+error: true
+todo: true
+warnings: true
+staticanalyzer: true
+indentation: 4
+```
+
 ## About
 
 The liftoff gem is maintained by Mark Adams and Gordon Fontenot. It was written by [thoughtbot, inc](http://thoughtbot.com/).

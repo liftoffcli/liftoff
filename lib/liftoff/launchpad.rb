@@ -39,12 +39,14 @@ module Liftoff
     private
 
     def parse_options(argv)
+      default_options = OptionParser.new
+
       @opts = Slop.parse(argv, :strict => true) do
         on :v, :version, 'Print the version'
         on :a, :all, 'Run all commands (Default)'
         on :g, :git, 'Add default .gitignore and .gitattributes files'
         on :i, :indentation=, 'Set the indentation level (in spaces, defaults to 4)', :argument => :optional, :as => Integer do |user_indentation_level|
-          fetch_option(:indentation).value = user_indentation_level || DEFAULT_INDENTATION_LEVEL
+          fetch_option(:indentation).value = user_indentation_level || default_options.default_options[:indentation]
         end
         on :e, :error, 'Treat warnings as errors (Only for release configurations)'
         on :t, :todo, 'Add a build script to turn TODO and FIXME comments into warnings'
@@ -53,8 +55,10 @@ module Liftoff
         on :h, :help, 'Display this help message'
       end
 
-      if @opts.to_hash.values.compact.empty? || @opts[:all]
-        turn_on_all_options
+      if @opts[:all]
+        @opts = default_options.options
+      elsif @opts.to_hash.values.compact.empty?
+        @opts = default_options.options
       end
     end
 
@@ -92,14 +96,6 @@ module Liftoff
 
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new
-    end
-
-    def turn_on_all_options
-      %w(git error todo warnings staticanalyzer).each do |option|
-        @opts.fetch_option(option.to_sym).value = true
-      end
-
-      @opts.fetch_option(:indentation).value ||= DEFAULT_INDENTATION_LEVEL
     end
   end
 end

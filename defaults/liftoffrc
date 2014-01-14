@@ -1,0 +1,6 @@
+git: true
+error: true
+todo: true
+warnings: true
+staticanalyzer: true
+indentation: 4
