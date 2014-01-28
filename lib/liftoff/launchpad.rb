@@ -97,34 +97,25 @@ module Liftoff
     end
 
     def turn_on_all_options
-      settings = settings_from_file Dir.pwd + "/.liftoffrc"
-      settings = settings_from_file( ENV['HOME'] + "/.liftoffrc" ) if not settings 
-      settings = default_settings if not settings 
+      options = options_from_file Dir.pwd + "/.liftoffrc"
+      options = options_from_file( ENV['HOME'] + "/.liftoffrc" ) if not options 
+      options = OptionsHelper::default_options if not options 
 
-      settings.each do |option, value|
+      options = OptionsHelper::filter_valid_options options
+
+      options.each do |option, value|
         @opts.fetch_option(option.to_sym).value = value
       end
     end
 
-    def settings_from_file(path)
+    def options_from_file(path)
       if File.exists? path
         puts "Reading liftoff configurations from #{path}"
-        settings = JSON.parse IO.read path
+        options = JSON.parse IO.read path
       else 
         # maybe show warning in verbose mode
         puts "No .liftoffrc found at #{path}"
       end
-    end
-
-    def default_settings
-      settings = {  
-        :git => true, 
-        :error => true,
-        :todo => true,
-        :warnings => true,
-        :staticanalyzer => true,
-        :indentation => DEFAULT_INDENTATION_LEVEL
-      }
     end
 
   end
