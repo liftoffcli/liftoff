@@ -110,11 +110,10 @@ module Liftoff
 
     def options_from_file(path)
       if File.exists? path
-        puts "Reading liftoff configurations from #{path}"
+        puts "Reading liftoff configurations from #{path}\n\n"
         options = JSON.parse IO.read path
       else 
-        # maybe show warning in verbose mode
-        puts "No .liftoffrc found at #{path}"
+        # maybe show warning in verbose mode?
       end
     end
 
