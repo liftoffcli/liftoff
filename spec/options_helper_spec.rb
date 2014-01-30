@@ -2,7 +2,7 @@ require 'rspec'
 require 'liftoff'
 
 describe OptionsHelper do
-  describe "#filter_valid_options" do 
+  describe "filter_valid_options" do 
     it "filters invalid options from a list of options" do
       any_valid_options = { :git => true, "error" => true }
       any_invalid_options = { :invalid_options => "pizza maragherita", :invalid_number => 42 }
