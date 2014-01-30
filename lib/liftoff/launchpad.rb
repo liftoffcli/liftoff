@@ -1,3 +1,5 @@
+require 'json'
+
 module Liftoff
   class LaunchPad
     def initialize(argv)
@@ -95,11 +97,16 @@ module Liftoff
     end
 
     def turn_on_all_options
-      %w(git error todo warnings staticanalyzer).each do |option|
-        @opts.fetch_option(option.to_sym).value = true
-      end
+      options = OptionsHelper::options_from_pwd
+      options = OptionsHelper::options_from_home if not options 
+      options = OptionsHelper::default_options if not options 
 
-      @opts.fetch_option(:indentation).value ||= DEFAULT_INDENTATION_LEVEL
+      options = OptionsHelper::filter_valid_options options
+
+      options.each do |option, value|
+        @opts.fetch_option(option.to_sym).value = value
+      end
     end
+
   end
 end

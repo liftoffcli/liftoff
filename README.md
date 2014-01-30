@@ -34,6 +34,23 @@ Usage: liftoff [options]
     -h, --help                Display this help message
 ```
 
+### Configuration - .liftoffrc
+
+You can use the `.liftoffrc` file to speedup your workflow by defining your favourite settings for liftoff.
+
+The format is a simple JSON
+
+```JSON
+{
+  "git": true,
+  "indentation": 2,
+  "error": false,
+  "todo": true,
+  "warnings": true,
+  "staticanalyzer": false
+}
+```
+
 ## About
 
 The liftoff gem is maintained by Mark Adams and Gordon Fontenot. It was written by [thoughtbot, inc](http://thoughtbot.com/).
