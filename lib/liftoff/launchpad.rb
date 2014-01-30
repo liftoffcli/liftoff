@@ -97,23 +97,14 @@ module Liftoff
     end
 
     def turn_on_all_options
-      options = options_from_file Dir.pwd + "/.liftoffrc"
-      options = options_from_file( ENV['HOME'] + "/.liftoffrc" ) if not options 
+      options = OptionsHelper::options_from_pwd
+      options = OptionsHelper::options_from_home if not options 
       options = OptionsHelper::default_options if not options 
 
       options = OptionsHelper::filter_valid_options options
 
       options.each do |option, value|
         @opts.fetch_option(option.to_sym).value = value
-      end
-    end
-
-    def options_from_file(path)
-      if File.exists? path
-        puts "Reading liftoff configurations from #{path}\n\n"
-        options = JSON.parse IO.read path
-      else 
-        # maybe show warning in verbose mode?
       end
     end
 
