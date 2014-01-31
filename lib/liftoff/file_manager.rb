@@ -28,7 +28,7 @@ class FileManager
   end
 
   def move_template(template, destination)
-    template_path = "#{lib_dir}/templates/#{template}"
+    template_path = File.join(templates_dir, template)
     FileUtils.copy(template_path, destination, {})
   end
 
@@ -39,7 +39,7 @@ class FileManager
     end
   end
 
-  def lib_dir
-    @lib_dir ||= File.expand_path(File.dirname(File.dirname(__FILE__)))
+  def templates_dir
+    File.expand_path('../../../templates', __FILE__)
   end
 end
