@@ -23,7 +23,7 @@ class FileManager
     if File.exists? filename
       puts "#{filename} already exists!"
       puts 'We will append the contents of the existing file to the end of the template'
-      File.read(filename).split("\n")
+      File.read(filename)
     end
   end
 
@@ -34,10 +34,8 @@ class FileManager
 
   def append_original_file_contents(filename, original_contents)
     File.open(filename, 'a') do |file|
-      file.write("\n")
-      file.write("# Original #{filename} contents")
-      file.write("\n")
-      file.write(original_contents.join("\n"))
+      file.write("\n# Original #{filename} contents\n")
+      file.write(original_contents)
     end
   end
 
