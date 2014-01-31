@@ -2,7 +2,6 @@
 
 $:.push File.expand_path("../../lib", __FILE__)
 require 'liftoff'
-require 'liftoff/launchpad'
 
 DEFAULT_INDENTATION_LEVEL = 4
 

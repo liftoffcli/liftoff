@@ -67,7 +67,7 @@ module Liftoff
     end
 
     def generate_git
-      GitHelper.new.generate_files
+      FileManager.new.create_git_files
     end
 
     def set_indentation_level
