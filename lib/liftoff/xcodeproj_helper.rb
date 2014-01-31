@@ -26,6 +26,18 @@ HOSEY_WARNINGS = %w(
   CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
 )
 
+DIRECTORY_STRUCTURE = {
+  "Assets" => {},
+  "Classes" => {
+    "Models" => {},
+    "Services" => {},
+    "Controllers" => {},
+    "View Controllers" => {},
+    "Views" => {}
+  },
+  "Support" => {}
+}
+
 class XcodeprojHelper
   XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
@@ -55,6 +67,19 @@ class XcodeprojHelper
     @project.build_configurations.each do |configuration|
       configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
     end
+    save_changes
+  end
+
+  def generate_directory_structure
+    say 'Generating the directory structure'
+
+    project_group = @project[project_target.name]
+    create_groups project_group, DIRECTORY_STRUCTURE 
+
+    supporting_files_group = @project[path_relative_to_target_group('Supporting Files')]
+    support_group = @project[path_relative_to_target_group('Support')]
+    move_files supporting_files_group, support_group
+
     save_changes
   end
 
@@ -115,6 +140,29 @@ class XcodeprojHelper
 
   def build_phase_exists_with_name(name)
     @target.build_phases.to_a.index { |phase| phase.display_name == name }
+  end
+
+  def create_groups(parent_group, group_hash)
+    group_hash.each do |group_name, children|
+      unless group_exists? path_relative_to_target_group(group_name)
+        created_group = parent_group.new_group(group_name)
+        create_groups created_group, children unless children.empty?
+      end
+    end
+  end
+
+  def move_files(old_group, new_group)
+    old_group.files.each do |file|
+      file.move new_group
+    end
+  end
+
+  def group_exists?(path)
+    !!@project[path]
+  end
+
+  def path_relative_to_target_group(path)
+    "#{project_target.name}/#{path}"
   end
 
   def save_changes
