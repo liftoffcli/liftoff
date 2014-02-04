@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'xcodeproj', '~> 0.14.1'
   gem.add_dependency 'highline', '~> 1.6'
 
+  gem.add_development_dependency 'rspec'
+
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})

@@ -1,8 +1,7 @@
 require "bundler/gem_tasks"
+require "rspec/core/rake_task"
 
 desc "Runs the tests for the project"
-task :test do
-  system "rspec --color"
-end
+RSpec::Core::RakeTask.new(:spec)
 
-task :default => :test
+task :default => :spec
