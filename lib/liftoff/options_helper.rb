@@ -1,7 +1,7 @@
 
 class OptionsHelper
 
-  def self.default_options
+  def default_options
     settings = {  
       :git => true, 
       :error => true,
@@ -12,27 +12,25 @@ class OptionsHelper
     }
   end
 
-  def self.filter_valid_options options
+  def filter_valid_options(options)
     valid_options = default_options.keys
-    options.select { |key, value| (valid_options.include? key or valid_options.include? key.to_sym) }
+    options.select { |key, value| valid_options.include?(key) || valid_options.include?(key.to_sym) }
   end
 
-  def self.options_from_pwd verbose=true
-    options_from_file Dir.pwd + '/.liftoffrc'
+  def options_from_pwd
+    options_from_file(Dir.pwd + '/.liftoffrc')
   end
 
-  def self.options_from_home verbose=true
-    options_from_file ENV['HOME'] + "/.liftoffrc"
+  def options_from_home
+    options_from_file(ENV['HOME'] + "/.liftoffrc")
   end
 
   private
 
-  def self.options_from_file path, verbose=true
+  def options_from_file(path)
     if File.exists? path
-      puts "Reading liftoff configurations from #{path}\n\n" if verbose
-      options = JSON.parse IO.read path
-    else 
-      # maybe show warning in verbose mode?
+      puts "Reading liftoff configurations from #{path}\n\n"
+      options = JSON.parse(IO.read(path))
     end
   end
 end

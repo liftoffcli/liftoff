@@ -97,11 +97,12 @@ module Liftoff
     end
 
     def turn_on_all_options
-      options = OptionsHelper::options_from_pwd
-      options = OptionsHelper::options_from_home if not options 
-      options = OptionsHelper::default_options if not options 
+      options_helper = OptionsHelper.new
+      options = options_helper.options_from_pwd
+      options ||= options_helper.options_from_home
+      options ||= options_helper.default_options
 
-      options = OptionsHelper::filter_valid_options options
+      options = options_helper.filter_valid_options(options)
 
       options.each do |option, value|
         @opts.fetch_option(option.to_sym).value = value
