@@ -36,19 +36,15 @@ Usage: liftoff [options]
 
 ### Configuration - .liftoffrc
 
-You can use the `.liftoffrc` file to speedup your workflow by defining your favourite settings for liftoff.
+You can use the `.liftoffrc` file to speedup your workflow by defining your favorite settings for liftoff.
 
-The format is a simple JSON
-
-```JSON
-{
-  "git": true,
-  "indentation": 2,
-  "error": false,
-  "todo": true,
-  "warnings": true,
-  "staticanalyzer": false
-}
+```YAML
+git:
+  true
+todo:
+  false
+indentation:
+  2
 ```
 
 ## About
