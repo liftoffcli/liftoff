@@ -1,20 +1,14 @@
+require 'yaml'
 
 class OptionsHelper
 
   def default_options
-    settings = {  
-      :git => true, 
-      :error => true,
-      :todo => true,
-      :warnings => true,
-      :staticanalyzer => true,
-      :indentation => 4
-    }
+    options_from_file( File.join(File.dirname(File.expand_path(__FILE__)), '../defaults/liftoffrc') )
   end
 
   def filter_valid_options(options)
     valid_options = default_options.keys
-    options.select { |key, value| valid_options.include?(key) || valid_options.include?(key.to_sym) }
+    options.select { |key, value| (valid_options.include?(key.to_s) || valid_options.include?(key.to_sym)) }
   end
 
   def options_from_pwd
@@ -29,8 +23,7 @@ class OptionsHelper
 
   def options_from_file(path)
     if File.exists? path
-      puts "Reading liftoff configurations from #{path}\n\n"
-      options = JSON.parse(IO.read(path))
+      options = YAML.load_file(path)
     end
   end
 end

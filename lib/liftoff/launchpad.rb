@@ -1,5 +1,3 @@
-require 'json'
-
 module Liftoff
   class LaunchPad
     def initialize(argv)
