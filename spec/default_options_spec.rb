@@ -1,10 +1,10 @@
 require 'rspec'
 require 'liftoff'
 
-describe OptionsHelper do
+describe DefaultOptions do
   describe "#default_options" do
     before(:all) do
-      @defaults = OptionsHelper.new.default_options
+      @defaults = DefaultOptions.new.default_options
     end
 
     it "should have git true" do
@@ -34,7 +34,7 @@ describe OptionsHelper do
 
   describe "#user_default_options" do
     it "returns a set of options evaluated starting form pwd, falling back to home, falling back to defaults" do
-      options_helper = OptionsHelper.new
+      options_helper = DefaultOptions.new
       
       options_helper.stub(:default_options) { { :pasta => 1, :beer => 1, :cheese_cake => 1 } }
       options_helper.stub(:options_from_home) { { :pasta => 0, :pizza => 2 } }
@@ -52,7 +52,7 @@ describe OptionsHelper do
       any_invalid_options = { :invalid_options => "pizza maragherita", :invalid_number => 42 }
       any_options = any_valid_options.merge(any_invalid_options)
       
-      options = OptionsHelper.new.filter_valid_options(any_options)
+      options = DefaultOptions.new.filter_valid_options(any_options)
       options.should(eq(any_valid_options))
     end 
   end

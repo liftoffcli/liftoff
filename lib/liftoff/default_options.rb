@@ -1,6 +1,6 @@
 require 'yaml'
 
-class OptionsHelper
+class DefaultOptions
 
   def default_options
     options_from_file( File.join(File.dirname(File.expand_path(__FILE__)), '../defaults/liftoffrc') )

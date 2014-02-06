@@ -54,9 +54,9 @@ module Liftoff
       end
 
       if @opts[:all]
-        @opts = OptionsHelper.new.default_options
+        @opts = DefaultOptions.new.default_options
       elsif @opts.to_hash.values.compact.empty?
-        @opts = OptionsHelper.new.user_default_options
+        @opts = DefaultOptions.new.user_default_options
       end
     end
 
