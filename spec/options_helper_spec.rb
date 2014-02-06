@@ -8,27 +8,27 @@ describe OptionsHelper do
     end
 
     it "should have git true" do
-      @defaults['git'].should be true
+      @defaults[:git].should be true
     end
 
     it "should have error true" do
-      @defaults['error'].should be true
+      @defaults[:error].should be true
     end
 
     it "should have todo true" do
-      @defaults['todo'].should be true
+      @defaults[:todo].should be true
     end
 
     it "should have warnings true" do
-      @defaults['warnings'].should be true
+      @defaults[:warnings].should be true
     end
 
     it "should have staticanalyzer true" do
-      @defaults['staticanalyzer'].should be true
+      @defaults[:staticanalyzer].should be true
     end
 
     it "should have indentation set to 4" do
-      @defaults['indentation'].should eq(4)
+      @defaults[:indentation].should eq(4)
     end
   end
 

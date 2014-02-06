@@ -32,6 +32,11 @@ class OptionsHelper
   def options_from_file(path)
     if File.exists? path
       options = YAML.load_file(path)
+      convert_keys_symbols options
     end
+  end
+
+  def convert_keys_symbols(hash)
+    Hash[hash.map { |key, value| [key.to_sym, value] }]
   end
 end
