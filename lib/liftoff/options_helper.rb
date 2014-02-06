@@ -14,7 +14,7 @@ class OptionsHelper
     options_from_file(ENV['HOME'] + "/.liftoffrc")
   end
 
-  def evaluated_options
+  def user_default_options
     evaluted_options = default_options
     evaluted_options = evaluted_options.merge options_from_home
     evaluted_options = evaluted_options.merge options_from_pwd

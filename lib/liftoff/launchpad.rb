@@ -54,9 +54,9 @@ module Liftoff
       end
 
       if @opts[:all]
-        turn_on_all_options
+        @opts = OptionsHelper.new.default_options
       elsif @opts.to_hash.values.compact.empty?
-        @opts = OptionsHelper.new.evaluated_options
+        @opts = OptionsHelper.new.user_default_options
       end
     end
 
@@ -94,10 +94,6 @@ module Liftoff
 
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new
-    end
-
-    def turn_on_all_options
-      @opts = OptionsHelper.new.default_options
     end
   end
 end

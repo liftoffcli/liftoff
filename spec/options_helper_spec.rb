@@ -32,7 +32,7 @@ describe OptionsHelper do
     end
   end
 
-  describe "#evaluated_options" do
+  describe "#user_default_options" do
     it "returns a set of options evaluated starting form pwd, falling back to home, falling back to defaults" do
       options_helper = OptionsHelper.new
       
@@ -42,7 +42,7 @@ describe OptionsHelper do
       options_helper.stub(:filter_valid_options).with(anything()) { anything() }
       
       expected_options = { :pasta => 0, :pizza => 2, :beer => 2, :cheese_cake => 2 }
-      options_helper.evaluated_options.should eq(expected_options)
+      options_helper.user_default_options.should eq(expected_options)
     end
   end
 
