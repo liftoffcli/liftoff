@@ -53,8 +53,10 @@ module Liftoff
         on :h, :help, 'Display this help message'
       end
 
-      if @opts.to_hash.values.compact.empty? || @opts[:all]
+      if @opts[:all]
         turn_on_all_options
+      elsif @opts.to_hash.values.compact.empty?
+        @opts = OptionsHelper.new.evaluated_options
       end
     end
 
@@ -95,17 +97,7 @@ module Liftoff
     end
 
     def turn_on_all_options
-      options_helper = OptionsHelper.new
-      options = options_helper.options_from_pwd
-      options ||= options_helper.options_from_home
-      options ||= options_helper.default_options
-
-      options = options_helper.filter_valid_options(options)
-
-      options.each do |option, value|
-        @opts.fetch_option(option.to_sym).value = value
-      end
+      @opts = OptionsHelper.new.default_options
     end
-
   end
 end
