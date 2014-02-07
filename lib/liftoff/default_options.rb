@@ -15,11 +15,11 @@ class DefaultOptions
   end
 
   def user_default_options
-    evaluted_options = default_options
-    evaluted_options = evaluted_options.merge options_from_home
-    evaluted_options = evaluted_options.merge options_from_pwd
+    evaluated_options = default_options
+    evaluated_options.merge!(options_from_home)
+    evaluated_options.merge!(options_from_pwd)
 
-    filter_valid_options evaluted_options
+    filter_valid_options evaluated_options
   end
 
   def filter_valid_options(options)
