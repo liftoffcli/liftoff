@@ -3,6 +3,4 @@
 $:.push File.expand_path("../../lib", __FILE__)
 require 'liftoff'
 
-DEFAULT_INDENTATION_LEVEL = 4
-
 Liftoff::LaunchPad.new(ARGV).liftoff

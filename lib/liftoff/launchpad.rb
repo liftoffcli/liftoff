@@ -39,12 +39,14 @@ module Liftoff
     private
 
     def parse_options(argv)
+      default_options = DefaultOptions.new
+
       @opts = Slop.parse(argv, :strict => true) do
         on :v, :version, 'Print the version'
         on :a, :all, 'Run all commands (Default)'
         on :g, :git, 'Add default .gitignore and .gitattributes files'
         on :i, :indentation=, 'Set the indentation level (in spaces, defaults to 4)', :argument => :optional, :as => Integer do |user_indentation_level|
-          fetch_option(:indentation).value = user_indentation_level || DEFAULT_INDENTATION_LEVEL
+          fetch_option(:indentation).value = user_indentation_level || default_options.default_options[:indentation]
         end
         on :e, :error, 'Treat warnings as errors (Only for release configurations)'
         on :t, :todo, 'Add a build script to turn TODO and FIXME comments into warnings'
@@ -54,9 +56,9 @@ module Liftoff
       end
 
       if @opts[:all]
-        @opts = DefaultOptions.new.default_options
+        @opts = default_options.default_options
       elsif @opts.to_hash.values.compact.empty?
-        @opts = DefaultOptions.new.user_default_options
+        @opts = default_options.user_default_options
       end
     end
 
