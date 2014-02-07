@@ -33,6 +33,8 @@ class DefaultOptions
     if File.exists? path
       options = YAML.load_file(path)
       convert_keys_symbols options
+    else
+      options = { }
     end
   end
 

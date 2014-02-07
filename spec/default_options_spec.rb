@@ -33,16 +33,30 @@ describe DefaultOptions do
   end
 
   describe "#user_default_options" do
+    before(:each) do
+      @options_helper = DefaultOptions.new
+      
+      @options_helper.stub(:default_options) { { :pasta => 1, :beer => 1, :cheese_cake => 1 } }
+      @options_helper.stub(:options_from_home) { { :pasta => 0, :pizza => 2 } }
+      @options_helper.stub(:options_from_pwd) { { :beer => 2, :cheese_cake => 2 } }
+      @options_helper.stub(:filter_valid_options).with(anything()) { anything() }
+    end
+
     it "returns a set of options evaluated starting form pwd, falling back to home, falling back to defaults" do
-      options_helper = DefaultOptions.new
-      
-      options_helper.stub(:default_options) { { :pasta => 1, :beer => 1, :cheese_cake => 1 } }
-      options_helper.stub(:options_from_home) { { :pasta => 0, :pizza => 2 } }
-      options_helper.stub(:options_from_pwd) { { :beer => 2, :cheese_cake => 2 } }
-      options_helper.stub(:filter_valid_options).with(anything()) { anything() }
-      
       expected_options = { :pasta => 0, :pizza => 2, :beer => 2, :cheese_cake => 2 }
-      options_helper.user_default_options.should eq(expected_options)
+      @options_helper.user_default_options.should eq(expected_options)
+    end
+
+    it "doesn't break in case the pwd options are missing" do
+      @options_helper.stub(:options_from_pwd) { {} }
+      expected_options = { :pasta => 0, :pizza => 2, :beer => 1, :cheese_cake => 1 }
+      @options_helper.user_default_options.should eq(expected_options)
+    end
+
+    it "doesn't break in case the home options are missing" do
+      @options_helper.stub(:options_from_home) { {} }
+      expected_options = { :pasta => 1, :beer => 2, :cheese_cake => 2 }
+      @options_helper.user_default_options.should eq(expected_options)
     end
   end
 
