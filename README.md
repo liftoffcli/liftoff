@@ -19,20 +19,9 @@
 
 ## Usage
 
-Liftoff adds the `liftoff` command to your PATH. These commands are meant to be run in directories containing existing Xcode projects.
+Run this command in a directory containing an Xcode project:
 
-```
-Usage: liftoff [options]
-    -v, --version             Print the version
-    -a, --all                 Run all commands (Default)
-    -g, --git                 Add default .gitignore and .gitattributes files
-    -i, --indentation         Set the indentation level (in spaces, defaults to 4)
-    -e, --error               Treat warnings as errors (Only for release configurations)
-    -t, --todo                Add a build script to turn TODO and FIXME comments into warnings
-    -w, --warnings            Turn on Hosey warnings at the project level
-    -s, --staticanalyzer      Turn on static analysis for the project
-    -h, --help                Display this help message
-```
+    $ liftoff
 
 ### Configuration - .liftoffrc
 
