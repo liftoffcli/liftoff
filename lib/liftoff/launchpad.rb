@@ -1,36 +1,38 @@
 module Liftoff
   class LaunchPad
     def initialize(argv)
-      parse_options(argv)
+      @opts = parse_options(argv)
     end
 
     def liftoff
+      @config = OptionParser.new.options
+
       if @opts[:help]
         display_help
       elsif @opts[:version]
         display_version
       else
-        if @opts[:git]
+        if @config[:git]
           generate_git
         end
 
-        if @opts[:indentation]
+        if @config[:indentation]
           set_indentation_level
         end
 
-        if @opts[:errors]
+        if @config[:errors]
           treat_warnings_as_errors
         end
 
-        if @opts[:todo]
+        if @config[:todo]
           add_todo_script_phase
         end
 
-        if @opts[:warnings]
+        if @config[:warnings]
           enable_hosey_warnings
         end
 
-        if @opts[:staticanalyzer]
+        if @config[:staticanalyzer]
           enable_static_analyzer
         end
       end
@@ -39,24 +41,9 @@ module Liftoff
     private
 
     def parse_options(argv)
-      default_options = OptionParser.new
-
-      @opts = Slop.parse(argv, :strict => true) do
+      Slop.parse(argv, :strict => true) do
         on :v, :version, 'Print the version'
-        on :a, :all, 'Run all commands (Default)'
-        on :g, :git, 'Add default .gitignore and .gitattributes files'
-        on :i, :indentation=, 'Set the indentation level (in spaces, defaults to 4)', :argument => :optional, :as => Integer do |user_indentation_level|
-          fetch_option(:indentation).value = user_indentation_level || default_options.default_options[:indentation]
-        end
-        on :e, :error, 'Treat warnings as errors (Only for release configurations)'
-        on :t, :todo, 'Add a build script to turn TODO and FIXME comments into warnings'
-        on :w, :warnings, 'Turn on Hosey warnings at the project level'
-        on :s, :staticanalyzer, 'Turn on static analysis for the project'
         on :h, :help, 'Display this help message'
-      end
-
-      if turn_on_all_options? || user_passed_no_flags?
-        @opts = default_options.options
       end
     end
 
@@ -73,7 +60,7 @@ module Liftoff
     end
 
     def set_indentation_level
-      xcode_helper.set_indentation_level(@opts[:indentation])
+      xcode_helper.set_indentation_level(@config[:indentation])
     end
 
     def treat_warnings_as_errors
