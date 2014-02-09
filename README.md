@@ -5,13 +5,12 @@
 * Add default .gitignore and .gitattributes files. Read more about this in our blog post: [Xcode and git: bridging the gap][xcode-gitattributes]
 * Set the indentation level (4 spaces by default. No tabs, the way God intended)
 * Treat warnings as errors for release schemes
-* Enable [Hosey-level warnings][hosey-warnings] at the project level
+* Enable warnings at the project level
 * Turn on Static Analysis for the project
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into warnings][deallocated-todo]
 
 [xcode-gitattributes]: http://robots.thoughtbot.com/post/33796217972/xcode-and-git-bridging-the-gap
 [deallocated-todo]: http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4
-[hosey-warnings]: http://boredzo.org/blog/archives/2009-11-07/warnings
 
 ## Installation
 
@@ -25,16 +24,11 @@ Run this command in a directory containing an Xcode project:
 
 ### Configuration - .liftoffrc
 
-You can use the `.liftoffrc` file to speedup your workflow by defining your favorite settings for liftoff. Liftoff will look for config files in the local directory, as well as the home directory. If neither are found, it will use the internal configuration. The default liftoffrc looks like the following:
-
-```YAML
-git: true
-error: true
-todo: true
-warnings: true
-staticanalyzer: true
-indentation: 4
-```
+You can use the `.liftoffrc` file to speed up your workflow by defining your
+favorite settings for liftoff. Liftoff will look for config files in the local
+directory and then the home directory. If you haven't provided a
+`./.liftoffrc` or a `~/.liftoffrc`, it will use [the default](https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc).
+Check the default for a list of available options.
 
 ## About
 
