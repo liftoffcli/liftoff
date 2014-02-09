@@ -55,9 +55,7 @@ module Liftoff
         on :h, :help, 'Display this help message'
       end
 
-      if @opts[:all]
-        @opts = default_options.options
-      elsif @opts.to_hash.values.compact.empty?
+      if turn_on_all_options? || user_passed_no_flags?
         @opts = default_options.options
       end
     end
@@ -96,6 +94,14 @@ module Liftoff
 
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new
+    end
+
+    def turn_on_all_options?
+      @opts[:all]
+    end
+
+    def user_passed_no_flags?
+      @opts.to_hash.values.compact.empty?
     end
   end
 end

@@ -15,9 +15,7 @@ module Liftoff
 
       move_template(template, destination)
 
-      if existing_content
-        append_original_file_contents(destination, existing_content)
-      end
+      append_original_file_contents(destination, existing_content)
     end
 
     def existing_file_contents(filename)
@@ -34,9 +32,11 @@ module Liftoff
     end
 
     def append_original_file_contents(filename, original_contents)
-      File.open(filename, 'a') do |file|
-        file.write("\n# Original #{filename} contents\n")
-        file.write(original_contents)
+      if original_contents
+        File.open(filename, 'a') do |file|
+          file.write("\n# Original #{filename} contents\n")
+          file.write(original_contents)
+        end
       end
     end
 

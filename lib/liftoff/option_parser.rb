@@ -22,21 +22,21 @@ module Liftoff
     end
 
     def evaluated_options
-      evaluated_options = default_options
-      evaluated_options.merge!(user_options)
-      evaluated_options.merge!(local_options)
+      default_options.
+        merge(user_options).
+        merge(local_options)
     end
 
     def options_from_file(path)
       if File.exists? path
         options = YAML.load_file(path)
-        convert_keys_symbols(options)
+        with_symbolized_keys(options)
       else
-        options = {}
+        {}
       end
     end
 
-    def convert_keys_symbols(hash)
+    def with_symbolized_keys(hash)
       Hash[hash.map { |key, value| [key.to_sym, value] }]
     end
   end

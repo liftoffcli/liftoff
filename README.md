@@ -57,4 +57,4 @@ The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
 ## License
 
-Liftoff is Copyright (c) 2012-2013 thoughtbot, inc. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Liftoff is Copyright (c) 2012-2014 thoughtbot, inc. It is free software, and may be redistributed under the terms specified in the LICENSE file.
