@@ -1,39 +1,37 @@
 require 'rspec'
 require 'liftoff'
 
-describe OptionParser do
+describe Liftoff::OptionParser do
   describe "#options" do
-    before(:all) do
-      @defaults = Liftoff::OptionParser.new.options
-    end
+    let(:defaults) { described_class.new.options }
 
     it "should have git true" do
-      @defaults[:git].should be true
+      defaults[:git].should be true
     end
 
     it "should have error true" do
-      @defaults[:error].should be true
+      defaults[:error].should be true
     end
 
     it "should have todo true" do
-      @defaults[:todo].should be true
+      defaults[:todo].should be true
     end
 
     it "should have warnings true" do
-      @defaults[:warnings].should be true
+      defaults[:warnings].should be true
     end
 
     it "should have staticanalyzer true" do
-      @defaults[:staticanalyzer].should be true
+      defaults[:staticanalyzer].should be true
     end
 
     it "should have indentation set to 4" do
-      @defaults[:indentation].should eq(4)
+      defaults[:indentation].should eq(4)
     end
   end
 
   describe "#options" do
-    before(:each) do
+    before do
       @option_parser = Liftoff::OptionParser.new
 
       @option_parser.stub(:default_options) { { :pasta => 1, :beer => 1, :cheese_cake => 1 } }
