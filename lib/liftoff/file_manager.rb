@@ -2,9 +2,11 @@ require 'fileutils'
 
 module Liftoff
   class FileManager
-    def create_git_files
-      generate('gitignore', '.gitignore')
-      generate('gitattributes', '.gitattributes')
+    def create_git_files(generate_git)
+      if (generate_git)
+        generate('gitignore', '.gitignore')
+        generate('gitattributes', '.gitattributes')
+      end
     end
 
     private
