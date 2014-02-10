@@ -1,7 +1,6 @@
-require 'slop'
 require 'highline/import'
 require 'liftoff/version'
 require 'liftoff/xcodeproj_helper'
 require 'liftoff/file_manager'
-require 'liftoff/option_parser'
+require 'liftoff/configuration_parser'
 require 'liftoff/launchpad'
