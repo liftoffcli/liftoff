@@ -15,7 +15,7 @@ module Liftoff
     end
 
     def treat_warnings_as_errors(enable_errors)
-      if (enable_errors)
+      if enable_errors
         say 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
         target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
         save_changes
@@ -23,7 +23,7 @@ module Liftoff
     end
 
     def enable_warnings(warnings)
-      if (warnings)
+      if warnings
         say 'Setting warnings at the project level'
         @project.build_configurations.each do |configuration|
           warnings.each do |warning|
@@ -35,7 +35,7 @@ module Liftoff
     end
 
     def enable_static_analyzer(enable_static_analyzer)
-      if (enable_static_analyzer)
+      if enable_static_analyzer
         say 'Turning on Static Analyzer at the project level'
         @project.build_configurations.each do |configuration|
           configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
@@ -45,7 +45,7 @@ module Liftoff
     end
 
     def set_indentation_level(level)
-      if (level)
+      if level
         say "Setting the project indentation level to #{level} spaces"
         main_group = @project.main_group
         main_group.indent_width = level.to_s
@@ -56,7 +56,7 @@ module Liftoff
     end
 
     def add_todo_script_phase(enable_todos)
-      if (enable_todos)
+      if enable_todos
         say 'Adding shell script build phase to warn on TODO and FIXME comments'
         add_shell_script_build_phase(TODO_WARNING_SCRIPT, 'Warn for TODO and FIXME comments')
       end
