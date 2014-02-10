@@ -6,33 +6,14 @@ FILE_EXTENSIONS="h|m|mm|c|cpp"
 find -E "${SRCROOT}" -ipath "${SRCROOT}/pods" -prune -o \\( -regex ".*\\.($FILE_EXTENSIONS)$" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
 WARNING
 
-HOSEY_WARNINGS = %w(
-  GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
-  GCC_WARN_MISSING_PARENTHESES
-  GCC_WARN_ABOUT_RETURN_TYPE
-  GCC_WARN_SIGN_COMPARE
-  GCC_WARN_CHECK_SWITCH_STATEMENTS
-  GCC_WARN_UNUSED_FUNCTION
-  GCC_WARN_UNUSED_LABEL
-  GCC_WARN_UNUSED_VALUE
-  GCC_WARN_UNUSED_VARIABLE
-  GCC_WARN_SHADOW
-  GCC_WARN_64_TO_32_BIT_CONVERSION
-  GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS
-  GCC_WARN_ABOUT_MISSING_NEWLINE
-  GCC_WARN_UNDECLARED_SELECTOR
-  GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
-  CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
-  CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
-)
-
 module Liftoff
   class XcodeprojHelper
     XCODE_PROJECTS = Dir.glob("*.xcodeproj")
 
-    def initialize
+    def initialize(project_configuration)
       @project = Xcodeproj::Project.open(xcode_project_file)
       @target = project_target
+      @project_configuration = project_configuration
     end
 
     def treat_warnings_as_errors
@@ -41,10 +22,10 @@ module Liftoff
       save_changes
     end
 
-    def enable_hosey_warnings
-      say 'Setting Hosey warnings at the project level'
+    def enable_warnings
+      say 'Setting warnings at the project level'
       @project.build_configurations.each do |configuration|
-        HOSEY_WARNINGS.each do |setting|
+        @project_configuration[:warnings].each do |setting|
           configuration.build_settings[setting] = 'YES'
         end
       end

@@ -29,7 +29,7 @@ module Liftoff
         end
 
         if @config[:warnings]
-          enable_hosey_warnings
+          enable_warnings
         end
 
         if @config[:staticanalyzer]
@@ -71,8 +71,8 @@ module Liftoff
       xcode_helper.add_todo_script_phase
     end
 
-    def enable_hosey_warnings
-      xcode_helper.enable_hosey_warnings
+    def enable_warnings
+      xcode_helper.enable_warnings
     end
 
     def enable_static_analyzer
@@ -80,7 +80,7 @@ module Liftoff
     end
 
     def xcode_helper
-      @xcode_helper ||= XcodeprojHelper.new
+      @xcode_helper ||= XcodeprojHelper.new(@opts)
     end
 
     def turn_on_all_options?
