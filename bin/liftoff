@@ -3,4 +3,4 @@
 $:.push File.expand_path("../../lib", __FILE__)
 require 'liftoff'
 
-Liftoff::LaunchPad.new(ARGV).liftoff
+Liftoff::LaunchPad.new.liftoff

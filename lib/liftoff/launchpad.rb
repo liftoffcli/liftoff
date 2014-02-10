@@ -1,58 +1,59 @@
+require 'optparse'
+
 module Liftoff
   class LaunchPad
-    def initialize(argv)
-      @opts = parse_options(argv)
+    def initialize
+      parse_command_line_options
     end
 
     def liftoff
-      @config = OptionParser.new.options
+      @config = ConfigurationParser.new.project_configuration
 
-      if @opts[:help]
-        display_help
-      elsif @opts[:version]
-        display_version
-      else
-        if @config[:git]
-          generate_git
-        end
+      if @config[:git]
+        generate_git
+      end
 
-        if @config[:indentation]
-          set_indentation_level
-        end
+      if @config[:indentation]
+        set_indentation_level
+      end
 
-        if @config[:errors]
-          treat_warnings_as_errors
-        end
+      if @config[:errors]
+        treat_warnings_as_errors
+      end
 
-        if @config[:todo]
-          add_todo_script_phase
-        end
+      if @config[:warnings]
+        enable_warnings
+      end
 
-        if @config[:warnings]
-          enable_warnings
-        end
+      if @config[:todo]
+        add_todo_script_phase
+      end
 
-        if @config[:staticanalyzer]
-          enable_static_analyzer
-        end
+      if @config[:staticanalyzer]
+        enable_static_analyzer
       end
     end
 
     private
 
-    def parse_options(argv)
-      Slop.parse(argv, :strict => true) do
-        on :v, :version, 'Print the version'
-        on :h, :help, 'Display this help message'
+    def parse_command_line_options
+      global_options.parse!(ARGV)
+    end
+
+    def global_options
+      OptionParser.new do |opts|
+        opts.banner = 'usage: liftoff [-v | --version] [-h | --help]'
+
+        opts.on('-v', '--version', 'Display the version and exit') do
+          puts "Version: #{Liftoff::VERSION}"
+          exit 0
+        end
+
+        opts.on('-h', '--help', 'Display this help message and exit') do
+          puts opts
+          exit 0
+        end
       end
-    end
-
-    def display_help
-      puts @opts.help
-    end
-
-    def display_version
-      puts "Version: #{Liftoff::VERSION}"
     end
 
     def generate_git
