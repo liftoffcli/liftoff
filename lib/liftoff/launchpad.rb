@@ -2,8 +2,8 @@ require 'optparse'
 
 module Liftoff
   class LaunchPad
-    def initialize
-      parse_command_line_options
+    def initialize(argv)
+      parse_command_line_options(argv)
     end
 
     def liftoff
@@ -36,8 +36,8 @@ module Liftoff
 
     private
 
-    def parse_command_line_options
-      global_options.parse!(ARGV)
+    def parse_command_line_options(argv)
+      global_options.parse!(argv)
     end
 
     def global_options
