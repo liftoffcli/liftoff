@@ -1,14 +1,10 @@
-require 'optparse'
-
 module Liftoff
   class LaunchPad
-    def initialize(argv)
-      parse_command_line_options(argv)
+    def initialize
+      @config = ConfigurationParser.new.project_configuration
     end
 
     def liftoff
-      @config = ConfigurationParser.new.project_configuration
-
       generate_git
       set_indentation_level
       enable_warnings
@@ -18,26 +14,6 @@ module Liftoff
     end
 
     private
-
-    def parse_command_line_options(argv)
-      global_options.parse!(argv)
-    end
-
-    def global_options
-      OptionParser.new do |opts|
-        opts.banner = 'usage: liftoff [-v | --version] [-h | --help]'
-
-        opts.on('-v', '--version', 'Display the version and exit') do
-          puts "Version: #{Liftoff::VERSION}"
-          exit 0
-        end
-
-        opts.on('-h', '--help', 'Display this help message and exit') do
-          puts opts
-          exit 0
-        end
-      end
-    end
 
     def generate_git
       FileManager.new.create_git_files(@config[:git])
