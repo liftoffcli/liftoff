@@ -1,5 +1,5 @@
 git: true
-error: true
+errors: true
 todo: true
 staticanalyzer: true
 indentation: 4
