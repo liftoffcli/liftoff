@@ -23,12 +23,12 @@ module Liftoff
 
         opts.on('-v', '--version', 'Display the version and exit') do
           puts "Version: #{Liftoff::VERSION}"
-          exit 0
+          exit
         end
 
         opts.on('-h', '--help', 'Display this help message and exit') do
           puts opts
-          exit 0
+          exit
         end
       end
     end
