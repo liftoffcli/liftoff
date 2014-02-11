@@ -1,11 +1,5 @@
 require 'xcodeproj'
 
-TODO_WARNING_SCRIPT = <<WARNING
-KEYWORDS="TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:"
-FILE_EXTENSIONS="h|m|mm|c|cpp"
-find -E "${SRCROOT}" -ipath "${SRCROOT}/pods" -prune -o \\( -regex ".*\\.($FILE_EXTENSIONS)$" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($KEYWORDS).*\\$" | perl -p -e "s/($KEYWORDS)/ warning: \\$1/"
-WARNING
-
 module Liftoff
   class XcodeprojHelper
     XCODE_PROJECTS = Dir.glob("*.xcodeproj")
@@ -58,11 +52,17 @@ module Liftoff
     def add_todo_script_phase(enable_todos)
       if enable_todos
         say 'Adding shell script build phase to warn on TODO and FIXME comments'
-        add_shell_script_build_phase(TODO_WARNING_SCRIPT, 'Warn for TODO and FIXME comments')
+        add_shell_script_build_phase(script_template('todo.sh'), 'Warn for TODO and FIXME comments')
       end
     end
 
     private
+
+    def script_template(filename)
+      templates_dir = File.expand_path('../../../templates', __FILE__)
+      script_path = File.join(templates_dir, filename)
+      File.read(script_path)
+    end
 
     def target
       @project_target ||= choose_item("target", available_targets)
