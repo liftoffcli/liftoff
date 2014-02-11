@@ -1,7 +1,8 @@
 module Liftoff
   class LaunchPad
     def initialize
-      @config = ConfigurationParser.new.project_configuration
+      liftoffrc = ConfigurationParser.new.project_configuration
+      @config = ProjectConfiguration.new(liftoffrc)
     end
 
     def liftoff
@@ -16,27 +17,27 @@ module Liftoff
     private
 
     def generate_git
-      FileManager.new.create_git_files(@config[:git])
+      FileManager.new.create_git_files(@config.git)
     end
 
     def set_indentation_level
-      xcode_helper.set_indentation_level(@config[:indentation])
+      xcode_helper.set_indentation_level(@config.indentation)
     end
 
     def treat_warnings_as_errors
-      xcode_helper.treat_warnings_as_errors(@config[:errors])
+      xcode_helper.treat_warnings_as_errors(@config.errors)
     end
 
     def add_todo_script_phase
-      xcode_helper.add_todo_script_phase(@config[:todo])
+      xcode_helper.add_todo_script_phase(@config.todo)
     end
 
     def enable_warnings
-      xcode_helper.enable_warnings(@config[:warnings])
+      xcode_helper.enable_warnings(@config.warnings)
     end
 
     def enable_static_analyzer
-      xcode_helper.enable_static_analyzer(@config[:staticanalyzer])
+      xcode_helper.enable_static_analyzer(@config.staticanalyzer)
     end
 
     def xcode_helper
