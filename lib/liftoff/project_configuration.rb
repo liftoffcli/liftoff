@@ -2,8 +2,8 @@ module Liftoff
   class ProjectConfiguration
     attr_accessor :git, :errors, :todo, :staticanalyzer, :indentation, :warnings, :directories
 
-    def initialize(hash)
-      hash.each_pair do |attribute, value|
+    def initialize(liftoffrc)
+      liftoffrc.each_pair do |attribute, value|
         if respond_to?("#{attribute}=")
           send("#{attribute}=", value)
         else
