@@ -9,22 +9,22 @@ module Liftoff
 
     private
 
-    def default_configuration
-      configuration_from_file(File.expand_path('../../../defaults/liftoffrc', __FILE__))
+    def evaluated_configuration
+      default_configuration.
+        merge(user_configuration).
+        merge(local_configuration)
     end
 
-    def local_configuration
-      configuration_from_file(Dir.pwd + '/.liftoffrc')
+    def default_configuration
+      configuration_from_file(File.expand_path('../../../defaults/liftoffrc', __FILE__))
     end
 
     def user_configuration
       configuration_from_file(ENV['HOME'] + '/.liftoffrc')
     end
 
-    def evaluated_configuration
-      default_configuration.
-        merge(user_configuration).
-        merge(local_configuration)
+    def local_configuration
+      configuration_from_file(Dir.pwd + '/.liftoffrc')
     end
 
     def configuration_from_file(path)
