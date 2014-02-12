@@ -92,19 +92,19 @@ module Liftoff
     end
 
     def available_targets
-      @project.targets.to_a.delete_if { |t| t.name.end_with?('Tests') }
+      @project.targets.to_a.reject { |t| t.name.end_with?('Tests') }
     end
 
     def add_shell_script_build_phase(script, name)
-      unless build_phase_exists_with_name name
+      if build_phase_does_not_exist_with_name?(name)
         build_phase = target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
         save_changes
       end
     end
 
-    def build_phase_exists_with_name(name)
-      target.build_phases.to_a.index { |phase| phase.display_name == name }
+    def build_phase_does_not_exist_with_name?(name)
+      target.build_phases.to_a.none? { |phase| phase.display_name == name }
     end
 
     def save_changes
