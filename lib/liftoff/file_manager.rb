@@ -1,12 +1,20 @@
 require 'fileutils'
+require 'erb'
 
 module Liftoff
   class FileManager
-    def generate(template, destination = template)
+    def create_git_files(generate_git)
+      if generate_git
+        generate('gitignore', '.gitignore')
+        generate('gitattributes', '.gitattributes')
+      end
+    end
+
+    def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
       existing_content = existing_file_contents(destination)
 
-      move_template(template, destination)
+      move_template(template, destination, project_config)
 
       append_original_file_contents(destination, existing_content)
     end
@@ -21,9 +29,14 @@ module Liftoff
       end
     end
 
-    def move_template(template, destination)
+    def move_template(template, destination, project_config)
       template_path = File.join(templates_dir, template)
-      FileUtils.copy(template_path, destination, {})
+      template_contents = File.read(template_path)
+      rendered_template = ERB.new(template_contents).result(project_config.get_binding)
+
+      File.open(destination, 'w') do |file|
+        file.write(rendered_template)
+      end
     end
 
     def append_original_file_contents(filename, original_contents)

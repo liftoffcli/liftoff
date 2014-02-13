@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Liftoff
   class LaunchPad
     def initialize
@@ -6,15 +8,38 @@ module Liftoff
     end
 
     def liftoff
-      generate_git
-      set_indentation_level
-      enable_warnings
-      treat_warnings_as_errors
-      add_todo_script_phase
-      enable_static_analyzer
+      fetch_options
+
+      create_project_dir do
+        generate_project
+        generate_git
+        set_indentation_level
+        enable_warnings
+        treat_warnings_as_errors
+        add_todo_script_phase
+        enable_static_analyzer
+      end
     end
 
     private
+
+    def fetch_options
+      @config.name = ask 'Project name? '
+      @config.company = ask 'Company name? '
+      @config.author = ask 'Author name? '
+      @config.prefix = ask 'Prefix? '
+    end
+
+    def create_project_dir(&block)
+      FileUtils.mkdir(@config.name)
+      Dir.chdir(@config.name) do
+        yield
+      end
+    end
+
+    def generate_project
+      ProjectBuilder.new(@config).create_project
+    end
 
     def generate_git
       GitSetup.new(@config.git).setup
