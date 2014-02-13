@@ -22,3 +22,26 @@ warnings:
   - GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
   - CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
+
+directories:
+  - <%= name %>:
+    - Categories:
+    - Classes:
+      - Controllers:
+      - Data-Sources:
+      - Delegates:
+        - <%= prefix %>AppDelegate.m
+        - <%= prefix %>AppDelegate.h
+      - Factories:
+      - Models:
+      - View-Controllers:
+      - Views:
+    - Constants:
+    - Resources:
+      - Images.xcassets:
+      - Nibs:
+      - Other-Sources:
+        - <%= name %>-Info.plist
+        - <%= name %>-Prefix.pch
+        - main.m
+      - Storyboards:
