@@ -23,25 +23,33 @@ warnings:
   - CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
 
-directories:
-  - <%= name %>:
+application_target_groups:
+  - Categories:
+  - Classes:
+    - Controllers:
+    - DataSources:
+    - Delegates:
+      - <%= prefix %>AppDelegate.m
+      - <%= prefix %>AppDelegate.h
+    - Factories:
+    - Models:
+    - ViewControllers:
+    - Views:
+  - Constants:
+  - Resources:
+    - Nibs:
+    - Other-Sources:
+      - <%= name %>-Info.plist
+      - <%= name %>-Prefix.pch
+      - main.m
+    - Storyboards:
+
+unit_test_target_groups:
+  - Resources:
+    - UnitTests-Info.plist
+    - UnitTests-Prefix.pch
+  - Tests:
     - Categories:
-    - Classes:
-      - Controllers:
-      - Data-Sources:
-      - Delegates:
-        - <%= prefix %>AppDelegate.m
-        - <%= prefix %>AppDelegate.h
-      - Factories:
-      - Models:
-      - View-Controllers:
-      - Views:
-    - Constants:
-    - Resources:
-      - Images.xcassets:
-      - Nibs:
-      - Other-Sources:
-        - <%= name %>-Info.plist
-        - <%= name %>-Prefix.pch
-        - main.m
-      - Storyboards:
+    - DataSources:
+    - Factories:
+    - Models:
