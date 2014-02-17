@@ -24,32 +24,34 @@ warnings:
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
 
 application_target_groups:
-  - Categories:
-  - Classes:
-    - Controllers:
-    - DataSources:
-    - Delegates:
-      - <%= prefix %>AppDelegate.m
-      - <%= prefix %>AppDelegate.h
-    - Factories:
-    - Models:
-    - ViewControllers:
-    - Views:
-  - Constants:
-  - Resources:
-    - Nibs:
-    - Other-Sources:
-      - <%= name %>-Info.plist
-      - <%= name %>-Prefix.pch
-      - main.m
-    - Storyboards:
+  - <%= name %>:
+    - Categories:
+    - Classes:
+      - Controllers:
+      - DataSources:
+      - Delegates:
+        - <%= prefix %>AppDelegate.m
+        - <%= prefix %>AppDelegate.h
+      - Factories:
+      - Models:
+      - ViewControllers:
+      - Views:
+    - Constants:
+    - Resources:
+      - Nibs:
+      - Other-Sources:
+        - <%= name %>-Info.plist
+        - <%= name %>-Prefix.pch
+        - main.m
+      - Storyboards:
 
 unit_test_target_groups:
-  - Resources:
-    - UnitTests-Info.plist
-    - UnitTests-Prefix.pch
-  - Tests:
-    - Categories:
-    - DataSources:
-    - Factories:
-    - Models:
+  - UnitTests:
+    - Resources:
+      - UnitTests-Info.plist
+      - UnitTests-Prefix.pch
+    - Tests:
+      - Categories:
+      - DataSources:
+      - Factories:
+      - Models:

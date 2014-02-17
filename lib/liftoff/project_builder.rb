@@ -10,14 +10,11 @@ module Liftoff
     end
 
     def create_project
-      application_target_groups = [{ @project_configuration.name => @project_configuration.application_target_groups }]
-      unit_test_target_groups = [{ 'UnitTests' => @project_configuration.unit_test_target_groups }]
-
-      application_target_groups.each do |directory|
+      @project_configuration.application_target_groups.each do |directory|
         create_tree(directory, xcode_project.app_target)
       end
 
-      unit_test_target_groups.each do |directory|
+      @project_configuration.unit_test_target_groups.each do |directory|
         create_tree(directory, xcode_project.unit_test_target)
       end
 
