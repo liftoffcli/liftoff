@@ -19,6 +19,12 @@ module Liftoff
       append_original_file_contents(destination, existing_content)
     end
 
+    def mkdir_gitkeep(path)
+      dir_path = File.join(*path)
+      FileUtils.mkdir_p(dir_path)
+      FileUtils.touch(File.join(dir_path, '.gitkeep'))
+    end
+
     private
 
     def existing_file_contents(filename)

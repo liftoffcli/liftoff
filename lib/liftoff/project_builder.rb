@@ -25,7 +25,7 @@ module Liftoff
 
     def create_tree(tree, target, path = [], parent_group = xcode_project)
       if tree.class == String
-        mkdir_gitkeep(path)
+        file_manager.mkdir_gitkeep(path)
         move_template(path, tree)
         link_file(tree, parent_group, path, target)
         return
@@ -34,7 +34,7 @@ module Liftoff
       tree.each_pair do |raw_directory, child|
         directory = rendered_string(raw_directory)
         path += [directory]
-        mkdir_gitkeep(path)
+        file_manager.mkdir_gitkeep(path)
         created_group = parent_group.new_group(directory, directory)
         if child
           child.each do |c|
@@ -42,12 +42,6 @@ module Liftoff
           end
         end
       end
-    end
-
-    def mkdir_gitkeep(path)
-      dir_path = File.join(*path)
-      FileUtils.mkdir_p(dir_path)
-      FileUtils.touch(File.join(dir_path, '.gitkeep'))
     end
 
     def move_template(path, raw_template_name)
@@ -80,6 +74,10 @@ module Liftoff
 
     def xcode_project
       @xcode_project ||= Project.new(@project_configuration.name, @project_configuration.company, @project_configuration.prefix)
+    end
+
+    def file_manager
+      @file_manager ||= FileManager.new
     end
   end
 end
