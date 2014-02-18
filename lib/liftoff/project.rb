@@ -7,6 +7,7 @@ module Liftoff
       @name = name
       set_company_name(company)
       set_prefix(prefix)
+      configure_code_signing
     end
 
     def app_target
@@ -59,6 +60,12 @@ module Liftoff
         configuration.build_settings['TEST_HOST'] = '$(BUNDLE_LOADER)'
       end
       target
+    end
+
+    def configure_code_signing
+      xcode_project.build_configurations.each do |configuration|
+        configuration.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = 'iPhone Developer'
+      end
     end
 
     def configure_search_paths(target)
