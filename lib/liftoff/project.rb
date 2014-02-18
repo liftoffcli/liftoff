@@ -5,8 +5,8 @@ module Liftoff
 
     def initialize(name, company, prefix)
       @name = name
-      set_prefix(prefix)
       set_company_name(company)
+      set_prefix(prefix)
     end
 
     def app_target
@@ -22,7 +22,7 @@ module Liftoff
       xcode_project.save
     end
 
-    def new_group(name, path=name)
+    def new_group(name, path)
       xcode_project.new_group(name, path)
     end
 
@@ -61,6 +61,12 @@ module Liftoff
       target
     end
 
+    def configure_search_paths(target)
+      target.build_configurations.each do |configuration|
+        configuration.build_settings['FRAMEWORK_SEARCH_PATHS'] = ['$(SDKROOT)/Developer/Library/Frameworks', '$(inherited)', '$(DEVELOPER_FRAMEWORKS_DIR)']
+      end
+    end
+
     def create_xctest_framework
       xctest = xcode_project.frameworks_group.new_file('XCTest.framework')
       xctest.set_source_tree(:developer_dir)
@@ -69,19 +75,12 @@ module Liftoff
       xctest
     end
 
-    def configure_search_paths(target)
-      target.build_configurations.each do |configuration|
-        configuration.build_settings['FRAMEWORK_SEARCH_PATHS'] = ['$(SDKROOT)/Developer/Library/Frameworks', '$(inherited)', '$(DEVELOPER_FRAMEWORKS_DIR)']
-      end
-    end
-
     def xctest_framework
       @xctest_framework ||= create_xctest_framework
     end
 
     def xcode_project
       path = Pathname.new("#{@name}.xcodeproj").expand_path
-      puts path
       @project ||= Xcodeproj::Project.new(path)
     end
   end
