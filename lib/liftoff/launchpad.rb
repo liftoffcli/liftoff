@@ -27,7 +27,7 @@ module Liftoff
       @config.name = ask('Project name? ') { |q| q.default = @config.name }
       @config.company = ask('Company name? ') { |q| q.default = @config.company }
       @config.author = ask('Author name? ') { |q| q.default = @config.author }
-      @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }
+      @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase
     end
 
     def generate_project
