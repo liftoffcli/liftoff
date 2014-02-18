@@ -18,6 +18,7 @@ module Liftoff
     end
 
     def save
+      reorder_groups
       xcode_project.save
     end
 
@@ -26,6 +27,14 @@ module Liftoff
     end
 
     private
+
+    def reorder_groups
+      children = xcode_project.main_group.children
+      frameworks = xcode_project.frameworks_group
+      products = xcode_project.products_group
+      children.move(frameworks, -1)
+      children.move(products, -1)
+    end
 
     def new_app_target
       xcode_project.new_target(:application, @name, :ios, 7.0)
