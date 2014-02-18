@@ -24,10 +24,10 @@ module Liftoff
     private
 
     def fetch_options
-      @config.name = ask 'Project name? '
-      @config.company = ask 'Company name? '
-      @config.author = ask 'Author name? '
-      @config.prefix = ask 'Prefix? '
+      @config.name = ask('Project name? ') { |q| q.default = @config.name }
+      @config.company = ask('Company name? ') { |q| q.default = @config.company }
+      @config.author = ask('Author name? ') { |q| q.default = @config.author }
+      @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }
     end
 
     def create_project_dir(&block)
