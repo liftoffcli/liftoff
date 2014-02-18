@@ -60,16 +60,6 @@ module Liftoff
       @project_target ||= choose_item("target", available_targets)
     end
 
-    def xcode_project_file
-      @xcode_project_file ||= choose_item('Xcode project', XCODE_PROJECTS)
-
-      if @xcode_project_file == 'Pods.xcodeproj'
-        raise 'Can not run in the Pods directory. $ cd .. maybe?'
-      end
-
-      @xcode_project_file
-    end
-
     def choose_item(title, objects)
       if objects.empty?
         raise "Could not locate any #{title}s!"
