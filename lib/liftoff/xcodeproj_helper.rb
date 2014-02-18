@@ -2,10 +2,8 @@ require 'xcodeproj'
 
 module Liftoff
   class XcodeprojHelper
-    XCODE_PROJECTS = Dir.glob("*.xcodeproj")
-
-    def initialize
-      @project = Xcodeproj::Project.open(xcode_project_file)
+    def initialize(name)
+      @project = Xcodeproj::Project.open("#{name}.xcodeproj")
     end
 
     def treat_warnings_as_errors(enable_errors)
@@ -108,7 +106,7 @@ module Liftoff
     end
 
     def save_changes
-      @project.save xcode_project_file
+      @project.save
     end
   end
 end

@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Liftoff
   class LaunchPad
     def initialize
@@ -59,7 +57,7 @@ module Liftoff
     end
 
     def xcode_helper
-      @xcode_helper ||= XcodeprojHelper.new
+      @xcode_helper ||= XcodeprojHelper.new(@config.name)
     end
   end
 end
