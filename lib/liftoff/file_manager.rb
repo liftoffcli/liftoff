@@ -2,15 +2,6 @@ require 'fileutils'
 
 module Liftoff
   class FileManager
-    def create_git_files(generate_git)
-      if generate_git
-        generate('gitignore', '.gitignore')
-        generate('gitattributes', '.gitattributes')
-      end
-    end
-
-    private
-
     def generate(template, destination = template)
       puts "Writing #{destination}"
       existing_content = existing_file_contents(destination)
@@ -19,6 +10,8 @@ module Liftoff
 
       append_original_file_contents(destination, existing_content)
     end
+
+    private
 
     def existing_file_contents(filename)
       if File.exists? filename

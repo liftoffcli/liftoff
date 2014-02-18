@@ -17,7 +17,7 @@ module Liftoff
     private
 
     def generate_git
-      FileManager.new.create_git_files(@config.git)
+      GitSetup.new(@config.git).setup
     end
 
     def set_indentation_level
