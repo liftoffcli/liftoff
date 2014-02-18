@@ -10,7 +10,7 @@ module Liftoff
       if enable_errors
         say 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
         target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
-        save_changes
+        @project.save
       end
     end
 
@@ -22,7 +22,7 @@ module Liftoff
             configuration.build_settings[warning] = 'YES'
           end
         end
-        save_changes
+        @project.save
       end
     end
 
@@ -32,7 +32,7 @@ module Liftoff
         @project.build_configurations.each do |configuration|
           configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
         end
-        save_changes
+        @project.save
       end
     end
 
@@ -43,7 +43,7 @@ module Liftoff
         main_group.indent_width = level.to_s
         main_group.tab_width = level.to_s
         main_group.uses_tabs = '0'
-        save_changes
+        @project.save
       end
     end
 
@@ -91,16 +91,12 @@ module Liftoff
       if build_phase_does_not_exist_with_name?(name)
         build_phase = target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
-        save_changes
+        @project.save
       end
     end
 
     def build_phase_does_not_exist_with_name?(name)
       target.build_phases.to_a.none? { |phase| phase.display_name == name }
-    end
-
-    def save_changes
-      @project.save
     end
 
     def file_manager
