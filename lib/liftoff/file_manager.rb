@@ -32,6 +32,11 @@ module Liftoff
       FileUtils.touch(File.join(dir_path, '.gitkeep'))
     end
 
+    def template_contents(filename)
+      script_path = File.join(templates_dir, filename)
+      File.read(script_path)
+    end
+
     private
 
     def existing_file_contents(filename)
@@ -43,9 +48,7 @@ module Liftoff
     end
 
     def move_template(template, destination, project_config)
-      template_path = File.join(templates_dir, template)
-      template_contents = File.read(template_path)
-      rendered_template = ERB.new(template_contents).result(project_config.get_binding)
+      rendered_template = ERB.new(template_contents(template)).result(project_config.get_binding)
 
       File.open(destination, 'w') do |file|
         file.write(rendered_template)
