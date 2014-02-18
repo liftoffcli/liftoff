@@ -10,7 +10,7 @@ module Liftoff
     def liftoff
       fetch_options
 
-      create_project_dir do
+      file_manager.create_project_dir(@config.name) do
         generate_project
         generate_git
         set_indentation_level
@@ -28,13 +28,6 @@ module Liftoff
       @config.company = ask('Company name? ') { |q| q.default = @config.company }
       @config.author = ask('Author name? ') { |q| q.default = @config.author }
       @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }
-    end
-
-    def create_project_dir(&block)
-      FileUtils.mkdir(@config.name)
-      Dir.chdir(@config.name) do
-        yield
-      end
     end
 
     def generate_project

@@ -10,6 +10,13 @@ module Liftoff
       end
     end
 
+    def create_project_dir(name, &block)
+      FileUtils.mkdir(name)
+      Dir.chdir(name) do
+        yield
+      end
+    end
+
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
       existing_content = existing_file_contents(destination)
