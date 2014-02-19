@@ -6,12 +6,10 @@ module Liftoff
     end
 
     def create_project
-      @project_configuration.application_target_groups.each do |directory|
-        create_tree(directory, xcode_project.app_target)
-      end
-
-      @project_configuration.unit_test_target_groups.each do |directory|
-        create_tree(directory, xcode_project.unit_test_target)
+      groups_and_targets.each do |groups, target|
+        groups.each do |group|
+          create_tree(group, target)
+        end
       end
 
       xcode_project.save
@@ -48,21 +46,33 @@ module Liftoff
     def link_file(raw_template_name, parent_group, path, target)
       rendered_template_name = string_renderer.render(raw_template_name)
       file = parent_group.new_file(rendered_template_name)
-      unless rendered_template_name.end_with?('h', 'plist')
-        target.add_file_references([file])
-      end
 
-      if rendered_template_name.end_with?('plist')
+      if rendered_template_name.end_with?('h', 'plist')
         target.build_configurations.each do |configuration|
-          configuration.build_settings['INFOPLIST_FILE'] = File.join(*path, rendered_template_name)
+
+          if rendered_template_name.end_with?('plist')
+            configuration.build_settings['INFOPLIST_FILE'] = File.join(*path, rendered_template_name)
+          elsif rendered_template_name.end_with?('pch')
+            configuration.build_settings['GCC_PREFIX_HEADER'] = File.join(*path, rendered_template_name)
+          end
+
         end
-      elsif rendered_template_name.end_with?('pch')
-        target.build_configurations.each do |configuration|
-          configuration.build_settings['GCC_PREFIX_HEADER'] = File.join(*path, rendered_template_name)
-        end
+      else
+        target.add_file_references([file])
       end
     end
 
+    def groups_and_targets
+      group_map = {
+        @project_configuration.application_target_groups => xcode_project.app_target,
+      }
+
+      if @project_configuration.unit_test_target_groups
+        group_map[@project_configuration.unit_test_target_groups] = xcode_project.unit_test_target
+      end
+
+      group_map
+    end
 
     def xcode_project
       @xcode_project ||= Project.new(@project_configuration.name, @project_configuration.company, @project_configuration.prefix)
