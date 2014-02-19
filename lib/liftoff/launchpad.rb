@@ -59,5 +59,9 @@ module Liftoff
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new(@config.name)
     end
+
+    def file_manager
+      @file_manager ||= FileManager.new
+    end
   end
 end
