@@ -11,9 +11,7 @@ module Liftoff
 
     def create_project_dir(name, &block)
       FileUtils.mkdir(name)
-      Dir.chdir(name) do
-        yield
-      end
+      Dir.chdir(name, &block)
     end
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))

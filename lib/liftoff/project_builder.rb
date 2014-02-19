@@ -24,17 +24,16 @@ module Liftoff
         file_manager.mkdir_gitkeep(path)
         move_template(path, tree)
         link_file(tree, parent_group, path, target)
-        return
-      end
-
-      tree.each_pair do |raw_directory, child|
-        directory = string_renderer.render(raw_directory)
-        path += [directory]
-        file_manager.mkdir_gitkeep(path)
-        created_group = parent_group.new_group(directory, directory)
-        if child
-          child.each do |c|
-            create_tree(c, target, path, created_group)
+      else
+        tree.each_pair do |raw_directory, children|
+          directory = string_renderer.render(raw_directory)
+          path += [directory]
+          file_manager.mkdir_gitkeep(path)
+          created_group = parent_group.new_group(directory, directory)
+          if children
+            children.each do |child|
+              create_tree(child, target, path, created_group)
+            end
           end
         end
       end
