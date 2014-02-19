@@ -2,13 +2,6 @@ require 'fileutils'
 
 module Liftoff
   class FileManager
-    def create_git_files(generate_git)
-      if generate_git
-        generate('gitignore', '.gitignore')
-        generate('gitattributes', '.gitattributes')
-      end
-    end
-
     def create_project_dir(name, &block)
       FileUtils.mkdir(name)
       Dir.chdir(name, &block)
