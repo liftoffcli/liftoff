@@ -16,15 +16,18 @@ module Liftoff
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
-      existing_content = existing_file_contents(destination)
-
-      move_template(template, destination, project_config)
-
-      append_original_file_contents(destination, existing_content)
+      if File.directory?(File.join(templates_dir, template))
+        copy_template_directory(template, destination)
+      else
+        existing_content = existing_file_contents(destination)
+        move_template(template, destination, project_config)
+        append_original_file_contents(destination, existing_content)
+      end
     end
 
     def mkdir_gitkeep(path)
       dir_path = File.join(*path)
+      puts "Creating #{dir_path}"
       FileUtils.mkdir_p(dir_path)
       FileUtils.touch(File.join(dir_path, '.gitkeep'))
     end
@@ -32,6 +35,11 @@ module Liftoff
     def template_contents(filename)
       script_path = File.join(templates_dir, filename)
       File.read(script_path)
+    end
+
+    def copy_template_directory(name, path)
+      directory = File.join(templates_dir, name)
+      FileUtils.cp_r(directory, File.join(*path))
     end
 
     private

@@ -37,6 +37,7 @@ application_target_groups:
       - Views:
     - Constants:
     - Resources:
+      - Images.xcassets
       - Nibs:
       - Other-Sources:
         - <%= name %>-Info.plist

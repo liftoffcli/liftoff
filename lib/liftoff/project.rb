@@ -7,7 +7,7 @@ module Liftoff
       @name = name
       set_company_name(company)
       set_prefix(prefix)
-      configure_code_signing
+      configure_base_project_settings
     end
 
     def app_target
@@ -62,9 +62,11 @@ module Liftoff
       target
     end
 
-    def configure_code_signing
+    def configure_base_project_settings
       xcode_project.build_configurations.each do |configuration|
         configuration.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = 'iPhone Developer'
+        configuration.build_settings['ASSETCATALOG_COMPILER_APPICON_NAME'] = 'AppIcon'
+        configuration.build_settings['ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME'] = 'LaunchImage'
       end
     end
 

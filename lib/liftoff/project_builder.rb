@@ -28,6 +28,7 @@ module Liftoff
           path += [directory]
           file_manager.mkdir_gitkeep(path)
           created_group = parent_group.new_group(directory, directory)
+
           if children
             children.each do |child|
               create_tree(child, target, path, created_group)
