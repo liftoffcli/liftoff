@@ -10,12 +10,12 @@ module Liftoff
 
       file_manager.create_project_dir(@config.name) do
         generate_project
-        generate_git
         set_indentation_level
         enable_warnings
         treat_warnings_as_errors
         add_todo_script_phase
         enable_static_analyzer
+        generate_git
       end
     end
 
