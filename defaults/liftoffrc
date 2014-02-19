@@ -32,7 +32,6 @@ application_target_groups:
       - Delegates:
         - <%= prefix %>AppDelegate.m
         - <%= prefix %>AppDelegate.h
-      - Factories:
       - Models:
       - ViewControllers:
       - Views:
@@ -51,7 +50,3 @@ unit_test_target_groups:
       - UnitTests-Info.plist
       - UnitTests-Prefix.pch
     - Tests:
-      - Categories:
-      - DataSources:
-      - Factories:
-      - Models:
