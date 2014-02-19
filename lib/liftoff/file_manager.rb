@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'erb'
 
 module Liftoff
   class FileManager
@@ -48,7 +47,7 @@ module Liftoff
     end
 
     def move_template(template, destination, project_config)
-      rendered_template = ERB.new(template_contents(template)).result(project_config.get_binding)
+      rendered_template = StringRenderer.new(project_config).render(template_contents(template))
 
       File.open(destination, 'w') do |file|
         file.write(rendered_template)

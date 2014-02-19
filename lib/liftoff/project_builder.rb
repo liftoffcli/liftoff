@@ -1,7 +1,3 @@
-require 'fileutils'
-require 'xcodeproj'
-require 'erb'
-
 module Liftoff
   class ProjectBuilder
 
@@ -32,7 +28,7 @@ module Liftoff
       end
 
       tree.each_pair do |raw_directory, child|
-        directory = rendered_string(raw_directory)
+        directory = string_renderer.render(raw_directory)
         path += [directory]
         file_manager.mkdir_gitkeep(path)
         created_group = parent_group.new_group(directory, directory)
@@ -45,13 +41,13 @@ module Liftoff
     end
 
     def move_template(path, raw_template_name)
-      rendered_template_name = rendered_string(raw_template_name)
+      rendered_template_name = string_renderer.render(raw_template_name)
       destination_template_path = File.join(*path, rendered_template_name)
       FileManager.new.generate(raw_template_name, destination_template_path, @project_configuration)
     end
 
     def link_file(raw_template_name, parent_group, path, target)
-      rendered_template_name = rendered_string(raw_template_name)
+      rendered_template_name = string_renderer.render(raw_template_name)
       file = parent_group.new_file(rendered_template_name)
       unless rendered_template_name.end_with?('h', 'plist')
         target.add_file_references([file])
@@ -68,9 +64,6 @@ module Liftoff
       end
     end
 
-    def rendered_string(raw_string)
-      ERB.new(raw_string).result(@project_configuration.get_binding)
-    end
 
     def xcode_project
       @xcode_project ||= Project.new(@project_configuration.name, @project_configuration.company, @project_configuration.prefix)
@@ -78,6 +71,10 @@ module Liftoff
 
     def file_manager
       @file_manager ||= FileManager.new
+    end
+
+    def string_renderer
+      @renderer ||= StringRenderer.new(@project_configuration)
     end
   end
 end
