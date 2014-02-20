@@ -38,7 +38,9 @@ module Liftoff
     end
 
     def new_app_target
-      xcode_project.new_target(:application, @name, :ios, 7.0)
+      target = xcode_project.new_target(:application, @name, :ios, 7.0)
+      target.add_system_frameworks(['UIKit', 'CoreGraphics'])
+      target
     end
 
     def set_prefix(prefix)
