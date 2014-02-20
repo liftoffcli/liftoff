@@ -51,6 +51,8 @@ module Liftoff
 
     def new_test_target(name)
       target = xcode_project.new_resources_bundle(name, :ios)
+      target.product_type = 'com.apple.product-type.bundle.unit-test'
+      target.product_reference.name = "#{name}.xctest"
       target.add_dependency(app_target)
       configure_search_paths(target)
       target.frameworks_build_phases.add_file_reference(xctest_framework)
