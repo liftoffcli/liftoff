@@ -3,16 +3,7 @@
 require 'pathname'
 
 file_path = Pathname.new(__FILE__).realpath
-
-vendored_gems = File.expand_path('../../vendor/**/{lib,ext}/', file_path)
-libdirs = Dir.glob(vendored_gems)
-
-libdirs.each do |libdir|
-  $LOAD_PATH.unshift(libdir)
-end
-
 $LOAD_PATH.unshift(File.expand_path('../../lib', file_path))
 require 'liftoff'
-
 
 Liftoff::CLI.new(ARGV).run
