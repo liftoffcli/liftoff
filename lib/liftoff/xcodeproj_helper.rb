@@ -57,20 +57,7 @@ module Liftoff
     private
 
     def target
-      @project_target ||= choose_item("target", available_targets)
-    end
-
-    def choose_item(title, objects)
-      if objects.empty?
-        raise "Could not locate any #{title}s!"
-      elsif objects.size == 1
-        objects.first
-      else
-        choose("Which #{title} would you like to modify?") do |menu|
-          menu.index = :number
-          objects.map { |object| menu.choice(object) }
-        end
-      end
+      @project_target ||= ObjectPicker.choose_item("target", available_targets)
     end
 
     def available_targets
