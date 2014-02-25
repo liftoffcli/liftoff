@@ -2,7 +2,6 @@ require 'xcodeproj'
 
 module Liftoff
   class Project
-
     def initialize(name, company, prefix)
       @name = name
       set_company_name(company)
