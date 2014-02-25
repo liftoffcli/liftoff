@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-$:.push File.expand_path("../../lib", __FILE__)
+require 'pathname'
+
+file_path = Pathname.new(__FILE__).realpath
+$LOAD_PATH.unshift(File.expand_path('../../lib', file_path))
 require 'liftoff'
 
 Liftoff::CLI.new(ARGV).run

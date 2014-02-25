@@ -9,10 +9,13 @@ _yardoc
 coverage
 doc/
 lib/bundler/man
-pkg
 rdoc
 spec/reports
 test/tmp
 test/version_tmp
 tmp
 *.DS_Store
+
+vendor/
+pkg/*/
+!pkg/Liftoff-*.tar.gz

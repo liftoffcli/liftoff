@@ -1,5 +1,4 @@
-require 'rspec'
-require 'liftoff'
+require 'spec_helper'
 
 describe Liftoff::ConfigurationParser do
   describe "#project_configuration" do
