@@ -4,20 +4,28 @@ require 'rake/packagetask'
 $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 require 'liftoff/version'
 
-desc 'run bundle install'
-task :bundle do
-  `bundle install --path=vendor --without test`
+namespace :bundle do
+  desc 'Install distribution dependencies'
+  task :deploy do
+    `bundle install --path=vendor --without test`
+  end
+
+  desc 'Install development dependencies'
+  task :development do
+    FileUtils.rm('.bundle/config')
+    `bundle install --path=vendor`
+  end
+
+  desc 'Clear the installed dependencies'
+  task :clean do
+    FileUtils.rm_r(Dir.glob('vendor/*'))
+  end
 end
 
-desc 'clean the vendor dir'
-task :bundle_clean do
-  `rm -r vendor/*`
-end
+desc 'Create new distribution tarball'
+task :create_distribution => ['bundle:clean', 'bundle:deploy', :package]
 
-desc 'create new distribution tarball'
-task :create_distribution => [:bundle_clean, :bundle, :package]
-
-desc 'Runs the tests for the project'
+desc 'Run tests'
 RSpec::Core::RakeTask.new(:spec)
 
 Rake::PackageTask.new('Liftoff', Liftoff::VERSION) do |p|
