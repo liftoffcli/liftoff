@@ -2,13 +2,37 @@ require 'fileutils'
 
 module Liftoff
   class FileManager
-    def generate(template, destination = template)
+    def create_project_dir(name, &block)
+      FileUtils.mkdir(name)
+      Dir.chdir(name, &block)
+    end
+
+    def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
-      existing_content = existing_file_contents(destination)
+      if template_is_directory?(template)
+        copy_template_directory(template, destination)
+      else
+        existing_content = existing_file_contents(destination)
+        move_template(template, destination, project_config)
+        append_original_file_contents(destination, existing_content)
+      end
+    end
 
-      move_template(template, destination)
+    def mkdir_gitkeep(path)
+      dir_path = File.join(*path)
+      puts "Creating #{dir_path}"
+      FileUtils.mkdir_p(dir_path)
+      FileUtils.touch(File.join(dir_path, '.gitkeep'))
+    end
 
-      append_original_file_contents(destination, existing_content)
+    def template_contents(filename)
+      script_path = File.join(templates_dir, filename)
+      File.read(script_path)
+    end
+
+    def copy_template_directory(name, path)
+      directory = File.join(templates_dir, name)
+      FileUtils.cp_r(directory, File.join(*path))
     end
 
     private
@@ -21,9 +45,12 @@ module Liftoff
       end
     end
 
-    def move_template(template, destination)
-      template_path = File.join(templates_dir, template)
-      FileUtils.copy(template_path, destination, {})
+    def move_template(template, destination, project_config)
+      rendered_template = StringRenderer.new(project_config).render(template_contents(template))
+
+      File.open(destination, 'w') do |file|
+        file.write(rendered_template)
+      end
     end
 
     def append_original_file_contents(filename, original_contents)
@@ -33,6 +60,10 @@ module Liftoff
           file.write(original_contents)
         end
       end
+    end
+
+    def template_is_directory?(template)
+      File.directory?(File.join(templates_dir, template))
     end
 
     def templates_dir

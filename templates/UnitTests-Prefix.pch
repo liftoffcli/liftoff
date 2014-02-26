@@ -1,0 +1,4 @@
+#import "<%= name %>-Prefix.pch"
+
+#ifdef __OBJC__
+#endif

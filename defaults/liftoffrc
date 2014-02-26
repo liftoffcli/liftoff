@@ -22,3 +22,32 @@ warnings:
   - GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
   - CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
+
+application_target_groups:
+  - <%= name %>:
+    - Categories:
+    - Classes:
+      - Controllers:
+      - DataSources:
+      - Delegates:
+        - <%= prefix %>AppDelegate.m
+        - <%= prefix %>AppDelegate.h
+      - Models:
+      - ViewControllers:
+      - Views:
+    - Constants:
+    - Resources:
+      - Images.xcassets
+      - Nibs:
+      - Other-Sources:
+        - <%= name %>-Info.plist
+        - <%= name %>-Prefix.pch
+        - main.m
+      - Storyboards:
+
+unit_test_target_groups:
+  - UnitTests:
+    - Resources:
+      - UnitTests-Info.plist
+      - UnitTests-Prefix.pch
+    - Tests:

@@ -6,15 +6,39 @@ module Liftoff
     end
 
     def liftoff
-      generate_git
+      if project_exists?
+        perform_project_actions
+      else
+        fetch_options
+
+        file_manager.create_project_dir(@config.name) do
+          generate_project
+          perform_project_actions
+        end
+      end
+    end
+
+    private
+
+    def fetch_options
+      @config.name = ask('Project name? ') { |q| q.default = @config.name }
+      @config.company = ask('Company name? ') { |q| q.default = @config.company }
+      @config.author = ask('Author name? ') { |q| q.default = @config.author }
+      @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase
+    end
+
+    def perform_project_actions
       set_indentation_level
       enable_warnings
       treat_warnings_as_errors
       add_todo_script_phase
       enable_static_analyzer
+      generate_git
     end
 
-    private
+    def generate_project
+      ProjectBuilder.new(@config).create_project
+    end
 
     def generate_git
       GitSetup.new(@config.git).setup
@@ -40,8 +64,20 @@ module Liftoff
       xcode_helper.enable_static_analyzer(@config.staticanalyzer)
     end
 
+    def save_project
+      xcode_helper.save
+    end
+
+    def project_exists?
+      Dir.glob('*.xcodeproj').count > 0
+    end
+
     def xcode_helper
       @xcode_helper ||= XcodeprojHelper.new
+    end
+
+    def file_manager
+      @file_manager ||= FileManager.new
     end
   end
 end
