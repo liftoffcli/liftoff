@@ -53,7 +53,7 @@ module Liftoff
     private
 
     def target
-      @target ||= ObjectPicker.choose_item("target", available_targets)
+      @target ||= ObjectPicker.choose_item('target', available_targets)
     end
 
     def available_targets
@@ -81,7 +81,7 @@ module Liftoff
     end
 
     def project_file
-      @project_file ||= Dir.glob('*.xcodeproj').first
+      @project_file ||= ObjectPicker.choose_item('project', Dir.glob('*.xcodeproj'))
     end
   end
 end
