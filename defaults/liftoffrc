@@ -1,3 +1,11 @@
+############################################################################
+# The following keya can be used to configure defaults for project creation
+# project:
+# company:
+# author:
+# prefix:
+############################################################################
+
 git: true
 errors: true
 todo: true
@@ -30,20 +38,20 @@ application_target_groups:
       - Controllers:
       - DataSources:
       - Delegates:
-        - <%= prefix %>AppDelegate.m
         - <%= prefix %>AppDelegate.h
+        - <%= prefix %>AppDelegate.m
       - Models:
       - ViewControllers:
       - Views:
     - Constants:
     - Resources:
       - Images.xcassets
+      - Storyboards:
       - Nibs:
       - Other-Sources:
         - <%= name %>-Info.plist
         - <%= name %>-Prefix.pch
         - main.m
-      - Storyboards:
 
 unit_test_target_groups:
   - UnitTests:
