@@ -9,7 +9,7 @@ module Liftoff
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
-      if File.directory?(File.join(templates_dir, template))
+      if template_is_directory?(template)
         copy_template_directory(template, destination)
       else
         existing_content = existing_file_contents(destination)
@@ -60,6 +60,10 @@ module Liftoff
           file.write(original_contents)
         end
       end
+    end
+
+    def template_is_directory?(template)
+      File.directory?(File.join(templates_dir, template))
     end
 
     def templates_dir
