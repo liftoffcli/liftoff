@@ -41,19 +41,19 @@ module Liftoff
     end
 
     def generate_git
-      GitSetup.new(@config.git).setup
+      GitSetup.new(@config.configure_git).setup
     end
 
     def set_indentation_level
-      xcode_helper.set_indentation_level(@config.indentation)
+      xcode_helper.set_indentation_level(@config.indentation_level)
     end
 
     def treat_warnings_as_errors
-      xcode_helper.treat_warnings_as_errors(@config.errors)
+      xcode_helper.treat_warnings_as_errors(@config.warnings_as_errors)
     end
 
     def add_todo_script_phase
-      xcode_helper.add_todo_script_phase(@config.todo)
+      xcode_helper.add_todo_script_phase(@config.install_todo_script)
     end
 
     def enable_warnings
@@ -61,7 +61,7 @@ module Liftoff
     end
 
     def enable_static_analyzer
-      xcode_helper.enable_static_analyzer(@config.staticanalyzer)
+      xcode_helper.enable_static_analyzer(@config.enable_static_analyzer)
     end
 
     def save_project
