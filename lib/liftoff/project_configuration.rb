@@ -1,6 +1,6 @@
 module Liftoff
   class ProjectConfiguration
-    attr_accessor :name, :company, :author, :prefix, :git, :errors, :todo, :staticanalyzer, :indentation, :warnings, :application_target_groups, :unit_test_target_groups
+    attr_accessor :project_name, :company, :author, :prefix, :git, :errors, :todo, :staticanalyzer, :indentation, :warnings, :application_target_groups, :unit_test_target_groups
 
     def initialize(liftoffrc)
       liftoffrc.each_pair do |attribute, value|

@@ -11,7 +11,7 @@ module Liftoff
       else
         fetch_options
 
-        file_manager.create_project_dir(@config.name) do
+        file_manager.create_project_dir(@config.project_name) do
           generate_project
           perform_project_actions
         end
@@ -21,7 +21,7 @@ module Liftoff
     private
 
     def fetch_options
-      @config.name = ask('Project name? ') { |q| q.default = @config.name }
+      @config.project_name = ask('Project name? ') { |q| q.default = @config.project_name }
       @config.company = ask('Company name? ') { |q| q.default = @config.company }
       @config.author = ask('Author name? ') { |q| q.default = @config.author }
       @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase

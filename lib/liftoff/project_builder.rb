@@ -100,7 +100,7 @@ module Liftoff
     end
 
     def xcode_project
-      @xcode_project ||= Project.new(@project_configuration.name, @project_configuration.company, @project_configuration.prefix)
+      @xcode_project ||= Project.new(@project_configuration.project_name, @project_configuration.company, @project_configuration.prefix)
     end
 
     def file_manager

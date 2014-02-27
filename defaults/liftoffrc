@@ -1,6 +1,6 @@
 ############################################################################
 # The following keya can be used to configure defaults for project creation
-# project:
+# project_name:
 # company:
 # author:
 # prefix:
@@ -32,7 +32,7 @@ warnings:
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
 
 application_target_groups:
-  - <%= name %>:
+  - <%= project_name %>:
     - Categories:
     - Classes:
       - Controllers:
@@ -49,8 +49,8 @@ application_target_groups:
       - Storyboards:
       - Nibs:
       - Other-Sources:
-        - <%= name %>-Info.plist
-        - <%= name %>-Prefix.pch
+        - <%= project_name %>-Info.plist
+        - <%= project_name %>-Prefix.pch
         - main.m
 
 unit_test_target_groups:

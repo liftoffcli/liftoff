@@ -1,4 +1,4 @@
-#import "<%= name %>-Prefix.pch"
+#import "<%= project_name %>-Prefix.pch"
 
 #ifdef __OBJC__
 #endif
