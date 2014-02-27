@@ -11,7 +11,7 @@ module Liftoff
       else
         fetch_options
 
-        file_manager.create_project_dir(@config.name) do
+        file_manager.create_project_dir(@config.project_name) do
           generate_project
           perform_project_actions
         end
@@ -21,7 +21,7 @@ module Liftoff
     private
 
     def fetch_options
-      @config.name = ask('Project name? ') { |q| q.default = @config.name }
+      @config.project_name = ask('Project name? ') { |q| q.default = @config.project_name }
       @config.company = ask('Company name? ') { |q| q.default = @config.company }
       @config.author = ask('Author name? ') { |q| q.default = @config.author }
       @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase
@@ -41,19 +41,19 @@ module Liftoff
     end
 
     def generate_git
-      GitSetup.new(@config.git).setup
+      GitSetup.new(@config.configure_git).setup
     end
 
     def set_indentation_level
-      xcode_helper.set_indentation_level(@config.indentation)
+      xcode_helper.set_indentation_level(@config.indentation_level)
     end
 
     def treat_warnings_as_errors
-      xcode_helper.treat_warnings_as_errors(@config.errors)
+      xcode_helper.treat_warnings_as_errors(@config.warnings_as_errors)
     end
 
     def add_todo_script_phase
-      xcode_helper.add_todo_script_phase(@config.todo)
+      xcode_helper.add_todo_script_phase(@config.install_todo_script)
     end
 
     def enable_warnings
@@ -61,7 +61,7 @@ module Liftoff
     end
 
     def enable_static_analyzer
-      xcode_helper.enable_static_analyzer(@config.staticanalyzer)
+      xcode_helper.enable_static_analyzer(@config.enable_static_analyzer)
     end
 
     def save_project

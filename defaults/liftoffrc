@@ -1,16 +1,16 @@
 ############################################################################
 # The following keya can be used to configure defaults for project creation
-# project:
+# project_name:
 # company:
 # author:
 # prefix:
 ############################################################################
 
-git: true
-errors: true
-todo: true
-staticanalyzer: true
-indentation: 4
+configure_git: true
+warnings_as_errors: true
+install_todo_script: true
+enable_static_analyzer: true
+indentation_level: 4
 
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
@@ -32,7 +32,7 @@ warnings:
   - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
 
 application_target_groups:
-  - <%= name %>:
+  - <%= project_name %>:
     - Categories:
     - Classes:
       - Controllers:
@@ -49,8 +49,8 @@ application_target_groups:
       - Storyboards:
       - Nibs:
       - Other-Sources:
-        - <%= name %>-Info.plist
-        - <%= name %>-Prefix.pch
+        - <%= project_name %>-Info.plist
+        - <%= project_name %>-Prefix.pch
         - main.m
 
 unit_test_target_groups:
