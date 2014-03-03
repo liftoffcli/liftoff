@@ -1,0 +1,291 @@
+.Dd March 4, 2014
+.Dt LIFTOFFRC 5
+.Os
+.
+.Sh NAME
+.Nm liftoffrc
+.Nd configuration for liftoff
+.
+.Sh DESCRIPTION
+The
+.Xr liftoff 1
+Xcode configuration tool can be configured using a
+.Pa .liftoffrc
+file in your home directory, or the directory from which you are running
+.Ic liftoff .
+This is a YAML file that defines a set of keys and values for configuring
+.Ic liftoff .
+.Pp
+.Ic liftoff
+will use the value for a given key from
+.Pa ./.liftoffrc ,
+then
+.Pa ~/.liftoffrc .
+If it can't find a value in those files, it will use the default configuration.
+.
+.Sh USAGE
+You can use the lookup order to improve the experience when creating new
+projects. For example, you can set the
+.Ic author
+key inside
+.Pa ~/.liftoffrc :
+.Pp
+.Dl author: Gordon Fontenot
+.Pp
+Now, any projects you create will have your name set as the author by default.
+.Pp
+You can also use local
+.Nm
+files to customize information at a higher level. For example, you can set the
+.Ic company
+key inside
+.Pa ~/dev/work-projects/.liftoffrc :
+.Pp
+.Dl company: thoughtbot
+.Pp
+Now, whenever you create projects for work, the company name will default to
+.Ic thoughtbot ,
+and the author name will default to
+.Ic Gordon Fontenot .
+.Pp
+You can continue to create these for any directory in order to tweak the
+settings for projects created inside them. For example, I also have
+.Ic company
+set inside
+.Pa ~/dev/personal/.liftoffrc :
+.Pp
+.Dl company: Gordon Fontenot
+.Pp
+I could also set the
+.Ic warnings
+key to enable different warnings based on client requirements, or personal
+preference.
+.
+.Sh CONFIGURATION
+.Bl -tag -width 10
+.It Ic configure_git
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Create
+.Ic .gitignore ,
+.Ic .gitattributes ,
+and initialize git repo if needed.
+.It Ic warnings_as_errors
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Turn warnings into errors on release builds.
+.It Ic install_todo_script
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Add Run Script build phase to turn
+.Ic TODO
+and
+.Ic FIXME
+comments into warnings.
+.It Ic enable_static_analyzer
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Turn on the static analyzer for the project.
+.It Ic indentation_level
+type: integer
+.br
+default:
+.Ic 4
+.Pp
+Set the indentation level on the project (in spaces).
+.It Ic warnings
+type: array
+.br
+default: See
+.Sx Warnings
+.Pp
+Enable the provided warnings for the Application target. Set to
+.Ic false
+to prevent warnings from being set.
+.It Ic application_target_groups
+type: dictionary
+.br
+default: See
+.Sx Application Groups
+.Pp
+Generate the provided directory and group structure for the main Application
+Target.
+.It Ic unit_test_target_groups
+type: dictionary
+.br
+default: See
+.Sx Unit Test Groups
+.Pp
+Generate the provided directory and group structure for the Unit Test target.
+.It Ic project_name
+type: string
+.br
+default: none
+.Pp
+Set the default value for the project name when generating new projects. Not
+defined by default.
+.It Ic company
+type: string
+.br
+default: none
+.Pp
+Set the default value for the company name when generating new projects. Not
+defined by default.
+.It Ic author
+type: string
+.br
+default: none
+.Pp
+Set the default value for the author name when generating new projects. Not
+enabled by default.
+.It Ic prefix
+type: string
+.br
+default: none
+.Pp
+Set the default value for the project prefix when generating new projects. Not
+enabled by default.
+.El
+.
+.Sh WARNINGS
+.Ic liftoff
+enables a set of warnings by default:
+.Bl -tag -width 10
+.It Ic GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
+Warn if an aggregate or union initializer is not fully bracketed.
+.It Ic GCC_WARN_MISSING_PARENTHESES
+Warn if parentheses are omitted in certain contexts, such as when there is an
+assignment in a context where a truth value is expected, or when operators are
+nested whose precedence people often get confused about.
+.It Ic GCC_WARN_ABOUT_RETURN_TYPE
+Causes warnings to be emitted when a function with a defined return type (not
+void) contains a return statement without a return-value.  Also emits a warning
+when a function is defined without specifying a return type.
+.It Ic GCC_WARN_SIGN_COMPARE
+Warn when a comparison between signed and unsigned values could produce an
+incorrect result when the signed value is converted to unsigned.
+.It Ic GCC_WARN_CHECK_SWITCH_STATEMENTS
+Warn whenever a switch statement has an index of enumeral type and lacks a case
+for one or more of the named codes of that enumeration.
+.It Ic GCC_WARN_UNUSED_FUNCTION
+Warn whenever a static function is declared but not defined or a non-inline
+static function is unused.
+.It Ic GCC_WARN_UNUSED_LABEL
+Warn whenever a label is declared but not used.
+.It Ic GCC_WARN_UNUSED_VALUE
+Warn whenever a statement computes a result that is explicitly not used.
+.It Ic GCC_WARN_UNUSED_VARIABLE
+Warn whenever a local variable or non-constant static variable is unused aside
+from its declaration.
+.It Ic GCC_WARN_SHADOW
+Warn whenever a local variable shadows another local variable, parameter or
+global variable or whenever a built-in function is shadowed.
+.It Ic GCC_WARN_64_TO_32_BIT_CONVERSION
+Warn if a value is implicitly converted from a 64 bit type to a 32 bit type.
+.It Ic GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS
+Warn if a structure's initializer has some fields missing.
+.It Ic GCC_WARN_ABOUT_MISSING_NEWLINE
+Warn when a source file does not end with a newline.
+.It Ic GCC_WARN_UNDECLARED_SELECTOR
+Warn if a
+.Ic @selector(...)
+expression referring to an undeclared selector is found.
+.It Ic GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
+Check calls to
+.Xr printf 3
+and
+.Xr scanf 3 ,
+etc., to make sure that the arguments supplied have types appropriate to the
+format string specified, and that the conversions specified in the format
+string make sense.
+.It Ic CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATION
+Warn if an Objective-C class either subclasses a deprecated class or overrides
+a method that has been marked deprecated.
+.It Ic CLANG_WARN_OBJC_IMPLICIT_RETAIN_SEL
+Warn about implicit retains of 'self' within blocks, which can create a
+retain-cycle.
+.El
+.
+.Sh APPLICATION GROUPS
+.Ic liftoff
+creates a default directory and group structure for the main
+application target that mimics the following structure:
+.Pp
+.Bd -literal
+  - <%= project_name %>:
+    - Categories:
+    - Classes:
+      - Controllers:
+      - DataSources:
+      - Delegates:
+        - <%= prefix %>AppDelegate.h
+        - <%= prefix %>AppDelegate.m
+      - Models:
+      - ViewControllers:
+      - Views:
+    - Constants:
+    - Resources:
+      - Images.xcassets
+      - Storyboards:
+      - Nibs:
+      - Other-Sources:
+        - <%= project_name %>-Info.plist
+        - <%= project_name %>-Prefix.pch
+        - main.m
+.Ed
+.Pp
+It also generates templates for the
+.Ic AppDelegate
+class (appending the proper prefix), as well as
+.Ic Info.plist,
+.Ic Prefix.pch,
+and
+.Ic main.m
+files. The
+.Ic Info.plist
+and
+.Ic Prefix.pch
+will be prepended with the project name.
+.
+.Sh UNIT TEST GROUPS
+.Ic liftoff
+creates a default directory and group structure for the unit test
+target that mimics the following structure:
+.Pp
+.Bd -literal
+  - UnitTests:
+    - Resources:
+      - UnitTests-Info.plist
+      - UnitTests-Prefix.pch
+    - Tests:
+.Ed
+.Pp
+.Ic liftoff
+will also generate templates for the
+.Ic UnitTests-Info.plist
+and
+.Ic UnitTests-Prefix.pch
+files.
+.
+.Sh FILES
+.Pa ~/.liftoffrc
+.
+.Sh SEE ALSO
+.Xr liftoff 1
+.
+.Sh AUTHORS
+.An "Gordon Fontenot" Aq gordon@thoughtbot.com
+and
+.Lk http://thoughtbot.com thoughtbot

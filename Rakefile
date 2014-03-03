@@ -35,6 +35,7 @@ Rake::PackageTask.new('Liftoff', Liftoff::VERSION) do |p|
   p.package_files.include('lib/**/*')
   p.package_files.include('templates/**/*')
   p.package_files.include('vendor/**/*')
+  p.package_files.include('man/**/*')
   p.package_files.include('LICENSE.txt')
 end
 
