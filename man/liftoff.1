@@ -1,0 +1,86 @@
+.Dd March 3, 2014
+.Dt LIFTOFF 1
+.Os
+.Sh NAME
+.Nm liftoff
+.Nd create and configure Xcode projects
+.
+.Sh SYNOPSIS
+.Nm
+.Op Fl -version
+.Op Fl -help
+.
+.Sh DESCRIPTION
+.Nm
+is designed to help iOS developers quickly get projects up and running without
+spending valuable time performing tedious configurations.
+.Pp
+Run the
+.Nm
+command inside a directory.
+.Pp
+If an Xcode project is found inside the current directory,
+.Nm
+will configure the existing project.
+.Pp
+If no existing project is found,
+.Nm
+will generate a new project structure, create a new Xcode project, and perform
+the same configurations.
+.Pp
+The following configurations will be performed:
+.Pp
+.Bl -dash -compact -width 2 -offset indent
+.It
+Set the indentation level on the project (in spaces, 4 by default)
+.It
+Treat warnings as errors for release schemes
+.It
+Enable additional warnings at the project level
+.It
+Turn on static analysis for the project
+.It
+Add a build phase shell script to turn
+.Ic TODO
+and
+.Ic FIXME
+comments into warnings
+.It
+Add default
+.Pa .gitignore
+and
+.Pa .gitattributes
+files
+.It
+Initialize a new
+.Ic git
+repository and create an initial commit (if needed)
+.El
+.Pp
+.Sh CONFIGURATION
+You can use a
+.Pa .liftoffrc
+file to speed up and customize your configuration by pre-defining your
+preferred configurations. This is a YAML file that defines a set of keys and
+values for configuring
+.Nm .
+.Pp
+See
+.Xr liftoffrc 5
+for more detailed information on configuration.
+.
+.Sh FILES
+.Pa ~/.liftoffrc
+.
+.Sh SEE ALSO
+.Xr liftoffrc 5
+.
+.Sh AUTHORS
+.Nm
+is maintained by
+.An "Gordon Fontenot" Aq gordon@thoughtbot.com
+and
+.Lk http://thoughtbot.com thoughtbot
+.Pp
+Originally created and conceptualized by
+.An "Mark Adams" Aq mark@thoughtbot.com
