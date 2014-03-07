@@ -17,5 +17,4 @@ tmp
 *.DS_Store
 
 vendor/
-pkg/*/
-!pkg/Liftoff-*.tar.gz
+pkg/
