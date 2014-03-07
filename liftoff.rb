@@ -3,8 +3,8 @@ require 'formula'
 class Liftoff < Formula
   homepage 'http://github.com/thoughtbot/liftoff'
   # This will change once we release. For now, I just want to point it at this branch since I know it works.
-  url 'https://github.com/thoughtbot/liftoff/raw/gf-man-oh-man/pkg/Liftoff-0.7.6.tar.gz'
-  sha1 '1d9028775b58f0c9c3285c1a0278f69f8373916d'
+  url 'http://thoughtbot.github.io/liftoff/Liftoff-1.0.tar.gz'
+  sha1 '6218799f1f8730ac05fb72e488c6617c8a468454'
 
   depends_on 'xcproj' => :recommended
 
