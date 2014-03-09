@@ -4,7 +4,7 @@
 # company:
 # author:
 # prefix:
-# pods:
+# use_pods:
 ############################################################################
 
 configure_git: true
@@ -60,3 +60,7 @@ unit_test_target_groups:
       - UnitTests-Info.plist
       - UnitTests-Prefix.pch
     - Tests:
+
+# Uncomment to configure default cocoapods
+# pods:
+#   - AFNetworking

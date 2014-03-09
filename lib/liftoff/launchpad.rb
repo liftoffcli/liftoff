@@ -25,7 +25,7 @@ module Liftoff
       @config.company = ask('Company name? ') { |q| q.default = @config.company }
       @config.author = ask('Author name? ') { |q| q.default = @config.author }
       @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase
-      @config.pods = ask('Cocoapods? (y/n) ') { |q| q.default = @config.pods }
+      @config.use_pods = ask('Cocoapods? (y/n) ') { |q| q.default = @config.use_pods }
     end
 
     def perform_project_actions
@@ -39,7 +39,7 @@ module Liftoff
     end
 
     def install_cocoapods
-      CocoapodsHelper.new(@config).install_cocoapods(@config.pods == 'y')
+      CocoapodsHelper.new(@config).install_cocoapods(@config.use_pods == 'y')
     end
 
     def generate_project
