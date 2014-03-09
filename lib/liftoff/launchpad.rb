@@ -14,6 +14,7 @@ module Liftoff
         file_manager.create_project_dir(@config.project_name) do
           generate_project
           perform_project_actions
+          open_project
         end
       end
     end
@@ -68,6 +69,10 @@ module Liftoff
 
     def enable_static_analyzer
       xcode_helper.enable_static_analyzer(@config.enable_static_analyzer)
+    end
+    
+    def open_project
+      `open -a "Xcode" .`
     end
 
     def save_project

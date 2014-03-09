@@ -60,7 +60,9 @@ module Liftoff
       rendered_template_name = string_renderer.render(raw_template_name)
       file = parent_group.new_file(rendered_template_name)
 
-      if linkable_file?(rendered_template_name)
+      if resource_file?(rendered_template_name)
+        target.add_resources([file])
+      elsif linkable_file?(rendered_template_name)
         target.add_file_references([file])
       else
         add_file_to_build_settings(rendered_template_name, path, target)
@@ -81,6 +83,10 @@ module Liftoff
 
     def linkable_file?(name)
       !name.end_with?('h', 'plist')
+    end
+
+    def resource_file?(name)
+      name.end_with?('xcassets')
     end
 
     def template_file?(object)
