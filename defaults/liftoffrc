@@ -1,9 +1,10 @@
 ############################################################################
-# The following keya can be used to configure defaults for project creation
+# The following keys can be used to configure defaults for project creation
 # project_name:
 # company:
 # author:
 # prefix:
+# pods:
 ############################################################################
 
 configure_git: true
