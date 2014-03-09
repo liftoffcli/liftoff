@@ -1,9 +1,10 @@
 ############################################################################
-# The following keya can be used to configure defaults for project creation
+# The following keys can be used to configure defaults for project creation
 # project_name:
 # company:
 # author:
 # prefix:
+# use_pods:
 ############################################################################
 
 configure_git: true
@@ -59,3 +60,7 @@ unit_test_target_groups:
       - UnitTests-Info.plist
       - UnitTests-Prefix.pch
     - Tests:
+
+# Uncomment to configure default cocoapods
+# pods:
+#   - AFNetworking
