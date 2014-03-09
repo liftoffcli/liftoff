@@ -7,14 +7,22 @@ module Liftoff
 
     def install_cocoapods(enable_cocoapods)
       if enable_cocoapods
-        move_podfile
-        add_pods
-        puts 'Installing Cocoapods'
-        run_pod_install
+        if pod_installed?
+          move_podfile
+          add_pods
+          run_pod_install
+        else
+          puts 'Please install Cocoapods or disable pods from liftoff'
+        end
       end
     end
 
     private
+
+    def pod_installed?
+      `which pod`
+      $?.success?
+    end
 
     def move_podfile
       FileManager.new.generate('Podfile', 'Podfile', @project_configuration)
@@ -33,7 +41,7 @@ module Liftoff
     end
 
     def run_pod_install
-      `pod install`
+      system('pod install')
     end
 
   end
