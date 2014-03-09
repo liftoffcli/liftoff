@@ -7,6 +7,6 @@
     #import <Expecta/Expecta.h>
     #import <OCMock/OCMock.h>
 <% else %>
-    #import <XCTest/XCTest.h>
+    @import XCTest;
 <% end %>
 #endif
