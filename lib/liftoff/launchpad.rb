@@ -34,7 +34,12 @@ module Liftoff
       treat_warnings_as_errors
       add_todo_script_phase
       enable_static_analyzer
+      install_cocoapods
       generate_git
+    end
+
+    def install_cocoapods
+      CocoapodsHelper.new(@config).install_cocoapods(@config.use_cocoapods)
     end
 
     def generate_project
