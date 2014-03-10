@@ -26,8 +26,13 @@ module Liftoff
     end
 
     def template_contents(filename)
-      script_path = File.join(templates_dir, filename)
-      File.read(script_path)
+      user_file_path = File.join(user_templates_dir, filename)
+      if File.exists? user_file_path
+        file_path = user_file_path
+      else
+        file_path = File.join(templates_dir, filename)
+      end
+      File.read(file_path)
     end
 
     def copy_template_directory(name, path)
@@ -68,6 +73,10 @@ module Liftoff
 
     def templates_dir
       File.expand_path('../../../templates', __FILE__)
+    end
+
+    def user_templates_dir
+      File.expand_path(ENV['HOME'] + '/.liftoff', __FILE__)
     end
   end
 end
