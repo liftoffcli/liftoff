@@ -94,7 +94,7 @@ the `liftoffrc`. So if your company dictates a specific folder structure, you
 can define that in your company's `liftoffrc` to make sure that those projects
 conform to your guidelines.
 
-### A note on directory structure
+### Directory Structure and Templates
 
 One of the most powerful things that Liftoff can do for you is let you quickly
 and easily customize your project's group and directory structure. By defining
@@ -103,7 +103,15 @@ dictate the structure that will be created. This includes group structure,
 order, placement of template files, etc. And remember that these groups will
 be mimicked on disk as well.
 
-There are a few template files available to you:
+You can also create your own templates, or override the defaults by adding
+them to `~/.liftoff/templates` or `./.liftoff/templates`. Liftoff will use the
+same fallback order when looking for templates as it does for the
+`.liftoffrc`.
+
+These files (and filenames) will be parsed with `ERB`, using the values
+provided at run time (or the default values from a `liftoffrc`).
+
+There are a few default template files available to you:
 
 - [`<%= prefix %>AppDelegate.h`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20prefix%20%25%3EAppDelegate.h)
 - [`<%= prefix %>AppDelegate.m`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20prefix%20%25%3EAppDelegate.m)
@@ -117,12 +125,9 @@ There is also a template directory for the [`Images.xcassets`][images] asset lib
 
 [images]: https://github.com/thoughtbot/liftoff/tree/master/templates/Images.xcassets
 
-These files (and filenames) will be parsed with `ERB`, using the values
-provided at run time (or the default values from a `liftoffrc`).
-
 ## About
 
-liftoff is maintained by Mark Adams and Gordon Fontenot. It was written by
+Liftoff is maintained by Mark Adams and Gordon Fontenot. It was written by
 [thoughtbot, inc](http://thoughtbot.com/).
 
 ![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
