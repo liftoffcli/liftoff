@@ -9,11 +9,12 @@ module Liftoff
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
-      if template_is_directory?(template)
-        copy_template_directory(template, destination)
+      template_path = TemplateFinder.new.template_path(template)
+      if template_is_directory?(template_path)
+        copy_template_directory(template_path, destination)
       else
         existing_content = existing_file_contents(destination)
-        move_template(template, destination, project_config)
+        move_template(template_path, destination, project_config)
         append_original_file_contents(destination, existing_content)
       end
     end
@@ -26,16 +27,15 @@ module Liftoff
     end
 
     def template_contents(filename)
-      script_path = File.join(templates_dir, filename)
-      File.read(script_path)
-    end
-
-    def copy_template_directory(name, path)
-      directory = File.join(templates_dir, name)
-      FileUtils.cp_r(directory, File.join(*path))
+      file_path = TemplateFinder.new.template_path(filename)
+      File.read(file_path)
     end
 
     private
+
+    def copy_template_directory(template, path)
+      FileUtils.cp_r(template, File.join(*path))
+    end
 
     def existing_file_contents(filename)
       if File.exists? filename
@@ -46,7 +46,7 @@ module Liftoff
     end
 
     def move_template(template, destination, project_config)
-      rendered_template = StringRenderer.new(project_config).render(template_contents(template))
+      rendered_template = StringRenderer.new(project_config).render(File.read(template))
 
       File.open(destination, 'w') do |file|
         file.write(rendered_template)
@@ -62,12 +62,8 @@ module Liftoff
       end
     end
 
-    def template_is_directory?(template)
-      File.directory?(File.join(templates_dir, template))
-    end
-
-    def templates_dir
-      File.expand_path('../../../templates', __FILE__)
+    def template_is_directory?(template_path)
+      File.directory?(template_path)
     end
   end
 end
