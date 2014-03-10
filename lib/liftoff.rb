@@ -10,7 +10,7 @@ end
 
 require 'highline/import'
 require 'liftoff/cli'
-require 'liftoff/cocoapods_helper'
+require 'liftoff/cocoapods_setup'
 require 'liftoff/configuration_parser'
 require 'liftoff/file_manager'
 require 'liftoff/git_setup'

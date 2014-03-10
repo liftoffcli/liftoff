@@ -1,5 +1,5 @@
 module Liftoff
-  class CocoapodsHelper
+  class CocoapodsSetup
 
     def install_cocoapods(use_cocoapods)
       if use_cocoapods

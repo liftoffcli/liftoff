@@ -39,7 +39,7 @@ module Liftoff
     end
 
     def install_cocoapods
-      CocoapodsHelper.new.install_cocoapods(@config.use_cocoapods)
+      CocoapodsSetup.new.install_cocoapods(@config.use_cocoapods)
     end
 
     def generate_project
