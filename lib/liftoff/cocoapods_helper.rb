@@ -1,10 +1,6 @@
 module Liftoff
   class CocoapodsHelper
 
-    def initialize(project_configuration)
-      @project_configuration = project_configuration
-    end
-
     def install_cocoapods(use_cocoapods)
       if use_cocoapods
         if pod_installed?
@@ -30,6 +26,5 @@ module Liftoff
     def run_pod_install
       system('pod install')
     end
-
   end
 end
