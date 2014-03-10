@@ -13,6 +13,7 @@ module Liftoff
 
         file_manager.create_project_dir(@config.project_name) do
           generate_project
+          install_cocoapods
           perform_project_actions
           open_project
         end
@@ -35,6 +36,10 @@ module Liftoff
       add_todo_script_phase
       enable_static_analyzer
       generate_git
+    end
+
+    def install_cocoapods
+      CocoapodsSetup.new.install_cocoapods(@config.use_cocoapods)
     end
 
     def generate_project
