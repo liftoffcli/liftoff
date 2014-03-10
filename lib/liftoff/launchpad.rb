@@ -13,6 +13,7 @@ module Liftoff
 
         file_manager.create_project_dir(@config.project_name) do
           generate_project
+          install_cocoapods
           perform_project_actions
           open_project
         end
@@ -34,7 +35,6 @@ module Liftoff
       treat_warnings_as_errors
       add_todo_script_phase
       enable_static_analyzer
-      install_cocoapods
       generate_git
     end
 
