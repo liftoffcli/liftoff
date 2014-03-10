@@ -24,6 +24,7 @@ module Liftoff
     end
 
     def run_pod_install
+      puts 'Running pod install'
       system('pod install')
     end
   end
