@@ -1,7 +1,9 @@
+require 'etc'
+
 module Liftoff
   class ProjectConfiguration
-    attr_accessor :project_name, :company, :author, :prefix, :configure_git, :warnings_as_errors, :install_todo_script, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods
-    attr_writer :company_identifier
+    attr_accessor :project_name, :company, :prefix, :configure_git, :warnings_as_errors, :install_todo_script, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods
+    attr_writer :author, :company_identifier
 
     def initialize(liftoffrc)
       liftoffrc.each_pair do |attribute, value|
@@ -12,6 +14,10 @@ module Liftoff
           exit 1
         end
       end
+    end
+
+    def author
+      @author || Etc.getpwuid.gecos.split(',').first
     end
 
     def company_identifier

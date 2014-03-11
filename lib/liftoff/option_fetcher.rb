@@ -8,7 +8,6 @@ module Liftoff
       fetch_option_for(:project_name, 'Project name')
       fetch_option_for(:company, 'Company name')
       fetch_option_for(:company_identifier, 'Company identifier')
-      fetch_option_for(:author, 'Author name')
       fetch_option_for(:prefix, 'Prefix')
     end
 
