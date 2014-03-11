@@ -69,6 +69,34 @@ See
 .Xr liftoffrc 5
 for more detailed information on configuration.
 .
+.Sh Templates
+You can add custom templates or override the default templates by adding them
+to
+.Pa ~/.liftoff/templates/
+or
+.Pa ./.liftoff/templates/ .
+.Pp
+.Nm
+will use the same fallback order for the templates that it does for the
+.Pa .liftoffrc :
+.Bl -enum -offset indent -compact -width 10
+.It
+Local directory:
+.Pa ./.liftoff/templates/
+.It
+User directory:
+.Pa ~/.liftoff/templates/
+.It
+Default templates:
+.Pa <liftoff-installation-location>/templates/
+.El
+.Pp
+These templates and their filenames will be rendered with
+.Ic ERB .
+You can use any value available in the
+.Ic liftoffrc
+configuration inside the template.
+.
 .Sh FILES
 .Pa ~/.liftoffrc
 .
