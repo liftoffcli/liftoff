@@ -5,6 +5,9 @@ module Liftoff
     def create_project_dir(name, &block)
       FileUtils.mkdir(name)
       Dir.chdir(name, &block)
+    rescue Errno::EEXIST
+      STDERR.puts "Directory '#{name}' already exists"
+      exit 1
     end
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
