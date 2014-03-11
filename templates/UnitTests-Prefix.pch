@@ -2,9 +2,11 @@
 
 #ifdef __OBJC__
 <% if use_cocoapods %>
-    #define SPC_SHORTHAND
+    #define EXP_SHORTHAND
     #import <Specta/Specta.h>
     #import <Expecta/Expecta.h>
     #import <OCMock/OCMock.h>
+<% else %>
+    #import <XCTest/XCTest.h>
 <% end %>
 #endif
