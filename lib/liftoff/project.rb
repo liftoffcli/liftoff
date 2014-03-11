@@ -38,7 +38,6 @@ module Liftoff
 
     def new_app_target
       target = xcode_project.new_target(:application, @name, :ios, 7.0)
-      target.add_system_frameworks(['UIKit', 'CoreGraphics'])
       target
     end
 
@@ -56,7 +55,6 @@ module Liftoff
       target.product_reference.name = "#{name}.xctest"
       target.add_dependency(app_target)
       configure_search_paths(target)
-      target.frameworks_build_phases.add_file_reference(xctest_framework)
       target.build_configurations.each do |configuration|
         configuration.build_settings['BUNDLE_LOADER'] = "$(BUILT_PRODUCTS_DIR)/#{@name}.app/#{@name}"
         configuration.build_settings['WRAPPER_EXTENSION'] = 'xctest'
@@ -78,18 +76,6 @@ module Liftoff
       target.build_configurations.each do |configuration|
         configuration.build_settings['FRAMEWORK_SEARCH_PATHS'] = ['$(SDKROOT)/Developer/Library/Frameworks', '$(inherited)', '$(DEVELOPER_FRAMEWORKS_DIR)']
       end
-    end
-
-    def create_xctest_framework
-      xctest = xcode_project.frameworks_group.new_file('XCTest.framework')
-      xctest.set_source_tree(:developer_dir)
-      xctest.set_path('Library/Frameworks/XCTest.framework')
-      xctest.name = 'XCTest.framework'
-      xctest
-    end
-
-    def xctest_framework
-      @xctest_framework ||= create_xctest_framework
     end
 
     def xcode_project
