@@ -143,6 +143,17 @@ default: none
 .Pp
 Set the default value for the company name when generating new projects. Not
 defined by default.
+.It Ic company_identifier
+type: string
+.br
+default: based on company name
+.Pp
+Set the default value for the company identifier when generating new projects.
+Default value is the provided company name, downcased and stripped of special
+characters. For example:
+.Ic My Company Name!
+becomes
+.Ic com.mycompanyname .
 .It Ic author
 type: string
 .br
