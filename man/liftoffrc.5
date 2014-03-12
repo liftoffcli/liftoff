@@ -157,10 +157,13 @@ becomes
 .It Ic author
 type: string
 .br
-default: none
+default: Pulled from the
+.Ic gecos
+field in
+.Xr passwd 5
 .Pp
-Set the default value for the author name when generating new projects. Not
-enabled by default.
+Set the default value for the author name when generating new projects. The
+current user's name will be automatically set as the default.
 .It Ic prefix
 type: string
 .br
