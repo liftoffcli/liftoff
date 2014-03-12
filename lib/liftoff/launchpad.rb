@@ -23,10 +23,7 @@ module Liftoff
     private
 
     def fetch_options
-      @config.project_name = ask('Project name? ') { |q| q.default = @config.project_name }
-      @config.company = ask('Company name? ') { |q| q.default = @config.company }
-      @config.author = ask('Author name? ') { |q| q.default = @config.author }
-      @config.prefix = ask('Prefix? ') { |q| q.default = @config.prefix }.upcase
+      OptionFetcher.new(@config).fetch_options
     end
 
     def perform_project_actions
@@ -69,7 +66,7 @@ module Liftoff
     def enable_static_analyzer
       xcode_helper.enable_static_analyzer(@config.enable_static_analyzer)
     end
-    
+
     def open_project
       `open -a "Xcode" .`
     end
