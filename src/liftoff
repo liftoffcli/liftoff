@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+require 'pathname'
+
+file_path = Pathname.new(__FILE__).realpath
+gems_setup = File.expand_path('../../vendor/gems/setup.rb', file_path)
+
+require gems_setup
+
+$LOAD_PATH.unshift(File.expand_path('../../rubylib', file_path))
+
+require 'liftoff'
+
+Liftoff::CLI.new(ARGV).run
