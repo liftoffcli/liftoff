@@ -1,5 +1,3 @@
-require 'xcodeproj'
-
 module Liftoff
   class XcodeprojHelper
     def treat_warnings_as_errors(enable_errors)

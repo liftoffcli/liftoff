@@ -1,5 +1,3 @@
-require 'optparse'
-
 module Liftoff
   class CLI
     def initialize(argv)

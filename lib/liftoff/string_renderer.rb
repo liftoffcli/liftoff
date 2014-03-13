@@ -1,5 +1,3 @@
-require 'erb'
-
 module Liftoff
   class StringRenderer
     def initialize(configuration)

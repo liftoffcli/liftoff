@@ -1,5 +1,3 @@
-require 'xcodeproj'
-
 module Liftoff
   class Project
     def initialize(name, company, prefix)
