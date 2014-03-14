@@ -8,8 +8,6 @@ class Liftoff < Formula
   depends_on 'xcproj' => :recommended
 
   def install
-    build_xcodeproj_extension
-
     prefix.install 'defaults', 'templates', 'vendor'
     prefix.install 'lib' => 'rubylib'
 
@@ -17,15 +15,6 @@ class Liftoff < Formula
     man5.install ['man/liftoffrc.5']
 
     bin.install 'src/liftoff'
-  end
-
-  def build_xcodeproj_extension
-    ohai 'Creating Xcodeproj C extension'
-    xcodeproj_ext_dir = Dir.glob('vendor/gems/xcodeproj*/ext/xcodeproj').first
-    Dir.chdir xcodeproj_ext_dir do
-      system '/usr/bin/ruby extconf.rb'
-      system 'make'
-    end
   end
 
   test do
