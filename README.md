@@ -1,4 +1,4 @@
-# Liftoff
+# <img src="http://thoughtbot.github.io/liftoff/logo.png" alt="Logo" width="25%">
 
 **Liftoff is a CLI for creating and configuring iOS Xcode projects.**
 
