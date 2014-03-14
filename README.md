@@ -7,7 +7,7 @@
     brew tap thoughtbot/formulae
     brew install liftoff
 
-Note that Liftoff was previously distributed via RubyGems. This method of
+Liftoff was previously distributed via RubyGems. This method of
 installation has been deprecated, and all new releases will be done through
 Homebrew. If you are migrating from RubyGems, you should uninstall the gem
 version to avoid confusion in the future.
