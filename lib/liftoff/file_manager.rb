@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Liftoff
   class FileManager
     def create_project_dir(name, &block)

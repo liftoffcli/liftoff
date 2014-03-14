@@ -1,4 +1,12 @@
+require 'optparse'
+require 'fileutils'
+require 'yaml'
+require 'erb'
+require 'etc'
+
 require 'highline/import'
+require 'xcodeproj'
+
 require 'liftoff/cli'
 require 'liftoff/cocoapods_setup'
 require 'liftoff/configuration_parser'

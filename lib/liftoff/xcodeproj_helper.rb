@@ -1,17 +1,15 @@
-require 'xcodeproj'
-
 module Liftoff
   class XcodeprojHelper
     def treat_warnings_as_errors(enable_errors)
       if enable_errors
-        say 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
+        puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
         target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
       end
     end
 
     def enable_warnings(warnings)
       if warnings
-        say 'Setting warnings at the project level'
+        puts 'Setting warnings at the project level'
         xcode_project.build_configurations.each do |configuration|
           warnings.each do |warning|
             configuration.build_settings[warning] = 'YES'
@@ -22,7 +20,7 @@ module Liftoff
 
     def enable_static_analyzer(enable_static_analyzer)
       if enable_static_analyzer
-        say 'Turning on Static Analyzer at the project level'
+        puts 'Turning on Static Analyzer at the project level'
         xcode_project.build_configurations.each do |configuration|
           configuration.build_settings['RUN_CLANG_STATIC_ANALYZER'] = 'YES'
         end
@@ -31,7 +29,7 @@ module Liftoff
 
     def set_indentation_level(level)
       if level
-        say "Setting the project indentation level to #{level} spaces"
+        puts "Setting the project indentation level to #{level} spaces"
         main_group = xcode_project.main_group
         main_group.indent_width = level.to_s
         main_group.tab_width = level.to_s
@@ -41,7 +39,7 @@ module Liftoff
 
     def add_todo_script_phase(enable_todos)
       if enable_todos
-        say 'Adding shell script build phase to warn on TODO and FIXME comments'
+        puts 'Adding shell script build phase to warn on TODO and FIXME comments'
         add_shell_script_build_phase(file_manager.template_contents('todo.sh'), 'Warn for TODO and FIXME comments')
       end
     end
