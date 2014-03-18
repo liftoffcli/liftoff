@@ -36,6 +36,9 @@ module Liftoff
 
     def new_app_target
       target = xcode_project.new_target(:application, @name, :ios, 7.0)
+      target.build_configurations.each do |configuration|
+        configuration.build_settings.delete('OTHER_LDFLAGS')
+      end
       target
     end
 
