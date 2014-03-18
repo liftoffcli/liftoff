@@ -1,5 +1,22 @@
 # Liftoff Changelog #
 
+## Liftoff 1.1.1 - March 18, 2014 ##
+
+### Bug Fixes ###
+
+* Remove `OTHER_LDFLAGS` setting from app target. This was being set to a
+  blank string, which caused it to override any xcconfig files added to the
+  target. - Gordon Fontenot ([Thanks to @frosty][liftoff#111])
+* Prevent RubyGems from loading. In some installs, users were seeing crashes
+  due to the wrong Xcodeproj native C extensions being loaded. Current theory
+  is that RVM is doing some loadpath stuff for gems that is overriding our
+  loadpaths. The simple fix that seems to solve the issue is to completely
+  disable RubyGems while running Liftoff. - Gordon Fontenot ([Thanks to
+  @iOSDevil, Jim Rutherford, and @endoze][liftoff#113])
+
+[liftoff#111]: https://github.com/thoughtbot/liftoff/issues/111
+[liftoff#113]: https://github.com/thoughtbot/liftoff/issues/113
+
 ## Liftoff 1.1 - March 14, 2014 ##
 
 ### New Features ###
