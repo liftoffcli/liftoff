@@ -8,11 +8,13 @@
 
 configure_git: true
 warnings_as_errors: true
-install_todo_script: true
 enable_static_analyzer: true
 indentation_level: 4
 use_tabs: false
 use_cocoapods: true
+
+run_script_phases:
+  - todo.sh: Warn for TODO and FIXME comments
 
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
