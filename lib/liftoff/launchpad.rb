@@ -30,7 +30,6 @@ module Liftoff
       set_indentation_level
       enable_warnings
       treat_warnings_as_errors
-      add_todo_script_phase
       add_script_phases
       enable_static_analyzer
       generate_git
@@ -54,10 +53,6 @@ module Liftoff
 
     def treat_warnings_as_errors
       xcode_helper.treat_warnings_as_errors(@config.warnings_as_errors)
-    end
-
-    def add_todo_script_phase
-      xcode_helper.add_todo_script_phase(@config.install_todo_script)
     end
     
     def add_script_phases
