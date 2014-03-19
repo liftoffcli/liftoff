@@ -1,9 +1,10 @@
 module Liftoff
   class Project
-    def initialize(name, company, prefix)
-      @name = name
-      set_company_name(company)
-      set_prefix(prefix)
+    def initialize(configuration)
+      @name = configuration.project_name
+      @deployment_target = configuration.deployment_target
+      set_company_name(configuration.company)
+      set_prefix(configuration.prefix)
       configure_base_project_settings
     end
 
@@ -35,9 +36,10 @@ module Liftoff
     end
 
     def new_app_target
-      target = xcode_project.new_target(:application, @name, :ios, 7.0)
+      target = xcode_project.new_target(:application, @name, :ios)
       target.build_configurations.each do |configuration|
         configuration.build_settings.delete('OTHER_LDFLAGS')
+        configuration.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
       end
       target
     end
@@ -70,6 +72,7 @@ module Liftoff
         configuration.build_settings['ASSETCATALOG_COMPILER_APPICON_NAME'] = 'AppIcon'
         configuration.build_settings['ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME'] = 'LaunchImage'
         configuration.build_settings['SDKROOT'] = 'iphoneos'
+        configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = @deployment_target
       end
     end
 
