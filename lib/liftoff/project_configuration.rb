@@ -1,6 +1,6 @@
 module Liftoff
   class ProjectConfiguration
-    attr_accessor :project_name, :company, :prefix, :configure_git, :warnings_as_errors, :install_todo_script, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods
+    attr_accessor :project_name, :company, :prefix, :configure_git, :warnings_as_errors, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods, :run_script_phases
     attr_writer :author, :company_identifier
 
     def initialize(liftoffrc)
