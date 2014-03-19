@@ -43,6 +43,16 @@ module Liftoff
         add_shell_script_build_phase(file_manager.template_contents('todo.sh'), 'Warn for TODO and FIXME comments')
       end
     end
+    
+    def add_script_phases(scripts)
+      if scripts
+        puts 'Adding shell script build phases:'
+        scripts.each do |script|
+          puts "  - #{script}"
+          add_shell_script_build_phase(file_manager.template_contents("#{script}.sh"), script)
+        end
+      end
+    end
 
     def save
       xcode_project.save

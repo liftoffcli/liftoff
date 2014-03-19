@@ -31,6 +31,7 @@ module Liftoff
       enable_warnings
       treat_warnings_as_errors
       add_todo_script_phase
+      add_script_phases
       enable_static_analyzer
       generate_git
     end
@@ -57,6 +58,10 @@ module Liftoff
 
     def add_todo_script_phase
       xcode_helper.add_todo_script_phase(@config.install_todo_script)
+    end
+    
+    def add_script_phases
+      xcode_helper.add_script_phases(@config.install_build_scripts)
     end
 
     def enable_warnings
