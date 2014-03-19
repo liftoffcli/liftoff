@@ -3,7 +3,7 @@ module Liftoff
     LATEST_IOS = 7.0
 
     attr_accessor :project_name, :company, :prefix, :configure_git, :warnings_as_errors, :install_todo_script, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods
-    attr_writer :author, :company_identifier
+    attr_writer :author, :company_identifier, :use_tabs
 
     def initialize(liftoffrc)
       liftoffrc.each_pair do |attribute, value|
@@ -22,6 +22,14 @@ module Liftoff
 
     def company_identifier
       @company_identifier || "com.#{normalized_company_name}"
+    end
+
+    def use_tabs
+      if @use_tabs
+        '1'
+      else
+        '0'
+      end
     end
 
     def deployment_target

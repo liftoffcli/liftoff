@@ -27,13 +27,13 @@ module Liftoff
       end
     end
 
-    def set_indentation_level(level)
+    def set_indentation_level(level, use_tabs)
       if level
-        puts "Setting the project indentation level to #{level} spaces"
+        puts "Setting the project indentation level to #{level}"
         main_group = xcode_project.main_group
         main_group.indent_width = level.to_s
         main_group.tab_width = level.to_s
-        main_group.uses_tabs = '0'
+        main_group.uses_tabs = use_tabs
       end
     end
 

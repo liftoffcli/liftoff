@@ -48,7 +48,7 @@ module Liftoff
     end
 
     def set_indentation_level
-      xcode_helper.set_indentation_level(@config.indentation_level)
+      xcode_helper.set_indentation_level(@config.indentation_level, @config.use_tabs)
     end
 
     def treat_warnings_as_errors
