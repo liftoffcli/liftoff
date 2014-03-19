@@ -40,8 +40,9 @@ module Liftoff
     def add_script_phases(scripts)
       if scripts
         scripts.each do |script|
-          puts "Adding shell script build phase '#{script['name']}'"
-          add_shell_script_build_phase(file_manager.template_contents(script['filename']), script['name'])
+          key, value = script.first
+          puts "Adding shell script build phase '#{value}'"
+          add_shell_script_build_phase(file_manager.template_contents(key), value)
         end
       end
     end

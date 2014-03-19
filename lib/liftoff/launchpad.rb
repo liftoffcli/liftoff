@@ -56,7 +56,7 @@ module Liftoff
     end
     
     def add_script_phases
-      xcode_helper.add_script_phases(@config.install_build_scripts)
+      xcode_helper.add_script_phases(@config.run_script_phases)
     end
 
     def enable_warnings
