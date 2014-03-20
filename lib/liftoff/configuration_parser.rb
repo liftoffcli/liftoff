@@ -1,6 +1,10 @@
 module Liftoff
   class ConfigurationParser
 
+    def initialize(options)
+      @options = options
+    end
+
     def project_configuration
       @configuration ||= evaluated_configuration
     end
@@ -8,9 +12,10 @@ module Liftoff
     private
 
     def evaluated_configuration
-      default_configuration.
-        merge(user_configuration).
-        merge(local_configuration)
+      default_configuration
+        .merge(user_configuration)
+        .merge(local_configuration)
+        .merge(@options)
     end
 
     def default_configuration
