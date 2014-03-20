@@ -2,8 +2,22 @@ module Liftoff
   class ProjectConfiguration
     LATEST_IOS = 7.0
 
-    attr_accessor :project_name, :company, :prefix, :configure_git, :warnings_as_errors, :enable_static_analyzer, :indentation_level, :warnings, :application_target_groups, :unit_test_target_groups, :use_cocoapods, :run_script_phases
-    attr_writer :author, :company_identifier, :use_tabs
+    attr_accessor :project_name,
+      :company,
+      :prefix,
+      :configure_git,
+      :warnings_as_errors,
+      :enable_static_analyzer,
+      :indentation_level,
+      :warnings,
+      :application_target_groups,
+      :unit_test_target_groups,
+      :use_cocoapods,
+      :run_script_phases
+
+    attr_writer :author,
+      :company_identifier,
+      :use_tabs
 
     def initialize(liftoffrc)
       deprecations = DeprecationManager.new
