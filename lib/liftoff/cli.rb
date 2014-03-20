@@ -54,23 +54,23 @@ module Liftoff
 
         # String Features
 
-        opts.on('-name', '--project_name', String, 'Set project name') do |name|
+        opts.on('-n', '--project_name [PROJECT_NAME]', 'Set project name') do |name|
           @liftoffrc[:project_name] = name
         end
 
-        opts.on('-c', '--company', String, 'Set project company') do |company|
+        opts.on('-c', '--company [COMPANY]', 'Set project company') do |company|
           @liftoffrc[:company] = company
         end
 
-        opts.on('-a', '--author', String, 'Set project author') do |author|
+        opts.on('-a', '--author [AUTHOR]', 'Set project author') do |author|
           @liftoffrc[:author] = author
         end
 
-        opts.on('-p', '--prefix', String, 'Set project prefix') do |prefix|
+        opts.on('-p', '--prefix [PREFIX]', 'Set project prefix') do |prefix|
           @liftoffrc[:prefix] = prefix
         end
 
-        opts.on('-i', '--identifier', String, 'Set project company ID (com.example)') do |identifier|
+        opts.on('-i', '--identifier [IDENTIFIER]', 'Set project company ID (com.example)') do |identifier|
           @liftoffrc[:company_identifier] = identifier
         end
       end
