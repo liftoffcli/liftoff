@@ -104,7 +104,22 @@ type: integer
 default:
 .Ic 4
 .Pp
-Set the indentation level on the project (in spaces).
+Set the indentation width on the project (in spaces).
+.It Ic use_tabs
+type: boolean
+.br
+default:
+.Ic false
+.Pp
+Configure the project to use spaces or tabs for indentation. As everyone knows,
+you should really be using spaces for indentation. If you prefer to be wrong,
+however, you can change this configuration to use tabs in your project.
+.Pp
+Note that this does
+.Em not
+affect the default templates. If you choose to be incorrect with your
+indentation settings, we recommend that you also override the default templates
+in order to be consistently wrong.
 .It Ic warnings
 type: array
 .br
