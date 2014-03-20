@@ -30,7 +30,7 @@ module Liftoff
           exit
         end
 
-        # Boolean Features
+        # Boolean Options
 
         opts.on('--[no-]strict-prompts', 'Enable/Disable strict prompts') do |strict_prompts|
           @liftoffrc[:strict_prompts] = strict_prompts
@@ -56,7 +56,13 @@ module Liftoff
           @liftoffrc[:enable_static_analyzer] = enable_static_analyzer
         end
 
-        # String Features
+        # Integer Options
+
+        opts.on('-t', '--indentation_level N', 'Set indentation level') do |indentation_level|
+          @liftoffrc[:indentation_level] = indentation_level
+        end
+
+        # String Options
 
         opts.on('-n', '--project_name [PROJECT_NAME]', 'Set project name') do |name|
           @liftoffrc[:project_name] = name
