@@ -13,6 +13,7 @@ install_todo_script: true
 enable_static_analyzer: true
 indentation_level: 4
 use_cocoapods: true
+strict_prompts: false
 
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED

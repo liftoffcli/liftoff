@@ -14,8 +14,11 @@ module Liftoff
     private
 
     def fetch_option_for(attribute, prompt)
-      value = ask("#{prompt}? ") { |q| q.default = @configuration.public_send(attribute) }
-      @configuration.public_send("#{attribute}=", value)
+      default = @configuration.public_send(attribute)
+      if !default || !@configuration.strict_prompts
+        value = ask("#{prompt}? ") { |q| q.default = default }
+        @configuration.public_send("#{attribute}=", value)
+      end
     rescue EOFError
       puts
       fetch_option_for(attribute, prompt)
