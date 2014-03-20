@@ -32,6 +32,10 @@ module Liftoff
 
         # Boolean Features
 
+        opts.on('--[no-]strict-prompts', 'Enable/Disable strict prompts') do |strict_prompts|
+          @liftoffrc[:strict_prompts] = strict_prompts
+        end
+
         opts.on('--[no-]cp', 'Enable/Disable Cocoapods') do |use_cocoapods|
           @liftoffrc[:use_cocoapods] = use_cocoapods
         end
