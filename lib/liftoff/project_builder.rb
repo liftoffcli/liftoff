@@ -82,7 +82,7 @@ module Liftoff
     end
 
     def linkable_file?(name)
-      !name.end_with?('h', 'plist')
+      !name.end_with?('h', 'Info.plist')
     end
 
     def resource_file?(name)
