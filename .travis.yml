@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0-p247
-  - 1.8.7-p358
+  - 2.0.0
+  - 1.8.7
 before_install:
   - echo '--color' > ~/.rspec

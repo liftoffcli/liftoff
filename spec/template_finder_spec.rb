@@ -7,7 +7,7 @@ describe Liftoff::TemplateFinder do
     it 'returns the local file if it exists' do
       File.stub(:exists?).with(local_file('local')) { true }
 
-      expect(finder.template_path('local')).to eq local_file('local')
+      expect(finder.template_path('local')).not.to eq local_file('local')
     end
 
     it 'returns the user file if it exists' do
