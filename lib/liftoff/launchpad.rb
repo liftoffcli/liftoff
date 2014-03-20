@@ -1,11 +1,8 @@
 module Liftoff
   class LaunchPad
-    def initialize
-      liftoffrc = ConfigurationParser.new.project_configuration
+    def liftoff(cli_config)
+      liftoffrc = ConfigurationParser.new.project_configuration.merge(cli_config)
       @config = ProjectConfiguration.new(liftoffrc)
-    end
-
-    def liftoff
       if project_exists?
         perform_project_actions
       else

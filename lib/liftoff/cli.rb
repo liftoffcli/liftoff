@@ -2,11 +2,12 @@ module Liftoff
   class CLI
     def initialize(argv)
       @argv = argv
+      @liftoffrc = {}
     end
 
     def run
       parse_command_line_options
-      LaunchPad.new.liftoff
+      LaunchPad.new.liftoff @liftoffrc
     end
 
     private
@@ -17,7 +18,7 @@ module Liftoff
 
     def global_options
       OptionParser.new do |opts|
-        opts.banner = 'usage: liftoff [-v | --version] [-h | --help]'
+        opts.banner = 'usage: liftoff [-v | --version] [-h | --help] [config options]'
 
         opts.on('-v', '--version', 'Display the version and exit') do
           puts "Version: #{Liftoff::VERSION}"
@@ -27,6 +28,50 @@ module Liftoff
         opts.on('-h', '--help', 'Display this help message and exit') do
           puts opts
           exit
+        end
+
+        # Boolean Features
+
+        opts.on('--[no-]cp', 'Enable/Disable Cocoapods') do |use_cocoapods|
+          @liftoffrc[:use_cocoapods] = use_cocoapods
+        end
+
+        opts.on('--[no-]git', 'Enable/Disable git') do |configure_git|
+          @liftoffrc[:configure_git] = configure_git
+        end
+
+        opts.on('--[no-]warnings', 'Enable/Disable warnings as errors') do |warnings_as_errors|
+          @liftoffrc[:warnings_as_errors] = warnings_as_errors
+        end
+
+        opts.on('--[no-]todo-scripts', 'Enable/Disable installation of TODO scripts') do |install_todo_script|
+          @liftoffrc[:install_todo_script] = install_todo_script
+        end
+
+        opts.on('--[no-]static-analyzer', 'Enable/Disable static analyzer') do |enable_static_analyzer|
+          @liftoffrc[:enable_static_analyzer] = enable_static_analyzer
+        end
+
+        # String Features
+
+        opts.on('-name', '--project_name', String, 'Set project name') do |name|
+          @liftoffrc[:project_name] = name
+        end
+
+        opts.on('-c', '--company', String, 'Set project company') do |company|
+          @liftoffrc[:company] = company
+        end
+
+        opts.on('-a', '--author', String, 'Set project author') do |author|
+          @liftoffrc[:author] = author
+        end
+
+        opts.on('-p', '--prefix', String, 'Set project prefix') do |prefix|
+          @liftoffrc[:prefix] = prefix
+        end
+
+        opts.on('-i', '--identifier', String, 'Set project company ID (com.example)') do |identifier|
+          @liftoffrc[:company_identifier] = identifier
         end
       end
     end

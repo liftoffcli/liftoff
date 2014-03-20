@@ -4,6 +4,7 @@
 # company:
 # author:
 # prefix:
+# company_identifier:
 ############################################################################
 
 configure_git: true
