@@ -27,20 +27,23 @@ module Liftoff
       end
     end
 
-    def set_indentation_level(level)
+    def set_indentation_level(level, use_tabs)
       if level
-        puts "Setting the project indentation level to #{level} spaces"
+        puts "Setting the project indentation level to #{level}"
         main_group = xcode_project.main_group
         main_group.indent_width = level.to_s
         main_group.tab_width = level.to_s
-        main_group.uses_tabs = '0'
+        main_group.uses_tabs = use_tabs
       end
     end
-
-    def add_todo_script_phase(enable_todos)
-      if enable_todos
-        puts 'Adding shell script build phase to warn on TODO and FIXME comments'
-        add_shell_script_build_phase(file_manager.template_contents('todo.sh'), 'Warn for TODO and FIXME comments')
+    
+    def add_script_phases(scripts)
+      if scripts
+        scripts.each do |script|
+          key, value = script.first
+          puts "Adding shell script build phase '#{value}'"
+          add_shell_script_build_phase(file_manager.template_contents(key), value)
+        end
       end
     end
 

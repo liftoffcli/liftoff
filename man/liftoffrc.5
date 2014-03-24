@@ -80,17 +80,22 @@ default:
 .Ic true
 .Pp
 Turn warnings into errors on release builds.
-.It Ic install_todo_script
-type: boolean
+.It Ic run_script_phases
+type: array
 .br
-default:
-.Ic true
+default: See
+.Sx SCRIPT PHASES
 .Pp
-Add Run Script build phase to turn
-.Ic TODO
-and
-.Ic FIXME
-comments into warnings.
+Install the specified scripts as individual Run Script Build Phases. The
+scripts that you want to add should be located inside either the local
+.Pa .liftoff/templates/
+directory, or the user's
+.Pa ~/.liftoff/templates/
+directory.
+.Pp
+Each item in the array should be a dictionary containing a single key/value
+pair. The key for the dictionary will be used as the template script's name.
+The value will be used as the name of the script phase inside Xcode.
 .It Ic enable_static_analyzer
 type: boolean
 .br
@@ -104,12 +109,27 @@ type: integer
 default:
 .Ic 4
 .Pp
-Set the indentation level on the project (in spaces).
+Set the indentation width on the project (in spaces).
+.It Ic use_tabs
+type: boolean
+.br
+default:
+.Ic false
+.Pp
+Configure the project to use spaces or tabs for indentation. As everyone knows,
+you should really be using spaces for indentation. If you prefer to be wrong,
+however, you can change this configuration to use tabs in your project.
+.Pp
+Note that this does
+.Em not
+affect the default templates. If you choose to be incorrect with your
+indentation settings, we recommend that you also override the default templates
+in order to be consistently wrong.
 .It Ic warnings
 type: array
 .br
 default: See
-.Sx Warnings
+.Sx WARNINGS
 .Pp
 Enable the provided warnings for the Application target. Set to
 .Ic false
@@ -118,7 +138,7 @@ to prevent warnings from being set.
 type: dictionary
 .br
 default: See
-.Sx Application Groups
+.Sx APPLICATION GROUPS
 .Pp
 Generate the provided directory and group structure for the main Application
 Target.
@@ -126,7 +146,7 @@ Target.
 type: dictionary
 .br
 default: See
-.Sx Unit Test Groups
+.Sx UNIT TEST GROUPS
 .Pp
 Generate the provided directory and group structure for the Unit Test target.
 .It Ic project_name
@@ -172,6 +192,19 @@ default: none
 Set the default value for the project prefix when generating new projects. Not
 enabled by default.
 .El
+.
+.Sh SCRIPT PHASES
+.Ic liftoff
+installs a single Run Script Build Phase by default:
+.Bd -literal
+  - todo.sh: Warn for TODO and FIXME comments
+.Ed
+.Pp
+This script turns any
+.Ic TODO
+or
+.Ic FIXME
+comments into warnings at compilation time.
 .
 .Sh WARNINGS
 .Ic liftoff
