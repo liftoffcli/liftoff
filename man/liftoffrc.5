@@ -257,12 +257,38 @@ and
 etc., to make sure that the arguments supplied have types appropriate to the
 format string specified, and that the conversions specified in the format
 string make sense.
+.It Ic GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS
+Warn about the use of deprecated functions, variables, and types (as indicated
+by the
+.Ic deprecated
+attribute).
 .It Ic CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATION
 Warn if an Objective-C class either subclasses a deprecated class or overrides
 a method that has been marked deprecated.
 .It Ic CLANG_WARN_OBJC_IMPLICIT_RETAIN_SEL
 Warn about implicit retains of 'self' within blocks, which can create a
 retain-cycle.
+.It Ic CLANG_WARN_IMPLICIT_SIGN_CONVERSION
+Warn about implicit integer conversions that change the signedness of an
+integer value.
+.It Ic CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION
+Warn about various implicit conversions that can lose information or are
+otherwise suspicious.
+.It Ic CLANG_WARN_EMPTY_BODY
+Warn about loop bodies that are suspiciously empty.
+.It Ic CLANG_WARN_ENUM_CONVERSION
+Warn about implicit conversions between different kinds of enum values.  For
+example, this can catch issues when using the wrong enum flag as an argument to
+a function or method.
+.It Ic CLANG_WARN_INT_CONVERSION
+Warn about implicit conversions between pointers and integers. For example,
+this can catch issues when one incorrectly intermixes using
+.Ic NSNumber*
+and raw integers.
+.It Ic CLANG_WARN_CONSTANT_CONVERSION
+Warn about implicit conversions of constant values that cause the constant
+value to change, either through a loss of precision, or entirely in its
+meaning.
 .El
 .
 .Sh APPLICATION GROUPS
