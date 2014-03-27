@@ -1,2 +1,6 @@
 HashSyntax:
-  Enabled: false
+  Description: >
+                 Use Ruby 1.8 hash syntax { :a => 1, :b => 2 }.
+                 We need to support older system ruby installations.
+  EnforcedStyle: ruby18
+  Enabled: true
