@@ -18,6 +18,11 @@ Run this command in a directory
 
     liftoff
 
+View the documentation:
+
+    man liftoff
+    man liftoffrc
+
 When Liftoff finds an existing project in the current directory, it will
 perform the following configurations:
 
@@ -69,30 +74,14 @@ preferred configuration for Liftoff.
 
 Liftoff will look for config files in the local directory and then the home
 directory. If it can't find a key in `./.liftoffrc` or `~/.liftoffrc`, it will
-use [the default](https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc).
-Check the default for a list of available options.
+use the default values. Check `liftoffrc(5)` for more information:
 
-We highly recommend using `~/.liftoffrc` to define the `author` configuration:
+    man liftoffrc
 
-```yaml
-author: Gordon Fontenot
-```
+You can see the [current liftofrc on master][liftoffrc], but be aware that
+the keys might not match up completely with the current released version.
 
-This will speed up data entry when creating new projects. It can also be
-useful to create context-specific `.liftoffrc` files for personal or work
-uses. So I can create `~/work-projects/.liftoffrc` that looks like so:
-
-```yaml
-company: thoughtbot
-```
-
-Now any new project started inside my `work-projects` directory will
-automatically default to using `thoughtbot` as the company name. Then I can do
-the same for my `personal` directory so that projects created there have a
-different default. Note that this can be applied to any of the settings inside
-the `liftoffrc`. So if your company dictates a specific folder structure, you
-can define that in your company's `liftoffrc` to make sure that those projects
-conform to your guidelines.
+[liftoffrc]: https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc
 
 ### Directory Structure and Templates
 
@@ -110,20 +99,6 @@ same fallback order when looking for templates as it does for the
 
 These files (and filenames) will be parsed with `ERB`, using the values
 provided at run time (or the default values from a `liftoffrc`).
-
-There are a few default template files available to you:
-
-- [`<%= prefix %>AppDelegate.h`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20prefix%20%25%3EAppDelegate.h)
-- [`<%= prefix %>AppDelegate.m`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20prefix%20%25%3EAppDelegate.m)
-- [`<%= project_name %>-Info.plist`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20project_name%20%25%3E-Info.plist)
-- [`<%= project_name %>-Prefix.pch`](https://github.com/thoughtbot/liftoff/blob/master/templates/%3C%25%3D%20project_name%20%25%3E-Prefix.pch)
-- [`main.m`](https://github.com/thoughtbot/liftoff/blob/master/templates/main.m)
-- [`UnitTests-Info.plist`](https://github.com/thoughtbot/liftoff/blob/master/templates/UnitTests-Info.plist)
-- [`UnitTests-Prefix.pch`](https://github.com/thoughtbot/liftoff/blob/master/templates/UnitTests-Prefix.pch)
-
-There is also a template directory for the [`Images.xcassets`][images] asset library.
-
-[images]: https://github.com/thoughtbot/liftoff/tree/master/templates/Images.xcassets
 
 ## About
 
