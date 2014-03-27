@@ -13,9 +13,9 @@ module Liftoff
 
     def evaluated_configuration
       default_configuration.
-        merge(user_configuration).
-        merge(local_configuration).
-        merge(@cli_options)
+        merge(user_configuration)
+        .merge(local_configuration)
+        .merge(@cli_options)
     end
 
     def default_configuration
