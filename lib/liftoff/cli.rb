@@ -42,13 +42,13 @@ module Liftoff
 
         # Integer Options
 
-        opts.on('-t', '--indentation_level N', 'Set indentation level') do |indentation_level|
+        opts.on('-t', '--indentation N', 'Set indentation level') do |indentation_level|
           @options[:indentation_level] = indentation_level
         end
 
         # String Options
 
-        opts.on('-n', '--project_name [PROJECT_NAME]', 'Set project name') do |name|
+        opts.on('-n', '--name [PROJECT_NAME]', 'Set project name') do |name|
           @options[:project_name] = name
         end
 
