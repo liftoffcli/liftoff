@@ -30,8 +30,6 @@ module Liftoff
           exit
         end
 
-        # Boolean Options
-
         opts.on('--[no-]cocoapods', 'Enable/Disable Cocoapods') do |use_cocoapods|
           @options[:use_cocoapods] = use_cocoapods
         end
@@ -40,13 +38,9 @@ module Liftoff
           @options[:configure_git] = configure_git
         end
 
-        # Integer Options
-
         opts.on('-t', '--indentation N', 'Set indentation level') do |indentation_level|
           @options[:indentation_level] = indentation_level
         end
-
-        # String Options
 
         opts.on('-n', '--name [PROJECT_NAME]', 'Set project name') do |name|
           @options[:project_name] = name

@@ -1,8 +1,8 @@
 module Liftoff
   class ConfigurationParser
 
-    def initialize(cli_options)
-      @cli_options = cli_options
+    def initialize(options)
+      @options = options
     end
 
     def project_configuration
@@ -15,7 +15,7 @@ module Liftoff
       default_configuration
         .merge(user_configuration)
         .merge(local_configuration)
-        .merge(@cli_options)
+        .merge(@options)
     end
 
     def default_configuration
