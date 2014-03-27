@@ -9,6 +9,15 @@
 .Nm
 .Op Fl -version
 .Op Fl -help
+.Op Fl -[no-]strict-prompts
+.Op Fl -[no-]cocoapods
+.Op Fl -[no-]git
+.Op Fl -indentation Ar N
+.Op Fl -name Ar PROJECT_NAME
+.Op Fl -company Ar COMPANY_NAME
+.Op Fl -author Ar AUTHOR_NAME
+.Op Fl -prefix Ar PREFIX
+.Op Fl -identifier Ar IDENTIFIER
 .
 .Sh DESCRIPTION
 .Nm
@@ -18,6 +27,47 @@ spending valuable time performing tedious configurations.
 Run the
 .Nm
 command inside a directory.
+.Pp
+It supports the following options:
+
+.Bl -tag -width "-i, --identifier IDENTIFIER"
+.It Fl v , Fl -version
+display the version number and exit
+.It Fl h , Fl -help
+display a help message and exit
+.It Fl -[no-]strict-prompts
+enable or disable strict prompts. If this is enabled,
+.Nm
+will only prompt for values that don't have a default set.
+.It Fl -[no-]cocoapods
+enable or disable CocoaPods support
+.It Fl -[no-]git
+enable or disable
+.Xr git 1
+configuration
+.It Fl t , Fl -indentation Ar N
+set the indentation width in spaces
+.It Fl n , Fl -name Ar PROJECT_NAME
+set the project name
+.It Fl c , Fl -company Ar COMPANY_NAME
+set the company name
+.It Fl a , Fl -author Ar AUTHOR_NAME
+set the author name. If you don't provide a default here or in the
+.Xr liftoffrc 5 ,
+.Nm
+will generate a default value by looking at the
+.Ic gecos
+field from
+.Xr passwd 5 .
+.It Fl p , Fl -prefix Ar PREFIX
+set the project's prefix
+.It Fl i , Fl -identifier Ar IDENTIFIER
+set the company identifier (com.mycompany). If you don't provide a default here
+or in the
+.Xr liftoffrc 5 ,
+.Nm
+will generate a default from a normalized version of the company name.
+.El
 .Pp
 If an Xcode project is found inside the current directory,
 .Nm
