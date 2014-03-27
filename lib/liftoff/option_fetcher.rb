@@ -15,7 +15,7 @@ module Liftoff
 
     def fetch_option_for(attribute, prompt)
       default = @configuration.public_send(attribute)
-      if !default || !@configuration.strict_prompts
+      if prompt_for_default?(default)
         value = ask("#{prompt}? ") { |q| q.default = default }
         @configuration.public_send("#{attribute}=", value)
       end
@@ -24,6 +24,10 @@ module Liftoff
       fetch_option_for(attribute, prompt)
     rescue Interrupt
       exit 1
+    end
+
+    def prompt_for_default?(default)
+      !default || !@configuration.strict_prompts
     end
   end
 end
