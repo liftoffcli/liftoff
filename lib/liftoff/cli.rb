@@ -30,6 +30,10 @@ module Liftoff
           exit
         end
 
+        opts.on('--[no-]strict-prompts', 'Enable/Disable strict prompts') do |strict_prompts|
+          @options[:strict_prompts] = strict_prompts
+        end
+
         opts.on('--[no-]cocoapods', 'Enable/Disable Cocoapods') do |use_cocoapods|
           @options[:use_cocoapods] = use_cocoapods
         end

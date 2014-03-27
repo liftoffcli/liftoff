@@ -13,7 +13,8 @@ module Liftoff
       :application_target_groups,
       :unit_test_target_groups,
       :use_cocoapods,
-      :run_script_phases
+      :run_script_phases,
+      :strict_prompts
 
     attr_writer :author,
       :company_identifier,
