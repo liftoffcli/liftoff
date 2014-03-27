@@ -14,13 +14,20 @@ module Liftoff
     private
 
     def fetch_option_for(attribute, prompt)
-      value = ask("#{prompt}? ") { |q| q.default = @configuration.public_send(attribute) }
-      @configuration.public_send("#{attribute}=", value)
+      default = @configuration.public_send(attribute)
+      unless skip_prompt?(default)
+        value = ask("#{prompt}? ") { |q| q.default = default }
+        @configuration.public_send("#{attribute}=", value)
+      end
     rescue EOFError
       puts
       fetch_option_for(attribute, prompt)
     rescue Interrupt
       exit 1
+    end
+
+    def skip_prompt?(default)
+      default && @configuration.strict_prompts
     end
   end
 end
