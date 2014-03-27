@@ -15,7 +15,7 @@ module Liftoff
 
     def fetch_option_for(attribute, prompt)
       default = @configuration.public_send(attribute)
-      if prompt_for_default?(default)
+      unless skip_prompt?(default)
         value = ask("#{prompt}? ") { |q| q.default = default }
         @configuration.public_send("#{attribute}=", value)
       end
@@ -26,8 +26,8 @@ module Liftoff
       exit 1
     end
 
-    def prompt_for_default?(default)
-      !default || !@configuration.strict_prompts
+    def skip_prompt?(default)
+      default && @configuration.strict_prompts
     end
   end
 end
