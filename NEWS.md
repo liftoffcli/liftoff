@@ -1,5 +1,58 @@
 # Liftoff Changelog #
 
+## Liftoff 1.2 - March 28, 2014 ##
+
+### New Features ###
+
+* Add command line flags. You can now pass a set of flags to the `liftoff`
+  executable to override specific configurations at run time - [JP
+  Simard][liftoff#126]
+* Add `strict_prompts` option. This configuration option and the corresponding
+  `--[no-]strict-prompts` command line flag tell `liftoff` to only prompt you
+  for options that don't have default values set. This allows you to set values
+  at run time and skip the prompt altogether. - [JP Simard][liftoff#127]
+* Add configuration for setting up Run Script phases. This replaces the
+  `install_todo_script` configuration key with a much more flexible
+  `run_script_phases` key. By overriding this key, you can install any
+  arbitrary script phases as long as you're providing a template for them.
+  - [Mikael Bartlett][liftoff#120] ([Thanks to Magnus Ottosson][liftoff#118])
+* Reluctantly allow the use of tabs for indentation. Even though my conscience
+  protested, we've added a `use_tabs` key to the configuration. Enabling this
+  will configure the project to use tabs instead of spaces. Note that this
+  doesn't change the spacing in the default templates, so if you override this
+  you will probably want to override those as well. - [Gordon
+  Fontenot][liftoff#125] ([Thanks to Magnus Ottosson][liftoff#119])
+
+[liftoff#126]: https://github.com/thoughtbot/liftoff/issues/126
+[liftoff#127]: https://github.com/thoughtbot/liftoff/issues/127
+[liftoff#120]: https://github.com/thoughtbot/liftoff/issues/120
+[liftoff#125]: https://github.com/thoughtbot/liftoff/issues/125
+[liftoff#118]: https://github.com/thoughtbot/liftoff/issues/118
+[liftoff#119]: https://github.com/thoughtbot/liftoff/issues/119
+
+### Changes ###
+
+* Enable some more warnings by default. - [Gordon Fontenot][liftoff#134]
+* Handle key deprecations a bit more gracefully. - [Gordon
+  Fontenot][liftoff#133]
+* Stop treating all plists as though they are the Info.plist. Previously, any
+  plist that was added as a template was being treated as though it was the
+  Info.plist for that target. We're now being more explicit about matching that
+  file, and linking all other plists properly. - [Gordon Fontenot][liftoff#122]
+  ([Thanks to @mattyohe][liftoff#121])
+
+[liftoff#134]: https://github.com/thoughtbot/liftoff/issues/134
+[liftoff#133]: https://github.com/thoughtbot/liftoff/issues/133
+[liftoff#122]: https://github.com/thoughtbot/liftoff/issues/122
+[liftoff#121]: https://github.com/thoughtbot/liftoff/issues/121
+
+### Bug Fixes ###
+
+* Set the deployment target at the project level. This mimics the behavior
+  when creating a new project with Xcode. - [Gordon Fontenot][liftoff#123]
+
+[liftoff#123]: https://github.com/thoughtbot/liftoff/issues/123
+
 ## Liftoff 1.1.1 - March 18, 2014 ##
 
 ### Bug Fixes ###
