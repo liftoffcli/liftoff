@@ -125,6 +125,35 @@ Note that this does
 affect the default templates. If you choose to be incorrect with your
 indentation settings, we recommend that you also override the default templates
 in order to be consistently wrong.
+.It Ic use_cocoapods
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Generate a template
+.Pa Podfile
+and run
+.Ic pod install
+inside the project directory to install a default set of dependencies.
+.Pp
+The
+.Pa Podfile
+can be overridden by adding a custom template. If you override this template,
+you should probably override the
+.Pa UnitTests-Prefix.pch
+template as well, since it imports the default pods if this key is enabled.
+.It Ic strict_prompts
+type: boolean
+.br
+default:
+.Ic false
+.Pp
+Only prompt for values that don't have a default value.
+.Pp
+This is useful when combined with command line options to speed up the project
+creation process, or when being used in environments where the interactive
+prompt can't be used.
 .It Ic warnings
 type: array
 .br
