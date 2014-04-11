@@ -27,17 +27,16 @@ When Liftoff finds an existing project in the current directory, it will
 perform the following configurations:
 
 * Set the indentation level (In spaces, 4 by default).
-* Treat warnings as errors for release schemes
-* Enable [warnings] at the project level
-* Turn on Static Analysis for the project
+* Treat warnings as errors for release schemes.
+* Enable warnings at the project level, check `liftoffrc(5)` for a list of the warnings.
+* Turn on Static Analysis for the project.
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into
-  warnings][deallocated-todo]
+  warnings][deallocated-todo].
 * Add default [.gitignore] and [.gitattributes] files.
 * Initialize a new `git` repo and create an initial commit (if needed).
 
 [.gitignore]: https://github.com/thoughtbot/liftoff/blob/master/templates/gitignore
 [.gitattributes]: https://github.com/thoughtbot/liftoff/blob/master/templates/gitattributes
-[warnings]: https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc#L15-L32
 [deallocated-todo]: http://deallocatedobjects.com/posts/show-todos-and-fixmes-as-warnings-in-xcode-4
 
 When you run Liftoff in a directory without a project file, it will create a
