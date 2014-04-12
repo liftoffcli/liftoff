@@ -27,11 +27,11 @@ When Liftoff finds an existing project in the current directory, it will
 perform the following configurations:
 
 * Set the indentation level (In spaces, 4 by default).
-* Treat warnings as errors for release schemes
+* Treat warnings as errors for release schemes.
 * Enable warnings at the project level, check `liftoffrc(5)` for a list of the warnings.
-* Turn on Static Analysis for the project
+* Turn on Static Analysis for the project.
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into
-  warnings][deallocated-todo]
+  warnings][deallocated-todo].
 * Add default [.gitignore] and [.gitattributes] files.
 * Initialize a new `git` repo and create an initial commit (if needed).
 
