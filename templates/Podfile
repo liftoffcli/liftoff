@@ -1,5 +1,7 @@
 platform :ios, '<%= deployment_target %>'
 
+# Add Application pods here
+
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'
   pod 'Specta'
