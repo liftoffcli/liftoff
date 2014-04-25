@@ -8,5 +8,4 @@ target :unit_tests, :exclusive => true do
   pod 'Expecta'
   pod 'OCMock'
   pod 'OHHTTPStubs'
-  pod 'XCTest+OHHTTPStubSuiteCleanUp'
 end
