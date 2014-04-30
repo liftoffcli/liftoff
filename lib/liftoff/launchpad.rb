@@ -11,6 +11,7 @@ module Liftoff
         file_manager.create_project_dir(@config.project_name) do
           generate_project
           install_cocoapods
+          generate_templates
           perform_project_actions
           open_project
         end
@@ -36,6 +37,10 @@ module Liftoff
       CocoapodsSetup.new.install_cocoapods(@config.use_cocoapods)
     end
 
+    def generate_templates
+      TemplateGenerator.new.generate_templates(@config, file_manager)
+    end
+
     def generate_project
       ProjectBuilder.new(@config).create_project
     end
@@ -51,7 +56,7 @@ module Liftoff
     def treat_warnings_as_errors
       xcode_helper.treat_warnings_as_errors(@config.warnings_as_errors)
     end
-    
+
     def add_script_phases
       xcode_helper.add_script_phases(@config.run_script_phases)
     end

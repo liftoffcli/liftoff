@@ -163,6 +163,26 @@ default: See
 Enable the provided warnings for the Application target. Set to
 .Ic false
 to prevent warnings from being set.
+.It Ic templates
+type: array
+.br
+default:
+.Ic false
+.Pp
+Generate the specified templates for the project. User-defined templates should
+be located either inside the local
+.Pa .liftoff/templates/
+directory, or in the user's
+.Pa ~/.liftoff/templates/
+directory.
+.Pp
+Each item in the array should be a single key/value pair. The key for the
+dictionary will be used as the template's name, and the value will be used as
+the destination relative to the project's root.
+.Pp
+See
+.Sx TEMPLATES
+for an example configuration.
 .It Ic application_target_groups
 type: dictionary
 .br
@@ -319,6 +339,24 @@ Warn about implicit conversions of constant values that cause the constant
 value to change, either through a loss of precision, or entirely in its
 meaning.
 .El
+.
+.Sh TEMPLATES
+.Ic liftoff
+expects templates in the following format:
+.Pp
+.Bd -literal
+  - travis.yml: .travis.yml
+.Ed
+.Pp
+This will install the template named
+.Pa travis.yml
+found inside the templates directory to
+.Pa .travis.yml
+inside the project directory.
+.Pp
+This file will be parsed with ERB with the project configuration, giving you
+access to any values that you can set via the
+.Nm
 .
 .Sh APPLICATION GROUPS
 .Ic liftoff
