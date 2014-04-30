@@ -12,6 +12,7 @@ module Liftoff
           generate_project
           install_cocoapods
           generate_templates
+          share_scheme
           perform_project_actions
           open_project
         end
@@ -39,6 +40,11 @@ module Liftoff
 
     def generate_templates
       TemplateGenerator.new.generate_templates(@config, file_manager)
+    end
+
+    def share_scheme
+      xcode_helper.create_schemes
+      file_manager.move_scheme(@config.project_name)
     end
 
     def generate_project
