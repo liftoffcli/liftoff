@@ -47,6 +47,10 @@ module Liftoff
       end
     end
 
+    def create_schemes
+      xcode_project.recreate_user_schemes(true)
+    end
+
     def save
       xcode_project.save
     end

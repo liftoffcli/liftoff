@@ -8,6 +8,13 @@ module Liftoff
       exit 1
     end
 
+    def move_scheme(project_name)
+      shared_schemes = "#{project_name}.xcodeproj/xcshareddata/xcschemes"
+      original_scheme = Dir.glob("**/#{project_name}.xcscheme").first
+      FileUtils.mkdir_p(shared_schemes)
+      FileUtils.mv(original_scheme, shared_schemes)
+    end
+
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
       template_path = TemplateFinder.new.template_path(template)
