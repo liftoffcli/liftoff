@@ -18,6 +18,8 @@ strict_prompts: false
 run_script_phases:
   - todo.sh: Warn for TODO and FIXME comments
 
+templates: false
+
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
   - GCC_WARN_MISSING_PARENTHESES
