@@ -21,9 +21,7 @@ module Liftoff
       if template_is_directory?(template_path)
         copy_template_directory(template_path, destination)
       else
-        existing_content = existing_file_contents(destination)
-        move_template(template_path, destination, project_config)
-        append_original_file_contents(destination, existing_content)
+        create_template_file(destination, template_path, project_config)
       end
     end
 
@@ -40,6 +38,15 @@ module Liftoff
     end
 
     private
+
+    def create_template_file(destination, template_path, project_config)
+      existing_content = existing_file_contents(destination)
+      move_template(template_path, destination, project_config)
+      append_original_file_contents(destination, existing_content)
+      if File.executable?(template_path)
+        File.chmod(0755, destination)
+      end
+    end
 
     def copy_template_directory(template, path)
       FileUtils.cp_r(template, File.join(*path))
