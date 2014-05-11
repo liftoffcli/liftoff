@@ -40,6 +40,7 @@ module Liftoff
       target.build_configurations.each do |configuration|
         configuration.build_settings.delete('OTHER_LDFLAGS')
         configuration.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
+        configuration.build_settings.delete('SKIP_INSTALL')
       end
       target
     end
