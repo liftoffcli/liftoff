@@ -17,6 +17,7 @@ module Liftoff
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
       puts "Writing #{destination}"
+      create_destination_path(destination)
       template_path = TemplateFinder.new.template_path(template)
       if template_is_directory?(template_path)
         copy_template_directory(template_path, destination)
@@ -58,6 +59,10 @@ module Liftoff
         puts 'We will append the contents of the existing file to the end of the template'
         File.read(filename)
       end
+    end
+
+    def create_destination_path(destination)
+      FileUtils.mkdir_p(File.dirname(destination))
     end
 
     def move_template(template, destination, project_config)
