@@ -41,4 +41,17 @@ describe Liftoff::ProjectConfiguration do
       end
     end
   end
+
+  describe '#each_template' do
+    it 'returns an array of templates and destinations' do
+      templates = [
+        {'foo' => 'bar'},
+        {'baz' => 'bat'}
+      ]
+
+      config = Liftoff::ProjectConfiguration.new({:templates => templates})
+
+      expect(config.each_template.to_a).to eq([['foo', 'bar'], ['baz', 'bat']])
+    end
+  end
 end

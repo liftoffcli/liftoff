@@ -2,8 +2,8 @@ module Liftoff
   class TemplateGenerator
     def generate_templates(config, file_manager)
       if config.templates
-        config.templates.each_pair do |template, destination|
-          file_manager.generate(template, destination, config)
+        config.each_template do |source, destination|
+          file_manager.generate(source, destination, config)
         end
       end
     end

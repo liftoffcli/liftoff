@@ -54,6 +54,14 @@ module Liftoff
       LATEST_IOS
     end
 
+    def each_template(&block)
+      return enum_for(__method__) unless block_given?
+
+      templates.each do |template|
+        template.each_pair(&block)
+      end
+    end
+
     def get_binding
       binding
     end
