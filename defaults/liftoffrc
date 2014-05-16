@@ -22,6 +22,8 @@ templates:
   - travis.yml: .travis.yml
   - Gemfile.rb: Gemfile
   - test.sh: bin/test
+  - setup.sh: bin/setup
+  - README.md: README.md
 
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
