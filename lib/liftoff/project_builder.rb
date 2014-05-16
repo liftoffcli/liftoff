@@ -13,6 +13,7 @@ module Liftoff
       end
 
       xcode_project.save
+      xcode_project.generate_scheme
     end
 
     private
