@@ -1,5 +1,54 @@
 # Liftoff Changelog #
 
+## Liftoff 1.3 - 16 May 2014 ###
+
+### New Features ###
+
+* Install arbitrary template files in the project directory. You can use the
+  new `templates` key in `.liftoffrc` to define arbitrary templates that
+  should be installed in the project directory. Liftoff will install these
+  templates relative to the project's root. - [Gordon Fontenot][liftoff#147]
+  ([Thanks to James Frost][liftoff#146])
+* Add Travis configuration by default. Liftoff will now generate the template
+  files required for Travis to work out of the box. This can be disabled by
+  overriding the templates we install by default - [Gordon
+  Fontenot][liftoff#152]
+* Add `setup`, `test`, and `README` templates to the project. - [Gordon
+  Fontenot][liftoff#154]
+
+[liftoff#147]: https://github.com/thoughtbot/liftoff/issues/147
+[liftoff#146]: https://github.com/thoughtbot/liftoff/issues/146
+[liftoff#152]: https://github.com/thoughtbot/liftoff/issues/152
+[liftoff#154]: https://github.com/thoughtbot/liftoff/issues/154
+
+### Changes ###
+
+* Generated scheme is now shared. Previously, Xcode was creating a private
+  scheme after the project was opened for the first time. We are now creating
+  this scheme ourselves, and making it shared. - [Gordon
+  Fontenot][liftoff#153] ([Thanks to Mark Adams][liftoff#70])
+* Add OHHTTPStubs as a default testing dependency - [Gordon
+  Fontenot][liftoff#143]
+* Add documentation hint to default Podfile. This is intended to solve some
+  confusion about where to add new pods after initial installation - [Gordon
+  Fontenot][liftoff#145] ([Thanks to Mark Flowers][liftoff#144])
+
+[liftoff#153]: https://github.com/thoughtbot/liftoff/issues/153
+[liftoff#70]: https://github.com/thoughtbot/liftoff/issues/70
+[liftoff#143]: https://github.com/thoughtbot/liftoff/issues/143
+[liftoff#145]: https://github.com/thoughtbot/liftoff/issues/145
+[liftoff#144]: https://github.com/thoughtbot/liftoff/issues/144
+
+### Bug Fixes ###
+
+* Don't skip installation for app targets. Previously, we were setting
+  `SKIP_INSTALLATION` to `YES`, which caused the Archive action to fail
+  silently. This change brings us back in line with Xcode's default behavior.
+  - [Gordon Fontenot][liftoff#151] ([Thanks to James Frost][liftoff#149])
+
+[liftoff#151]: https://github.com/thoughtbot/liftoff/issues/151
+[liftoff#149]: https://github.com/thoughtbot/liftoff/issues/149
+
 ## Liftoff 1.2 - March 28, 2014 ##
 
 ### New Features ###
