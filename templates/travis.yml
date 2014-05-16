@@ -1,0 +1,9 @@
+language: objective-c
+
+branches:
+  only:
+    master
+
+env: export LANG=en_US.UTF-8
+
+script: bin/test

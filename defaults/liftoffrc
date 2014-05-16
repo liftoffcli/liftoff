@@ -18,7 +18,10 @@ strict_prompts: false
 run_script_phases:
   - todo.sh: Warn for TODO and FIXME comments
 
-templates: false
+templates:
+  - travis.yml: .travis.yml
+  - Gemfile.rb: Gemfile
+  - test.sh: bin/test
 
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
