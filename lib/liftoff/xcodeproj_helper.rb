@@ -36,7 +36,7 @@ module Liftoff
         main_group.uses_tabs = use_tabs
       end
     end
-    
+
     def add_script_phases(scripts)
       if scripts
         scripts.each do |script|
@@ -45,10 +45,6 @@ module Liftoff
           add_shell_script_build_phase(file_manager.template_contents(key), value)
         end
       end
-    end
-
-    def create_schemes
-      xcode_project.recreate_user_schemes(true)
     end
 
     def save
