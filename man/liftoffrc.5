@@ -166,8 +166,8 @@ to prevent warnings from being set.
 .It Ic templates
 type: array
 .br
-default:
-.Ic false
+default: See
+.Sx TEMPLATES
 .Pp
 Generate the specified templates for the project. User-defined templates should
 be located either inside the local
@@ -341,6 +341,30 @@ meaning.
 .El
 .
 .Sh TEMPLATES
+.Ic liftoff
+installs a number of templates by default:
+.Bl -tag -width 10
+.It Pa travis.yml
+This template is installed to
+.Pa .travis.yml ,
+and contains a default setup for Travis integration.
+.It Pa Gemfile.rb
+This template is installed to
+.Pa Gemfile ,
+and contains a set of default gems for use with the project. Right now, it
+contains
+.Ic CocoaPods
+and
+.Ic XCPretty .
+.It Pa test.sh
+This template is installed to
+.Pa bin/test
+and enables the running of tests from the command line. This is used by the
+default
+.Pa travis.yml
+template to determine build status.
+.El
+.Pp
 .Ic liftoff
 expects templates in the following format:
 .Pp
