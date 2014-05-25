@@ -27,6 +27,7 @@ module Liftoff
     def perform_project_actions
       set_indentation_level
       enable_warnings
+      enable_other_warnings
       treat_warnings_as_errors
       add_script_phases
       enable_static_analyzer
@@ -63,6 +64,10 @@ module Liftoff
 
     def enable_warnings
       xcode_helper.enable_warnings(@config.warnings)
+    end
+
+    def enable_other_warnings
+      xcode_helper.enable_other_warnings(@config.other_warnings)
     end
 
     def enable_static_analyzer

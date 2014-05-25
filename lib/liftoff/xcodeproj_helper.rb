@@ -18,6 +18,18 @@ module Liftoff
       end
     end
 
+    def enable_other_warnings(warnings)
+      if warnings
+        puts 'Setting Other Warning Flags on the project level'
+        xcode_project.build_configurations.each do |configuration|
+          configuration.build_settings['WARNING_CFLAGS'] ||= []
+          warnings.each do |warning|
+            configuration.build_settings['WARNING_CFLAGS'] << warning
+          end
+        end
+      end
+    end
+
     def enable_static_analyzer(enable_static_analyzer)
       if enable_static_analyzer
         puts 'Turning on Static Analyzer at the project level'
