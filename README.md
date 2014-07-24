@@ -77,7 +77,7 @@ use the default values. Check `liftoffrc(5)` for more information:
 
     man liftoffrc
 
-You can see the [current liftofrc on master][liftoffrc], but be aware that
+You can see the [current liftoffrc on master][liftoffrc], but be aware that
 the keys might not match up completely with the current released version.
 
 [liftoffrc]: https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc
