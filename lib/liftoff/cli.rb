@@ -42,6 +42,10 @@ module Liftoff
           @options[:configure_git] = configure_git
         end
 
+        opts.on('--no-open', "Don't open Xcode after generation") do
+          @options[:xcode_command] = false
+        end
+
         opts.on('-t', '--indentation N', 'Set indentation level') do |indentation_level|
           @options[:indentation_level] = indentation_level
         end
