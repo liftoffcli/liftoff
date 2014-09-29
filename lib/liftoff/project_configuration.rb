@@ -10,6 +10,7 @@ module Liftoff
       :enable_static_analyzer,
       :indentation_level,
       :warnings,
+      :other_warnings,
       :templates,
       :application_target_groups,
       :unit_test_target_groups,

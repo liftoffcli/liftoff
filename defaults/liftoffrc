@@ -51,6 +51,9 @@ warnings:
   - CLANG_WARN_INT_CONVERSION
   - CLANG_WARN_CONSTANT_CONVERSION
 
+other_warnings:
+  - -Wunreachable-code
+
 application_target_groups:
   - <%= project_name %>:
     - Categories:
