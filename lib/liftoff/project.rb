@@ -81,7 +81,7 @@ module Liftoff
         configuration.build_settings['ASSETCATALOG_COMPILER_APPICON_NAME'] = 'AppIcon'
         configuration.build_settings['ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME'] = 'LaunchImage'
         configuration.build_settings['SDKROOT'] = 'iphoneos'
-        configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = @deployment_target
+        configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = @deployment_target.to_s
       end
     end
 

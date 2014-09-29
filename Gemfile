@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :dist do
-  gem 'xcodeproj', '~> 0.14.1'
+  gem 'xcodeproj', '~> 0.19.2'
   gem 'highline', '~> 1.6'
 end
 
