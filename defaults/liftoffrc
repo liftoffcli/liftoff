@@ -60,7 +60,9 @@ application_target_groups:
       - Delegates:
         - <%= prefix %>AppDelegate.h
         - <%= prefix %>AppDelegate.m
+      - Helpers:
       - Models:
+      - Protocols:
       - ViewControllers:
       - Views:
     - Constants:
