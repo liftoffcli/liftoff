@@ -30,6 +30,8 @@ module Liftoff
       treat_warnings_as_errors
       add_script_phases
       enable_static_analyzer
+      perform_extra_config
+      save_project
       generate_git
     end
 
@@ -63,6 +65,10 @@ module Liftoff
 
     def enable_warnings
       xcode_helper.enable_warnings(@config.warnings)
+    end
+
+    def perform_extra_config
+      xcode_helper.perform_extra_config(@config.extra_config)
     end
 
     def enable_static_analyzer

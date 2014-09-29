@@ -256,6 +256,15 @@ file if it can't find one.
 Set this key to
 .Ic false
 to disable the automatic-open functionality
+.It Ic extra_config
+type: array of dictionaries
+.br
+default: none
+.Pp
+Add additional per-configuration settings to the main application target. By
+default this key isn't set. See
+.Sx EXTRA CONFIGURATION
+for more information on the format of this key.
 .El
 .
 .Sh SCRIPT PHASES
@@ -458,6 +467,41 @@ will also generate templates for the
 and
 .Ic UnitTests-Prefix.pch
 files.
+.
+.Sh EXTRA CONFIGURATION
+.Ic liftoff
+can perform additional arbitrary configuration to the main application target
+on a per-build configuration basis. In order to add arbitrary settings, you
+should add keys to the
+.Ic extra_config
+key in your
+.Nm
+that correspond to the build configuration you'd like to modify. For example,
+to set all warnings on your
+.Ic Debug
+build configuration, you can set the following:
+.Pp
+.Bd -literal
+extra_config:
+  Debug:
+    WARNING_CFLAGS:
+      - -Weverything
+.Ed
+.Pp
+Note that the key for the build configuration must match the name of the build
+configuration you'd like to modify exactly.
+.Pp
+If you would like to set a project-wide setting for the application target, you
+can use the special
+.Ic all
+key in the configuration:
+.Pp
+.Bd -literal
+extra_config:
+  all:
+    WARNING_CFLAGS:
+      - -Weverything
+.Ed
 .
 .Sh FILES
 .Pa ~/.liftoffrc

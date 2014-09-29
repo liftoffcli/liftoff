@@ -16,7 +16,8 @@ module Liftoff
       :use_cocoapods,
       :run_script_phases,
       :strict_prompts,
-      :xcode_command
+      :xcode_command,
+      :extra_config
 
     attr_writer :author,
       :company_identifier,

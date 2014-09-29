@@ -47,6 +47,24 @@ module Liftoff
       end
     end
 
+    def perform_extra_config(extra_config)
+      if extra_config
+        extra_config.each do |name, settings|
+          if name.downcase == "all"
+            object = target
+          else
+            object = target.build_settings(name)
+          end
+
+          if object
+            settings.each do |key, value|
+              object[key] = value
+            end
+          end
+        end
+      end
+    end
+
     def save
       xcode_project.save
     end
