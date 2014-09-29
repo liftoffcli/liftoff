@@ -70,7 +70,9 @@ module Liftoff
     end
 
     def open_project
-      `open -a "Xcode" .`
+      if @config.xcode_command
+        `#{@config.xcode_command}`
+      end
     end
 
     def save_project

@@ -15,7 +15,8 @@ module Liftoff
       :unit_test_target_groups,
       :use_cocoapods,
       :run_script_phases,
-      :strict_prompts
+      :strict_prompts,
+      :xcode_command
 
     attr_writer :author,
       :company_identifier,

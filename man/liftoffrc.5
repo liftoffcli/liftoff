@@ -240,6 +240,22 @@ default: none
 .Pp
 Set the default value for the project prefix when generating new projects. Not
 enabled by default.
+.It Ic xcode_command
+type: string
+.br
+default:
+.Ic open -a 'Xcode' .
+.Pp
+Set the command used to open the project after generation. By default we open
+the current folder with Xcode, which will search for a
+.Ic *.xcworkspace
+file to open, falling back to a
+.Ic *.pbxproj
+file if it can't find one.
+.Pp
+Set this key to
+.Ic false
+to disable the automatic-open functionality
 .El
 .
 .Sh SCRIPT PHASES

@@ -51,6 +51,8 @@ warnings:
   - CLANG_WARN_INT_CONVERSION
   - CLANG_WARN_CONSTANT_CONVERSION
 
+xcode_command: open -a 'Xcode' .
+
 application_target_groups:
   - <%= project_name %>:
     - Categories:
