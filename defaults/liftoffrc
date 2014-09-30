@@ -53,31 +53,57 @@ warnings:
 
 xcode_command: open -a 'Xcode' .
 
-application_target_groups:
-  - <%= project_name %>:
-    - Categories:
-    - Classes:
-      - Controllers:
-      - DataSources:
-      - Delegates:
-        - <%= prefix %>AppDelegate.h
-        - <%= prefix %>AppDelegate.m
-      - Models:
-      - ViewControllers:
-      - Views:
-    - Constants:
-    - Resources:
-      - Images.xcassets
-      - Storyboards:
-      - Nibs:
-      - Other-Sources:
-        - Info.plist
-        - <%= project_name %>-Prefix.pch
-        - main.m
+project_template: swift
 
-unit_test_target_groups:
-  - UnitTests:
-    - Resources:
-      - UnitTests-Info.plist
-      - UnitTests-Prefix.pch
-    - Tests:
+app_target_templates:
+  objc:
+    - <%= project_name %>:
+      - Categories:
+      - Classes:
+        - Controllers:
+        - DataSources:
+        - Delegates:
+          - <%= prefix %>AppDelegate.h
+          - <%= prefix %>AppDelegate.m
+        - Models:
+        - ViewControllers:
+        - Views:
+      - Constants:
+      - Resources:
+        - Images.xcassets
+        - Storyboards:
+        - Nibs:
+        - Other-Sources:
+          - Info.plist
+          - <%= project_name %>-Prefix.pch
+          - main.m
+  swift:
+    - <%= project_name %>:
+      - Extensions:
+      - Protocols:
+      - Models:
+      - ViewModels:
+      - Controllers:
+        - AppDelegate.swift
+      - Views:
+      - Resources:
+        - Images.xcassets
+        - Storyboards:
+        - Nibs:
+        - Other-Sources:
+          - Info.plist
+
+test_target_templates:
+  objc:
+    - UnitTests:
+      - Resources:
+        - UnitTests-Info.plist
+        - UnitTests-Prefix.pch
+      - Tests:
+  swift:
+    - UnitTests:
+      - Resources:
+        - UnitTests-Info.plist
+      - Helpers:
+      - Tests:
+

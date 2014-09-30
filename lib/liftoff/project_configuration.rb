@@ -11,8 +11,9 @@ module Liftoff
       :indentation_level,
       :warnings,
       :templates,
-      :application_target_groups,
-      :unit_test_target_groups,
+      :project_template,
+      :app_target_templates,
+      :test_target_templates,
       :use_cocoapods,
       :run_script_phases,
       :strict_prompts,
@@ -66,6 +67,14 @@ module Liftoff
 
     def get_binding
       binding
+    end
+
+    def app_target_groups
+      @app_target_templates[@project_template]
+    end
+
+    def test_target_groups
+      @test_target_templates[@project_template]
     end
 
     private

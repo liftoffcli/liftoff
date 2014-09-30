@@ -96,11 +96,11 @@ module Liftoff
 
     def groups_and_targets
       group_map = {
-        @project_configuration.application_target_groups => xcode_project.app_target,
+        @project_configuration.app_target_groups => xcode_project.app_target,
       }
 
-      if @project_configuration.unit_test_target_groups
-        group_map[@project_configuration.unit_test_target_groups] = xcode_project.unit_test_target
+      if @project_configuration.test_target_groups
+        group_map[@project_configuration.test_target_groups] = xcode_project.unit_test_target
       end
 
       group_map

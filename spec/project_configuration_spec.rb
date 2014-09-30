@@ -54,4 +54,64 @@ describe Liftoff::ProjectConfiguration do
       expect(config.each_template.to_a).to eq([['foo', 'bar'], ['baz', 'bat']])
     end
   end
+
+  describe '#app_target_groups' do
+    context 'when the project_template is set to swift' do
+      it 'returns the swift app target groups' do
+        swift_groups = {'swift' => 'groups'}
+        objc_groups = {'objc' => 'groups'}
+        templates = {'swift' => swift_groups, 'objc' => objc_groups}
+        config = Liftoff::ProjectConfiguration.new({
+          :project_template => 'swift',
+          :app_target_templates => templates
+        })
+
+        expect(config.app_target_groups).to eq(swift_groups)
+      end
+    end
+
+    context 'when the project_template is set to objc' do
+      it 'returns the objc app target groups' do
+        swift_groups = {'swift' => 'groups'}
+        objc_groups = {'objc' => 'groups'}
+        templates = {'swift' => swift_groups, 'objc' => objc_groups}
+        config = Liftoff::ProjectConfiguration.new({
+          :project_template => 'objc',
+          :app_target_templates => templates
+        })
+
+        expect(config.app_target_groups).to eq(objc_groups)
+      end
+    end
+  end
+
+  describe '#test_target_groups' do
+    context 'when the project_template is set to swift' do
+      it 'returns the swift test target groups' do
+        swift_groups = {'swift' => 'groups'}
+        objc_groups = {'objc' => 'groups'}
+        templates = {'swift' => swift_groups, 'objc' => objc_groups}
+        config = Liftoff::ProjectConfiguration.new({
+          :project_template => 'swift',
+          :test_target_templates => templates
+        })
+
+        expect(config.test_target_groups).to eq(swift_groups)
+      end
+    end
+
+    context 'when the project_template is set to objc' do
+      it 'returns the objc test target groups' do
+        swift_groups = {'swift' => 'groups'}
+        objc_groups = {'objc' => 'groups'}
+        templates = {'swift' => swift_groups, 'objc' => objc_groups}
+        config = Liftoff::ProjectConfiguration.new({
+          :project_template => 'objc',
+          :test_target_templates => templates
+        })
+
+        expect(config.test_target_groups).to eq(objc_groups)
+      end
+    end
+  end
 end

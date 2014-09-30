@@ -46,6 +46,10 @@ module Liftoff
           @options[:xcode_command] = false
         end
 
+        opts.on('--template [TEMPLATE NAME]', 'Use the specified project template') do |template_name|
+          @options[:project_template] = template_name
+        end
+
         opts.on('-t', '--indentation N', 'Set indentation level') do |indentation_level|
           @options[:indentation_level] = indentation_level
         end
