@@ -12,7 +12,8 @@
 .Op Fl -[no-]strict-prompts
 .Op Fl -[no-]cocoapods
 .Op Fl -[no-]git
-.Op F1 --no-open
+.Op Fl -no-open
+.Op Fl -template Ar TEMPLATE_NAME
 .Op Fl -indentation Ar N
 .Op Fl -name Ar PROJECT_NAME
 .Op Fl -company Ar COMPANY_NAME
@@ -30,7 +31,6 @@ Run the
 command inside a directory.
 .Pp
 It supports the following options:
-
 .Bl -tag -width "-i, --identifier IDENTIFIER"
 .It Fl v , Fl -version
 display the version number and exit
@@ -46,8 +46,10 @@ enable or disable CocoaPods support
 enable or disable
 .Xr git 1
 configuration
-.It F1 --no-open
+.It Fl -no-open
 Don't open Xcode after project generation
+.It Fl -template Ar TEMPLATE_NAME
+Use the specified template structure
 .It Fl t , Fl -indentation Ar N
 set the indentation width in spaces
 .It Fl n , Fl -name Ar PROJECT_NAME

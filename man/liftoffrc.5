@@ -63,6 +63,22 @@ preference.
 .
 .Sh CONFIGURATION
 .Bl -tag -width 10
+.It Ic project_template
+type: string
+.br
+default:
+.Ic swift
+.Pp
+Set the default template to use for project generation. This key corresponds to
+a top level key under
+.Ic app_target_templates .
+If the key also exists in
+.Ic test_target templates ,
+then that template will be used for the test target.
+.Pp
+This setting can be overridden on the command line by using the
+.Ic Fl -template Ar TEMPLATE_NAME
+option.
 .It Ic configure_git
 type: boolean
 .br
@@ -183,21 +199,28 @@ the destination relative to the project's root.
 See
 .Sx TEMPLATES
 for an example configuration.
-.It Ic application_target_groups
+.It Ic app_target_templates
 type: dictionary
 .br
 default: See
-.Sx APPLICATION GROUPS
+.Sx TEMPLATE DIRECTORY STRUCTURES
 .Pp
-Generate the provided directory and group structure for the main Application
-Target.
-.It Ic unit_test_target_groups
+Specify template directory structures for the main application target. By
+default, this comes with 2 templates:
+.Ic swift
+and
+.Ic objc .
+.It Ic test_target_groups
 type: dictionary
 .br
 default: See
-.Sx UNIT TEST GROUPS
+.Sx TEMPLATE DIRECTORY STRUCTURES
 .Pp
-Generate the provided directory and group structure for the Unit Test target.
+Specify template directory structures for the unit test target. By default,
+this comes with 2 templates:
+.Ic swift
+and
+.Ic objc .
 .It Ic project_name
 type: string
 .br
@@ -407,37 +430,58 @@ This file will be parsed with ERB with the project configuration, giving you
 access to any values that you can set via the
 .Nm
 .
-.Sh APPLICATION GROUPS
+.Sh TEMPLATE DIRECTORY STRUCTURES
 .Ic liftoff
-creates a default directory and group structure for the main
-application target that mimics the following structure:
+creates default directory and group structures for application and unit test
+targets. These structures are specified with language specific keys inside the
+.Ic app_target_templates
+and
+.Ic test_target_templates
+configuration keys.
+.Ic liftoff
+will select the proper structure to build based on the
+.Ic project_template
+setting either in the
+.Nm
+or as provided on the command line with the
+.Ic Fl -template Ar [TEMPLATE_NAME]
+option.
+.Pp
+An example project template for Objective-C projects might look like the
+following:
 .Pp
 .Bd -literal
-  - <%= project_name %>:
-    - Categories:
-    - Classes:
-      - Controllers:
-      - DataSources:
-      - Delegates:
-        - <%= prefix %>AppDelegate.h
-        - <%= prefix %>AppDelegate.m
-      - Models:
-      - ViewControllers:
-      - Views:
-    - Constants:
-    - Resources:
-      - Images.xcassets
-      - Storyboards:
-      - Nibs:
-      - Other-Sources:
-        - <%= project_name %>-Info.plist
-        - <%= project_name %>-Prefix.pch
-        - main.m
+app_target_templates:
+  objc:
+    - <%= project_name %>:
+      - Categories:
+      - Classes:
+        - Controllers:
+        - DataSources:
+        - Delegates:
+          - <%= prefix %>AppDelegate.h
+          - <%= prefix %>AppDelegate.m
+        - Models:
+        - ViewControllers:
+        - Views:
+      - Constants:
+      - Resources:
+        - Images.xcassets
+        - Storyboards:
+        - Nibs:
+        - Other-Sources:
+          - <%= project_name %>-Info.plist
+          - <%= project_name %>-Prefix.pch
+          - main.m
 .Ed
 .Pp
-It also generates templates for the
+This would override the default
+.Ic objc
+template for the main application target. This structure would also cause
+.Ic liftoff
+to generate templates for the
 .Ic AppDelegate
-class (appending the proper prefix), as well as
+class (prepending the proper prefix), as well as
 .Ic Info.plist,
 .Ic Prefix.pch,
 and
@@ -448,25 +492,39 @@ and
 .Ic Prefix.pch
 will be prepended with the project name.
 .
-.Sh UNIT TEST GROUPS
-.Ic liftoff
-creates a default directory and group structure for the unit test
-target that mimics the following structure:
+.Pp
+See
+.Sx TEMPLATES
+for more information on
+.Ic liftoff 's
+templating ability.
+.
+.Pp
+These keys are special, in that you can add template specific keys inside your
+user or local
+.Nm
+files without overriding the defaults. This means that if I want to define a
+new
+.Ic empty
+template, I can do so with the following inside my local or user
+.Nm :
 .Pp
 .Bd -literal
-  - UnitTests:
-    - Resources:
-      - UnitTests-Info.plist
-      - UnitTests-Prefix.pch
-    - Tests:
+app_target_templates:
+  empty:
+    - Files:
 .Ed
 .Pp
-.Ic liftoff
-will also generate templates for the
-.Ic UnitTests-Info.plist
-and
-.Ic UnitTests-Prefix.pch
-files.
+This would create a single
+.Pa Files
+directory inside the project root, and would not create a test target, since I
+haven't defined a template directory structure for that target. You can now
+specify this template by name by using
+.Ic Fl -template Ar empty
+on the command line, or even make it your default by setting
+.Ic project_template
+in your
+.Nm .
 .
 .Sh EXTRA CONFIGURATION
 .Ic liftoff
