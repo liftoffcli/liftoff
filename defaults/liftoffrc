@@ -71,7 +71,7 @@ application_target_groups:
       - Storyboards:
       - Nibs:
       - Other-Sources:
-        - <%= project_name %>-Info.plist
+        - Info.plist
         - <%= project_name %>-Prefix.pch
         - main.m
 
