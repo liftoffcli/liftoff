@@ -35,7 +35,7 @@ describe Liftoff::ProjectConfiguration do
       it 'returns the name of the current user from passwd(5)' do
         config = Liftoff::ProjectConfiguration.new({})
         getpwuid = double('getpwuid', gecos: 'Jimmy McNulty')
-        Etc.stub(:getpwuid) { getpwuid }
+        expect(Etc).to receive(:getpwuid) { getpwuid }
 
         expect(config.author).to eq 'Jimmy McNulty'
       end
