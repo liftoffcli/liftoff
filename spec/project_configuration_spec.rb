@@ -58,29 +58,17 @@ describe Liftoff::ProjectConfiguration do
   describe '#app_target_groups' do
     context 'when the project_template is set to swift' do
       it 'returns the swift app target groups' do
-        swift_groups = {'swift' => 'groups'}
-        objc_groups = {'objc' => 'groups'}
-        templates = {'swift' => swift_groups, 'objc' => objc_groups}
-        config = Liftoff::ProjectConfiguration.new({
-          :project_template => 'swift',
-          :app_target_templates => templates
-        })
+        config  = build_config('swift')
 
-        expect(config.app_target_groups).to eq(swift_groups)
+        expect(config.app_target_groups).to eq({'swift' => 'app'})
       end
     end
 
     context 'when the project_template is set to objc' do
       it 'returns the objc app target groups' do
-        swift_groups = {'swift' => 'groups'}
-        objc_groups = {'objc' => 'groups'}
-        templates = {'swift' => swift_groups, 'objc' => objc_groups}
-        config = Liftoff::ProjectConfiguration.new({
-          :project_template => 'objc',
-          :app_target_templates => templates
-        })
+        config = build_config('objc')
 
-        expect(config.app_target_groups).to eq(objc_groups)
+        expect(config.app_target_groups).to eq({'objc' => 'app'})
       end
     end
   end
@@ -88,30 +76,34 @@ describe Liftoff::ProjectConfiguration do
   describe '#test_target_groups' do
     context 'when the project_template is set to swift' do
       it 'returns the swift test target groups' do
-        swift_groups = {'swift' => 'groups'}
-        objc_groups = {'objc' => 'groups'}
-        templates = {'swift' => swift_groups, 'objc' => objc_groups}
-        config = Liftoff::ProjectConfiguration.new({
-          :project_template => 'swift',
-          :test_target_templates => templates
-        })
+        config = build_config('swift')
 
-        expect(config.test_target_groups).to eq(swift_groups)
+        expect(config.test_target_groups).to eq({'swift' => 'test'})
       end
     end
 
     context 'when the project_template is set to objc' do
       it 'returns the objc test target groups' do
-        swift_groups = {'swift' => 'groups'}
-        objc_groups = {'objc' => 'groups'}
-        templates = {'swift' => swift_groups, 'objc' => objc_groups}
-        config = Liftoff::ProjectConfiguration.new({
-          :project_template => 'objc',
-          :test_target_templates => templates
-        })
+        config = build_config('objc')
 
-        expect(config.test_target_groups).to eq(objc_groups)
+        expect(config.test_target_groups).to eq({'objc' => 'test'})
       end
     end
+  end
+
+  def build_config(name)
+    app_templates = build_templates('app')
+    test_templates = build_templates('test')
+    Liftoff::ProjectConfiguration.new({
+      :project_template => name,
+      :app_target_templates => app_templates,
+      :test_target_templates => test_templates
+    })
+  end
+
+  def build_templates(type)
+    swift_groups = {'swift' => type}
+    objc_groups = {'objc' => type}
+    {'swift' => swift_groups, 'objc' => objc_groups}
   end
 end
