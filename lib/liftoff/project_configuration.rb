@@ -1,6 +1,6 @@
 module Liftoff
   class ProjectConfiguration
-    LATEST_IOS = 7.0
+    LATEST_IOS = 8.0
 
     attr_accessor :project_name,
       :company,
