@@ -73,6 +73,7 @@ app_target_templates:
         - Images.xcassets
         - Storyboards:
         - Nibs:
+          - LaunchScreen.xib
         - Other-Sources:
           - Info.plist
           - <%= project_name %>-Prefix.pch
@@ -90,6 +91,7 @@ app_target_templates:
         - Images.xcassets
         - Storyboards:
         - Nibs:
+          - LaunchScreen.xib
         - Other-Sources:
           - Info.plist
 
@@ -106,4 +108,3 @@ test_target_templates:
         - UnitTests-Info.plist
       - Helpers:
       - Tests:
-
