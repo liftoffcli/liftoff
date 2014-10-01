@@ -1,11 +1,14 @@
 module Liftoff
   class LaunchPad
+    EX_NOINPUT = 66
+
     def liftoff(options)
       liftoffrc = ConfigurationParser.new(options).project_configuration
       @config = ProjectConfiguration.new(liftoffrc)
       if project_exists?
         perform_project_actions
       else
+        validate_template
         fetch_options
 
         file_manager.create_project_dir(@config.project_name) do
@@ -19,6 +22,13 @@ module Liftoff
     end
 
     private
+
+    def validate_template
+      unless @config.app_target_groups
+        STDERR.puts "Invalid template name: '#{@config.project_template}'"
+        exit EX_NOINPUT
+      end
+    end
 
     def fetch_options
       OptionFetcher.new(@config).fetch_options
