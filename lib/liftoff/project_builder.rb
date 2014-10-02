@@ -6,6 +6,7 @@ module Liftoff
     end
 
     def create_project
+      puts "Generating the '#{@project_configuration.project_template}' project template"
       groups_and_targets.each do |groups, target|
         groups.each do |group|
           create_tree(group, target)

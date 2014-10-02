@@ -9,7 +9,6 @@ module Liftoff
     end
 
     def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
-      puts "Writing #{destination}"
       create_destination_path(destination)
       template_path = TemplateFinder.new.template_path(template)
       if template_is_directory?(template_path)
@@ -21,7 +20,6 @@ module Liftoff
 
     def mkdir_gitkeep(path)
       dir_path = File.join(*path)
-      puts "Creating #{dir_path}"
       FileUtils.mkdir_p(dir_path)
       FileUtils.touch(File.join(dir_path, '.gitkeep'))
     end
