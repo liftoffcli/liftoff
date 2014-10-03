@@ -59,26 +59,24 @@ app_target_templates:
   objc:
     - <%= project_name %>:
       - Categories:
-      - Classes:
-        - Controllers:
-        - DataSources:
-        - Delegates:
-          - <%= prefix %>AppDelegate.h
-          - <%= prefix %>AppDelegate.m
-        - Models:
-        - ViewControllers:
-        - Views:
-      - Constants:
-      - Resources:
-        - Images.xcassets
-        - Storyboards:
-          - Main.storyboard
-        - Nibs:
-          - LaunchScreen.xib
-        - Other-Sources:
-          - Info.plist
-          - <%= project_name %>-Prefix.pch
-          - main.m
+      - Protocols:
+      - Headers:
+      - Models:
+      - ViewModels:
+      - Controllers:
+        - <%= prefix %>AppDelegate.h
+        - <%= prefix %>AppDelegate.m
+      - Views:
+    - Resources:
+      - Images.xcassets
+      - Storyboards:
+        - Main.storyboard
+      - Nibs:
+        - LaunchScreen.xib
+      - Other-Sources:
+        - Info.plist
+        - <%= project_name %>-Prefix.pch
+        - main.m
   swift:
     - <%= project_name %>:
       - Extensions:
@@ -103,6 +101,7 @@ test_target_templates:
       - Resources:
         - UnitTests-Info.plist
         - UnitTests-Prefix.pch
+      - Helpers:
       - Tests:
   swift:
     - UnitTests:
