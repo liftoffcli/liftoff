@@ -1,6 +1,66 @@
 # Liftoff Changelog #
 
-## Liftoff 1.3 - 16 May 2014 ###
+## Liftoff 1.4 - 8 Oct 2014 ##
+
+### New Features ###
+
+* Add the ability to define multiple project templates. This feature allows
+  you to created named project templates inside your liftoffrc and then use
+  them by defining them as the default inside your liftoffrc, or by passing
+  their name on the command line. Be sure to check out `liftoff(1)` and
+  `liftoffrc(5)` for  more info. By default, Liftoff comes with templates for
+  Objective-C (`objc`) and Swift (`swift`) projects. - [Gordon
+  Fontenot][liftoff#175]
+* Add arbitrary configuration settings to liftoffrc. This lets you define an
+  arbitrary dictionary structure inside your liftoffrc to create default
+  configuration settings for projects. - [Gordon Fontenot][liftoff#174]
+  ([Thanks to Marshall Huss][liftoff#142], [Juan Pablo Civile][liftoff#170],
+  and [Keith Smiley][liftoff#160])
+* Add default storyboard file. Liftoff will now generate an empty storyboard
+  file for use in the project. - [Gordon Fontenot][liftoff#177]
+* Add support for the new Launch Screen xib files. Liftoff will now generate
+  an empty `LaunchScreen.xib` file and use it as the default launch screen
+  option. - [Gordon Fontenot][liftoff#178] (lol recruiters)
+* Let users customize Xcode open command. This lets you override the default
+  command used to launch Xcode inside your liftoffrc. This means you can
+  default to opening Vim, AppCode, beta versions of Xcode, or even disable the
+  feature completely. - [Gordon Fontenot][liftoff#172] ([Thanks to
+  @asmod3us][liftoff#166])
+
+[liftoff#175]: https://github.com/thoughtbot/liftoff/issues/175
+[liftoff#174]: https://github.com/thoughtbot/liftoff/issues/174
+[liftoff#142]: https://github.com/thoughtbot/liftoff/issues/142
+[liftoff#170]: https://github.com/thoughtbot/liftoff/issues/170
+[liftoff#160]: https://github.com/thoughtbot/liftoff/issues/160
+[liftoff#177]: https://github.com/thoughtbot/liftoff/issues/177
+[liftoff#178]: https://github.com/thoughtbot/liftoff/issues/178
+[liftoff#172]: https://github.com/thoughtbot/liftoff/issues/172
+[liftoff#166]: https://github.com/thoughtbot/liftoff/issues/166
+
+### Changes ###
+
+* Update objc default project template - [Gordon Fontenot][liftoff#180]
+* Simplify the status output. Liftoff no longer prints every file/directory it
+  touches. Instead, it confirms that it's using the designated template. -
+  [Gordon Fontenot][liftoff#179]
+* Rename Info.plist template. This is to keep Liftoff's defaults in line with
+  Xcode's. This template is now simply named `Info.plist` - [Gordon
+  Fontenot][liftoff#175]
+* Bump deployment target to 8.0. Welcome to the future. - [Gordon
+  Fontenot][liftoff#176]
+
+[liftoff#180]: https://github.com/thoughtbot/liftoff/issues/180
+[liftoff#179]: https://github.com/thoughtbot/liftoff/issues/179
+[liftoff#175]: https://github.com/thoughtbot/liftoff/issues/175
+[liftoff#176]: https://github.com/thoughtbot/liftoff/issues/176
+
+### Bug Fixes ###
+
+- OS 10.10 support. - [Gordon Fontenot][liftoff#173]
+
+[liftoff#173]: https://github.com/thoughtbot/liftoff/issues/173
+
+## Liftoff 1.3 - 16 May 2014 ##
 
 ### New Features ###
 
