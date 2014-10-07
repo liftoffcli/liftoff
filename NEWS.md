@@ -1,6 +1,15 @@
 # Liftoff Changelog #
 
-## Liftoff 1.4 - 8 Oct 2014 ##
+## Liftoff 1.4.1 - 7 Oct 2014 ##
+
+### Bug Fixes ###
+
+* Now using an updated version of [Xcodeproj][] to fix some segfaults reported
+  by CocoaPods users.
+
+[Xcodeproj]: https://github.com/CocoaPods/Xcodeproj
+
+## Liftoff 1.4 - 6 Oct 2014 ##
 
 ### New Features ###
 
