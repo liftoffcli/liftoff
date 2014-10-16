@@ -83,7 +83,7 @@ module Liftoff
     private
 
     def normalized_company_name
-      company.gsub(/[^0-9a-z]/i, '').downcase
+      company.force_encoding('UTF-8').gsub(/[^0-9a-z]/i, '').downcase
     end
   end
 end

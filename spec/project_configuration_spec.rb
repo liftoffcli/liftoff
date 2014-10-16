@@ -18,6 +18,13 @@ describe Liftoff::ProjectConfiguration do
 
         expect(config.company_identifier).to eq 'com.mycoolcompany'
       end
+
+      it 'forces the encoding to utf-8' do
+        config = Liftoff::ProjectConfiguration.new({})
+        config.company = "My Cool\xC2\xB7Company!".force_encoding('US-ASCII')
+
+        expect(config.company_identifier).to eq 'com.mycoolcompany'
+      end
     end
   end
 
