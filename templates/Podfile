@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs'
+
 platform :ios, '<%= deployment_target %>'
 
 # Add Application pods here
