@@ -46,7 +46,12 @@ module Liftoff
         end
       end
     end
-
+    
+    def add_script_phase(name, value)
+      puts "Adding shell script build phase '#{name}'"
+      add_shell_script_build_phase(value, name)
+    end
+    
     def perform_extra_config(extra_config)
       if extra_config
         extra_config.each do |name, settings|

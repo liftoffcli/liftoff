@@ -15,6 +15,7 @@ module Liftoff
           generate_project
           install_cocoapods
           generate_templates
+          install_crashlytics
           perform_project_actions
           open_project
         end
@@ -47,6 +48,10 @@ module Liftoff
 
     def install_cocoapods
       CocoapodsSetup.new.install_cocoapods(@config.use_cocoapods)
+    end
+    
+    def install_crashlytics
+      CrashlyticsSetup.new.install_crashlytics(@config, @config.use_crashlytics)
     end
 
     def generate_templates
