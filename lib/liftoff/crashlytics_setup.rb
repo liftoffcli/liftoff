@@ -3,7 +3,7 @@ module Liftoff
     
     # constants
     CRASHLYTICS_BUNDLE_ID = 'com.crashlytics.mac'
-    CRASHLYTICS_ENDPOINT_URL = 'https://api.crashlytics.com/api/v2/session.json'
+    CRASHLYTICS_ENDPOINT_URL = 'https://fabric.io/api/v2/session.json'
     CRASHLYTICS_TOKEN_HEADER_KEY = 'X-CRASHLYTICS-DEVELOPER-TOKEN'
     
     # methods
@@ -90,7 +90,8 @@ module Liftoff
     def get_organizations_from_api(dev_token, email, password)
       response = HTTParty.post("#{CRASHLYTICS_ENDPOINT_URL}",
                                body: {'email' => email, 'password' => password }.to_json,
-                               headers: {  'Content-Type' => 'application/json', 'X-CRASHLYTICS-DEVELOPER-TOKEN' =>  dev_token})
+                               headers: {  'Content-Type' => 'application/json', 'X-CRASHLYTICS-DEVELOPER-TOKEN' =>  dev_token},
+                               limit: 10)
                                
       body = JSON.parse(response.body)
       organizations = body['organizations']
@@ -103,12 +104,12 @@ module Liftoff
     def update_template use_crashlytics, organization = nil
       file_list = file_list = Dir.glob("**/*AppDelegate.*")
       if use_crashlytics
-        if file_list.first == /$\.m|$\.h/
+        if file_list.first[/\.h|\.m/]
           file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "#include <Crashlytics/Crashlytics.h>")
           file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "[Crashlytics startWithAPIKey:@\"#{organization.values[0]}\"];")
-        elsif file_list.find == /$\.swift/
+        elsif file_list.first[/\.swift/]
           file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "@import 'Crashlytics'")
-          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "[Crashlytics startWithAPIKey:@\"#{organization.values[0]}\"];")
+          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "Crashlytics.startWithAPIKey(@\"#{organization.values[0]}\")")
         end
         
       else

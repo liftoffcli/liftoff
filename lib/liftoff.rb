@@ -27,5 +27,3 @@ require 'liftoff/template_generator'
 require 'liftoff/version'
 require 'liftoff/xcodeproj_helper'
 require 'liftoff/xcodeproj_monkeypatch'
-
-require 'pry'
