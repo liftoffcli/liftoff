@@ -8,6 +8,14 @@
 
 #import "<%= prefix %>AppDelegate.h"
 
+(((CRASHLYTICS_HEADER)))
+
 @implementation <%= prefix %>AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    (((CRASHLYTICS_APIKEY)))
+    
+    return YES;
+}
 
 @end

@@ -28,6 +28,20 @@ module Liftoff
       file_path = TemplateFinder.new.template_path(filename)
       File.read(file_path)
     end
+    
+
+    def replace_in_files(file_list, pattern, replacement)
+      file_list.each do |fn|
+        next unless File.file? fn  # Skip directories
+        file_contents = IO.binread(fn)
+
+        # Since we read the file as binary, Ruby will freak out if the replacement
+        # string isn't also binary/ASCII (which it won't be if the user input some
+        # Unicode). So, we force the replacement string to binary.
+        updated_contents = file_contents.gsub(pattern, replacement.force_encoding('BINARY'))
+        IO.binwrite(fn, updated_contents) unless file_contents == updated_contents
+      end
+    end
 
     private
 

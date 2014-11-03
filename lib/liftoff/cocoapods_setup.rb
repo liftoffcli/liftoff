@@ -20,7 +20,7 @@ module Liftoff
     def move_podfile
       FileManager.new.generate('Podfile', 'Podfile')
     end
-
+    
     def run_pod_install
       puts 'Running pod install'
       system('pod install')

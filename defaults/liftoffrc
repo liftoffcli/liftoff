@@ -13,6 +13,7 @@ enable_static_analyzer: true
 indentation_level: 4
 use_tabs: false
 use_cocoapods: true
+use_crashlytics: true
 strict_prompts: false
 
 run_script_phases:

@@ -15,6 +15,7 @@ module Liftoff
       :app_target_templates,
       :test_target_templates,
       :use_cocoapods,
+      :use_crashlytics,
       :run_script_phases,
       :strict_prompts,
       :xcode_command,

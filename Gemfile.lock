@@ -7,8 +7,13 @@ GEM
     colored (1.2)
     diff-lcs (1.2.5)
     highline (1.6.21)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
+    json (1.8.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -26,5 +31,6 @@ PLATFORMS
 
 DEPENDENCIES
   highline (~> 1.6)
+  httparty (~> 0.13.1)
   rspec
   xcodeproj (~> 0.19.3)
