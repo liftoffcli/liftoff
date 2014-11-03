@@ -34,6 +34,7 @@ module Liftoff
       
     rescue => e
       puts "Crashlytics setup failed! Message: #{e}"
+      update_template false
     end
 
     private
