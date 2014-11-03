@@ -66,8 +66,12 @@ module Liftoff
     def init_crashlytics
       app_path = `mdfind "kMDItemCFBundleIdentifier == '#{CRASHLYTICS_BUNDLE_ID}'" 2>/dev/null`.split($/).first
       raise_error("Crashlytics does <%= color('not', BOLD) %> seem to be installed!") if app_path.nil? || app_path.empty?
-        
-      app_path = File.join(app_path, 'Contents', 'MacOS', 'Crashlytics')
+      
+      if app_path.match(/Crashlytics.app/) 
+        app_path = File.join(app_path, 'Contents', 'MacOS', 'Crashlytics')
+      else
+        app_path = File.join(app_path, 'Contents', 'MacOS', 'Fabric')
+      end
       raise_error("The Crashlytics binary (#{app_path}) is <%= color('not', BOLD) %> readable.") unless File.file? app_path
   
       strings = `strings -n #{CRASHLYTICS_TOKEN_HEADER_KEY.length} '#{app_path}' | grep -C10 '#{CRASHLYTICS_TOKEN_HEADER_KEY}' 2>/dev/null`.split($/)
