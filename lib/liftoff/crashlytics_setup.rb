@@ -3,7 +3,6 @@ module Liftoff
     
     # constants
     CRASHLYTICS_BUNDLE_ID = 'com.crashlytics.mac'
-    CRASHLYTICS_BINARY_NAME = 'Crashlytics'
     CRASHLYTICS_ENDPOINT_URL = 'https://api.crashlytics.com/api/v2/session.json'
     CRASHLYTICS_TOKEN_HEADER_KEY = 'X-CRASHLYTICS-DEVELOPER-TOKEN'
     
@@ -18,9 +17,14 @@ module Liftoff
           run_pod_install
           
           puts "Crashlytics setup..."
+          
+          @crashlytics_key = init_crashlytics        
+          get_credentials
           organizations = get_organizations
           
-          integrate pick_organization(organizations)
+          organization = pick_organization(organizations)
+          integrate organization 
+          puts "Crashlytics integration success!"
         else
           puts 'Please install CocoaPods or disable pods from liftoff'
         end
@@ -35,14 +39,9 @@ module Liftoff
     private
     
     def integrate organization
-      if @config.project_template == 'swift'
-        
-      else
-        update_template true, organization
-      end
+      update_template true, organization
       
       xcode_helper.add_script_phase("Crashlytics", "./Pods/CrashlyticsFramework/Crashlytics.framework/run #{organization.values[0]}  #{@crashlytics_key}")
-      
     end
     
     def pick_organization organizations
@@ -62,20 +61,18 @@ module Liftoff
     def get_credentials
       @email = ask("Enter your crashlytics email: ")
       @password = ask("Enter your password: ") { |q| q.echo = false }
-      
-      @crashlytics_key = init_crashlytics
     end
     
     def init_crashlytics
       app_path = `mdfind "kMDItemCFBundleIdentifier == '#{CRASHLYTICS_BUNDLE_ID}'" 2>/dev/null`.split($/).first
       raise_error("Crashlytics does <%= color('not', BOLD) %> seem to be installed!") if app_path.nil? || app_path.empty?
         
-      app_path = File.join(app_path, 'Contents', 'MacOS', CRASHLYTICS_BINARY_NAME)
-      raise_error("The Crashlytics binary (#{app_path}) is <%= color('not', BOLD %> readable.") unless File.file? app_path
+      app_path = File.join(app_path, 'Contents', 'MacOS', 'Crashlytics')
+      raise_error("The Crashlytics binary (#{app_path}) is <%= color('not', BOLD) %> readable.") unless File.file? app_path
   
       strings = `strings -n #{CRASHLYTICS_TOKEN_HEADER_KEY.length} '#{app_path}' | grep -C10 '#{CRASHLYTICS_TOKEN_HEADER_KEY}' 2>/dev/null`.split($/)
       strings.select! { |s| s =~ /^[0-9a-f]{40}$/i }  # We're looking for a 40-character hex string
-
+      
       # If we didn't match anything, or we matched too many things, bail. Better safe than sorry.
       raise_error("Unable to find your developer token in the Crashlytics binary.") unless strings.length == 1
         
@@ -83,8 +80,6 @@ module Liftoff
     end
     
     def get_organizations
-      get_credentials
-
       get_organizations_from_api @crashlytics_key, @email, @password
     end
     
@@ -104,8 +99,14 @@ module Liftoff
     def update_template use_crashlytics, organization = nil
       file_list = file_list = Dir.glob("**/*AppDelegate.*")
       if use_crashlytics
-        file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "#include <Crashlytics/Crashlytics.h>")
-        file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "[Crashlytics startWithAPIKey:@\"#{organization.values[0]}\"];")
+        if file_list.first == /$\.m|$\.h/
+          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "#include <Crashlytics/Crashlytics.h>")
+          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "[Crashlytics startWithAPIKey:@\"#{organization.values[0]}\"];")
+        elsif file_list.find == /$\.swift/
+          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "@import 'Crashlytics'")
+          file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "[Crashlytics startWithAPIKey:@\"#{organization.values[0]}\"];")
+        end
+        
       else
         file_manager.replace_in_files(file_list, "(((CRASHLYTICS_HEADER)))", "")
         file_manager.replace_in_files(file_list, "(((CRASHLYTICS_APIKEY)))", "")
@@ -139,7 +140,7 @@ module Liftoff
     def raise_error text
       say(text)
       
-      raise text
+      raise
     end
     
   end
