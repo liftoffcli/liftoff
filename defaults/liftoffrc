@@ -7,6 +7,7 @@
 # company_identifier:
 ############################################################################
 
+test_target_name: UnitTests
 configure_git: true
 warnings_as_errors: true
 enable_static_analyzer: true
@@ -97,15 +98,15 @@ app_target_templates:
 
 test_target_templates:
   objc:
-    - UnitTests:
+    - <%= test_target_name %>:
       - Resources:
-        - UnitTests-Info.plist
-        - UnitTests-Prefix.pch
+        - <%= test_target_name %>-Info.plist
+        - <%= test_target_name %>-Prefix.pch
       - Helpers:
       - Tests:
   swift:
-    - UnitTests:
+    - <%= test_target_name %>:
       - Resources:
-        - UnitTests-Info.plist
+        - <%= test_target_name %>-Info.plist
       - Helpers:
       - Tests:

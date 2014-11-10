@@ -73,6 +73,10 @@ module Liftoff
         opts.on('-i', '--identifier [IDENTIFIER]', 'Set project company ID (com.example)') do |identifier|
           @options[:company_identifier] = identifier
         end
+
+        opts.on('--test-target-name [TEST_TARGET_NAME]', 'Set the name of the unit test target') do |test_target_name|
+          @options[:test_target_name] = test_target_name
+        end
       end
     end
   end
