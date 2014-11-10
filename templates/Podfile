@@ -5,7 +5,7 @@ platform :ios, '<%= deployment_target %>'
 # Add Application pods here
 
 target :unit_tests, :exclusive => true do
-  link_with 'UnitTests'
+  link_with '<%= test_target_name %>'
   pod 'Specta'
   pod 'Expecta'
   pod 'OCMock'

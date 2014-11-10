@@ -42,6 +42,17 @@ describe Liftoff::ProjectConfiguration do
     end
   end
 
+  describe '#test_target' do
+    context 'when the test target name is set directly' do
+      it 'returns the given test target name' do
+        config = Liftoff::ProjectConfiguration.new({})
+        config.test_target_name = 'FunkyTests'
+
+        expect(config.test_target_name).to eq 'FunkyTests'
+      end
+    end
+  end
+
   describe '#each_template' do
     it 'returns an array of templates and destinations' do
       templates = [

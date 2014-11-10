@@ -3,6 +3,7 @@ module Liftoff
     def initialize(configuration)
       @name = configuration.project_name
       @deployment_target = configuration.deployment_target
+      @test_target_name = configuration.test_target_name
       set_company_name(configuration.company)
       set_prefix(configuration.prefix)
       configure_base_project_settings
@@ -13,7 +14,7 @@ module Liftoff
     end
 
     def unit_test_target
-      @unit_test_target ||= new_test_target('UnitTests')
+      @unit_test_target ||= new_test_target(@test_target_name)
     end
 
     def save
