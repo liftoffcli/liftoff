@@ -1,7 +1,11 @@
 module Liftoff
   class CocoapodsSetup
-    def install_cocoapods(use_cocoapods)
-      if use_cocoapods
+    def initialize(config)
+      @config = config
+    end
+
+    def install_cocoapods()
+      if @config.use_cocoapods
         if pod_installed?
           move_podfile
           run_pod_install

@@ -1,12 +1,12 @@
 module Liftoff
   class ProjectBuilder
 
-    def initialize(project_configuration)
-      @project_configuration = project_configuration
+    def initialize(config)
+      @config = config
     end
 
     def create_project
-      puts "Generating the '#{@project_configuration.project_template}' project template"
+      puts "Generating the '#{@config.project_template}' project template"
       groups_and_targets.each do |groups, target|
         groups.each do |group|
           create_tree(group, target)
@@ -55,7 +55,7 @@ module Liftoff
     def move_template(path, raw_template_name)
       rendered_template_name = string_renderer.render(raw_template_name)
       destination_template_path = File.join(*path, rendered_template_name)
-      FileManager.new.generate(raw_template_name, destination_template_path, @project_configuration)
+      FileManager.new.generate(raw_template_name, destination_template_path, @config)
     end
 
     def link_file(raw_template_name, parent_group, path, target)
@@ -97,18 +97,18 @@ module Liftoff
 
     def groups_and_targets
       group_map = {
-        @project_configuration.app_target_groups => xcode_project.app_target,
+        @config.app_target_groups => xcode_project.app_target,
       }
 
-      if @project_configuration.test_target_groups
-        group_map[@project_configuration.test_target_groups] = xcode_project.unit_test_target
+      if @config.test_target_groups
+        group_map[@config.test_target_groups] = xcode_project.unit_test_target
       end
 
       group_map
     end
 
     def xcode_project
-      @xcode_project ||= Project.new(@project_configuration)
+      @xcode_project ||= Project.new(@config)
     end
 
     def file_manager
@@ -116,7 +116,7 @@ module Liftoff
     end
 
     def string_renderer
-      @renderer ||= StringRenderer.new(@project_configuration)
+      @renderer ||= StringRenderer.new(@config)
     end
   end
 end

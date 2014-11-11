@@ -46,11 +46,11 @@ module Liftoff
     end
 
     def install_cocoapods
-      CocoapodsSetup.new.install_cocoapods(@config.use_cocoapods)
+      cocoapods_setup.install_cocoapods
     end
 
     def generate_templates
-      TemplateGenerator.new.generate_templates(@config, file_manager)
+      TemplateGenerator.new(@config).generate_templates(file_manager)
     end
 
     def generate_project
@@ -58,7 +58,7 @@ module Liftoff
     end
 
     def generate_git
-      GitSetup.new(@config.configure_git).setup
+      GitSetup.new(@config).setup
     end
 
     def set_indentation_level
@@ -105,6 +105,10 @@ module Liftoff
 
     def file_manager
       @file_manager ||= FileManager.new
+    end
+
+    def cocoapods_setup
+      @cocoapods_setup ||= CocoapodsSetup.new(@config)
     end
   end
 end
