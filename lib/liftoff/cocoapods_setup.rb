@@ -4,13 +4,20 @@ module Liftoff
       @config = config
     end
 
-    def install_cocoapods()
+    def setup_cocoapods()
       if @config.use_cocoapods
         if pod_installed?
           move_podfile
-          run_pod_install
         else
           puts 'Please install CocoaPods or disable pods from liftoff'
+        end
+      end
+    end
+
+    def install_cocoapods()
+      if @config.use_cocoapods
+        if pod_installed?
+          run_pod_install
         end
       end
     end

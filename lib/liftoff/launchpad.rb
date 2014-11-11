@@ -13,8 +13,9 @@ module Liftoff
 
         file_manager.create_project_dir(@config.project_name) do
           generate_project
-          install_cocoapods
+          setup_cocoapods
           generate_templates
+          install_cocoapods
           perform_project_actions
           open_project
         end
@@ -43,6 +44,10 @@ module Liftoff
       perform_extra_config
       save_project
       generate_git
+    end
+
+    def setup_cocoapods
+      cocoapods_setup.setup_cocoapods
     end
 
     def install_cocoapods
