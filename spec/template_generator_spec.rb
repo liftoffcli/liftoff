@@ -6,8 +6,8 @@ describe Liftoff::TemplateGenerator do
       it 'does nothing' do
         manager = stubbed_file_manager
 
-        generator = Liftoff::TemplateGenerator.new
-        generator.generate_templates(configuration_with_templates(nil), manager)
+        generator = Liftoff::TemplateGenerator.new(configuration_with_templates(nil))
+        generator.generate_templates(manager)
 
         expect(manager).to_not have_received(:generate)
       end
@@ -22,8 +22,8 @@ describe Liftoff::TemplateGenerator do
         ]
         configuration = configuration_with_templates(templates)
 
-        generator = Liftoff::TemplateGenerator.new
-        generator.generate_templates(configuration, manager)
+        generator = Liftoff::TemplateGenerator.new(configuration)
+        generator.generate_templates(manager)
 
         expect(manager).to have_received(:generate).twice
         expect(manager).to have_received(:generate).with('foo', 'bar', configuration)
