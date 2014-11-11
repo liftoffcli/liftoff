@@ -22,7 +22,7 @@ module Liftoff
     end
 
     def move_podfile
-      FileManager.new.generate('Podfile', 'Podfile')
+      FileManager.new.generate('Podfile', 'Podfile', @config)
     end
 
     def run_pod_install
