@@ -18,7 +18,7 @@ module Liftoff
     private
 
     def pod_installed?
-      system('which pod')
+      system('which pod > /dev/null')
     end
 
     def move_podfile
