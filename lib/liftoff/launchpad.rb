@@ -15,6 +15,7 @@ module Liftoff
           generate_project
           setup_cocoapods
           generate_templates
+          generate_settings
           install_cocoapods
           perform_project_actions
           open_project
@@ -60,6 +61,10 @@ module Liftoff
 
     def generate_project
       ProjectBuilder.new(@config).create_project
+    end
+
+    def generate_settings
+      SettingsGenerator.new(@config).generate
     end
 
     def generate_git

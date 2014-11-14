@@ -1,11 +1,11 @@
 module Liftoff
   class StringRenderer
-    def initialize(configuration)
-      @configuration = configuration
+    def initialize(config)
+      @config = config
     end
 
     def render(string)
-      ERB.new(string).result(@configuration.get_binding)
+      ERB.new(string).result(@config.get_binding)
     end
   end
 end
