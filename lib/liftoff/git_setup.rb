@@ -18,8 +18,8 @@ module Liftoff
     private
 
     def generate_files
-      file_manager.generate('gitignore', '.gitignore')
-      file_manager.generate('gitattributes', '.gitattributes')
+      file_manager.generate('gitignore', '.gitignore', @config)
+      file_manager.generate('gitattributes', '.gitattributes', @config)
     end
 
     def initialize_repo
