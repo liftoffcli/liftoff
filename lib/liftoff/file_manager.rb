@@ -8,13 +8,13 @@ module Liftoff
       exit 1
     end
 
-    def generate(template, destination = template, project_config = ProjectConfiguration.new({}))
+    def generate(template, destination = template, config = ProjectConfiguration.new({}))
       create_destination_path(destination)
       template_path = TemplateFinder.new.template_path(template)
       if template_is_directory?(template_path)
-        copy_template_directory(template_path, destination)
+        copy_template_directory(template_path, destination, config)
       else
-        create_template_file(destination, template_path, project_config)
+        create_template_file(destination, template_path, config)
       end
     end
 
@@ -31,17 +31,23 @@ module Liftoff
 
     private
 
-    def create_template_file(destination, template_path, project_config)
+    def create_template_file(destination, template_path, config)
       existing_content = existing_file_contents(destination)
-      move_template(template_path, destination, project_config)
+      move_template(template_path, destination, config)
       append_original_file_contents(destination, existing_content)
       if File.executable?(template_path)
         File.chmod(0755, destination)
       end
     end
 
-    def copy_template_directory(template, path)
-      FileUtils.cp_r(template, File.join(*path))
+    def copy_template_directory(template, path, config)
+      destination = File.join(*path)
+      FileUtils.cp_r(template, destination)
+      Find.find(destination) do |file|
+        unless (File.directory?(file))
+          move_template(file, file, config)
+        end
+      end
     end
 
     def existing_file_contents(filename)
@@ -56,12 +62,16 @@ module Liftoff
       FileUtils.mkdir_p(File.dirname(destination))
     end
 
-    def move_template(template, destination, project_config)
-      rendered_template = StringRenderer.new(project_config).render(File.read(template))
+    def move_template(template, destination, config)
+      rendered_template = render_template(template, config)
 
       File.open(destination, 'w') do |file|
         file.write(rendered_template)
       end
+    end
+
+    def render_template(template, config)
+      StringRenderer.new(config).render(File.read(template))
     end
 
     def append_original_file_contents(filename, original_contents)

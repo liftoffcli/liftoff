@@ -46,6 +46,10 @@ module Liftoff
           @options[:xcode_command] = false
         end
 
+        opts.on('--[no-]settings', 'Enable/Disable Settings.bundle') do |enable_settings|
+          @options[:enable_settings] = enable_settings
+        end
+
         opts.on('--template [TEMPLATE NAME]', 'Use the specified project template') do |template_name|
           @options[:project_template] = template_name
         end

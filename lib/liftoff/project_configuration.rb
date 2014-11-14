@@ -7,6 +7,7 @@ module Liftoff
       :prefix,
       :test_target_name,
       :configure_git,
+      :enable_settings,
       :warnings_as_errors,
       :enable_static_analyzer,
       :indentation_level,
