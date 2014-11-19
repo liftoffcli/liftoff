@@ -9,6 +9,7 @@ module Liftoff
       fetch_option_for(:company, 'Company name')
       fetch_option_for(:company_identifier, 'Company identifier')
       fetch_option_for(:prefix, 'Prefix')
+      fetch_option_for(:test_target_name, 'Test target name')
     end
 
     private
