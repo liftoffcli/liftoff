@@ -67,16 +67,16 @@ app_target_templates:
         - <%= prefix %>AppDelegate.h
         - <%= prefix %>AppDelegate.m
       - Views:
-    - Resources:
-      - Images.xcassets
-      - Storyboards:
-        - Main.storyboard
-      - Nibs:
-        - LaunchScreen.xib
-      - Other-Sources:
-        - Info.plist
-        - <%= project_name %>-Prefix.pch
-        - main.m
+      - Resources:
+        - Images.xcassets
+        - Storyboards:
+          - Main.storyboard
+        - Nibs:
+          - LaunchScreen.xib
+        - Other-Sources:
+          - Info.plist
+          - <%= project_name %>-Prefix.pch
+          - main.m
   swift:
     - <%= project_name %>:
       - Extensions:
