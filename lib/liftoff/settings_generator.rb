@@ -11,11 +11,27 @@ module Liftoff
     end
 
     def move_settings_bundle
-      FileManager.new.generate('Settings.bundle', 'Resources/Settings.bundle', @config)
-      parent_group = xcode_project['Resources'] || xcode_project.main_group
+      parent_group = xcode_project[@config.project_name]['Resources']
       if (parent_group)
-        file = parent_group.new_file('Settings.bundle')
-        target.add_resources([file])
+        settings_bundle_path = "#{@config.project_name}/Resources/Settings.bundle"
+      else
+        parent_group = xcode_project[@config.project_name]
+
+        if (parent_group)
+          settings_bundle_path = "#{@config.project_name}/Settings.bundle"
+        else
+          parent_group = xcode_project.main_group
+
+          if (parent_group)
+            settings_bundle_path = 'Settings.bundle'
+          end
+        end
+      end
+
+      if (parent_group)
+        FileManager.new.generate('Settings.bundle', settings_bundle_path, @config)
+        file_reference = parent_group.new_file('Settings.bundle')
+        target.add_resources([file_reference])
         xcode_project.save
       end
     end
