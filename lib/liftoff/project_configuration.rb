@@ -20,7 +20,8 @@ module Liftoff
       :run_script_phases,
       :strict_prompts,
       :xcode_command,
-      :extra_config
+      :extra_config,
+      :deployment_target
 
     attr_writer :author,
       :company_identifier,
@@ -56,7 +57,7 @@ module Liftoff
     end
 
     def deployment_target
-      LATEST_IOS
+      @deployment_target || LATEST_IOS
     end
 
     def each_template(&block)
