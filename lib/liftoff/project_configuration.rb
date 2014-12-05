@@ -1,7 +1,5 @@
 module Liftoff
   class ProjectConfiguration
-    LATEST_IOS = 8.0
-
     attr_accessor :project_name,
       :company,
       :prefix,
@@ -54,10 +52,6 @@ module Liftoff
       else
         '0'
       end
-    end
-
-    def deployment_target
-      @deployment_target || LATEST_IOS
     end
 
     def each_template(&block)

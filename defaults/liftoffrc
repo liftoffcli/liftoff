@@ -16,6 +16,7 @@ use_tabs: false
 use_cocoapods: true
 enable_settings: true
 strict_prompts: false
+deployment_target: 8.0
 
 run_script_phases:
   - todo.sh: Warn for TODO and FIXME comments
