@@ -32,6 +32,8 @@ perform the following configurations:
 * Turn on Static Analysis for the project.
 * Add a build phase shell script that [turns "TODO:" and "FIXME:" into
   warnings][deallocated-todo].
+* Add a build phase shell script that sets the version and build number
+  using respectively the latest Git tag and the number of commits.
 * Add default [.gitignore] and [.gitattributes] files.
 * Initialize a new `git` repo and create an initial commit (if needed).
 
