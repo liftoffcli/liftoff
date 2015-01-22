@@ -1,5 +1,7 @@
 module Liftoff
   class XcodeprojHelper
+    LAST_INDEX = -1
+
     def treat_warnings_as_errors(enable_errors)
       if enable_errors
         puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
@@ -40,9 +42,13 @@ module Liftoff
     def add_script_phases(scripts)
       if scripts
         scripts.each do |script|
-          key, value = script.first
-          puts "Adding shell script build phase '#{value}'"
-          add_shell_script_build_phase(file_manager.template_contents(key), value)
+
+          file = script['file']
+          name = script['name']
+          index = script.fetch('index', LAST_INDEX)
+
+          puts "Adding shell script build phase '#{name}'"
+          add_shell_script_build_phase(file_manager.template_contents(file), name, index)
         end
       end
     end
@@ -79,10 +85,14 @@ module Liftoff
       xcode_project.targets.to_a.reject { |t| t.name.end_with?('Tests') }
     end
 
-    def add_shell_script_build_phase(script, name)
+    def add_shell_script_build_phase(script, name, index)
       if build_phase_does_not_exist_with_name?(name)
         build_phase = target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
+
+        target.build_phases.delete(build_phase)
+        target.build_phases.insert(index, build_phase)
+
         xcode_project.save
       end
     end
