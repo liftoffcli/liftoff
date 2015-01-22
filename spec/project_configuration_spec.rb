@@ -109,6 +109,27 @@ describe Liftoff::ProjectConfiguration do
     end
   end
 
+  describe '#path' do
+    context 'when the configuration does not have a path set' do
+      it 'defaults to the project name' do
+        config = Liftoff::ProjectConfiguration.new({})
+        config.project_name = 'My Cool Project'
+
+        expect(config.path).to eq 'My Cool Project'
+      end
+    end
+
+    context 'when the configuration has a custom path set' do
+      it 'uses the provided path' do
+        config = Liftoff::ProjectConfiguration.new({})
+        config.project_name = 'My Cool Project'
+        config.path = 'Another Path'
+
+        expect(config.path).to eq 'Another Path'
+      end
+    end
+  end
+
   def build_config(name)
     app_templates = build_templates('app')
     test_templates = build_templates('test')

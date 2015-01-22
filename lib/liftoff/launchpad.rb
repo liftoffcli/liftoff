@@ -11,7 +11,7 @@ module Liftoff
         validate_template
         fetch_options
 
-        file_manager.create_project_dir(@config.project_name) do
+        file_manager.create_project_dir(@config.path) do
           generate_project
           setup_cocoapods
           generate_templates

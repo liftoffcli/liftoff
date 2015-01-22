@@ -23,7 +23,8 @@ module Liftoff
 
     attr_writer :author,
       :company_identifier,
-      :use_tabs
+      :use_tabs,
+      :path
 
     def initialize(liftoffrc)
       deprecations = DeprecationManager.new
@@ -72,6 +73,10 @@ module Liftoff
 
     def test_target_groups
       @test_target_templates[@project_template]
+    end
+
+    def path
+      @path || project_name
     end
 
     private
