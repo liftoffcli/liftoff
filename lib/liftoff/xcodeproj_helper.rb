@@ -99,7 +99,7 @@ module Liftoff
         target.build_phases.delete(build_phase)
 
         # Sanitize values so that no exception come about
-        if index >= target.build_phases.length or index < -1
+        if index >= target.build_phases.length || index < -1
           index = -1
         end
 
