@@ -7,7 +7,7 @@ module Liftoff
 
     def run
       parse_command_line_options
-      LaunchPad.new.liftoff @options
+      LaunchPad.new.liftoff @options, @argv.first
     end
 
     private
@@ -18,7 +18,7 @@ module Liftoff
 
     def global_options
       OptionParser.new do |opts|
-        opts.banner = 'usage: liftoff [-v | --version] [-h | --help] [config options]'
+        opts.banner = 'usage: liftoff [-v | --version] [-h | --help] [config options] [path]'
 
         opts.on('-v', '--version', 'Display the version and exit') do
           puts "Version: #{Liftoff::VERSION}"

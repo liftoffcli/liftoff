@@ -2,7 +2,7 @@ module Liftoff
   class LaunchPad
     EX_NOINPUT = 66
 
-    def liftoff(options)
+    def liftoff(options, path)
       liftoffrc = ConfigurationParser.new(options).project_configuration
       @config = ProjectConfiguration.new(liftoffrc)
       if project_exists?
@@ -11,7 +11,7 @@ module Liftoff
         validate_template
         fetch_options
 
-        file_manager.create_project_dir(@config.project_name) do
+        file_manager.create_project_dir(path ? path : @config.project_name) do
           generate_project
           setup_cocoapods
           generate_templates
