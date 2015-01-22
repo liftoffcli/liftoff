@@ -40,9 +40,19 @@ module Liftoff
     def add_script_phases(scripts)
       if scripts
         scripts.each do |script|
-          key, value = script.first
-          puts "Adding shell script build phase '#{value}'"
-          add_shell_script_build_phase(file_manager.template_contents(key), value)
+
+          # -1 means last as index
+          if script.length > 1
+            file = script["file"]
+            name = script["name"]
+            index = script.fetch("index", -1)
+          else
+            file, name = script.first
+            index = -1
+          end
+
+          puts "Adding shell script build phase '#{name}'"
+          add_shell_script_build_phase(file_manager.template_contents(file), name, index)
         end
       end
     end
@@ -79,10 +89,22 @@ module Liftoff
       xcode_project.targets.to_a.reject { |t| t.name.end_with?('Tests') }
     end
 
-    def add_shell_script_build_phase(script, name)
+    def add_shell_script_build_phase(script, name, index)
       if build_phase_does_not_exist_with_name?(name)
         build_phase = target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
+
+        # This is not the prettiest way of achieving this but I found no other way
+        # There's probably another way that people that actually know Ruby could think of
+        target.build_phases.delete(build_phase)
+
+        # Sanitize values so that no exception come about
+        if index >= target.build_phases.length || index < -1
+          index = -1
+        end
+
+        target.build_phases.insert(index, build_phase)
+
         xcode_project.save
       end
     end

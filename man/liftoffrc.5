@@ -309,6 +309,16 @@ This script turns any
 or
 .Ic FIXME
 comments into warnings at compilation time.
+.Pp
+You can also customize when your build phase is executed by using the following
+syntax:
+.Bd -literal
+  - file: todo.sh
+    name: Warn for TODO and FIXME comments
+    index: 1
+.Ed
+.Pp
+This will insert the same script phase at the index 1 in the build phase list.
 .
 .Sh WARNINGS
 .Ic liftoff
