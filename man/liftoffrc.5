@@ -299,7 +299,7 @@ for more information on the format of this key.
 .
 .Sh SCRIPT PHASES
 .Ic liftoff
-installs a single Run Script Build Phase by default:
+installs two Run Script Build Phases by default:
 .Bd -literal
   - todo.sh: Warn for TODO and FIXME comments
 .Ed
@@ -309,6 +309,17 @@ This script turns any
 or
 .Ic FIXME
 comments into warnings at compilation time.
+.Bd -literal
+  - bundle_version.sh: Set version number
+.Ed
+.Pp
+This script sets the build number based on the number of
+.Ic git
+commits on
+.Ic master ,
+and sets the marketing version based on the most recent
+.Ic git
+tag.
 .
 .Sh WARNINGS
 .Ic liftoff
