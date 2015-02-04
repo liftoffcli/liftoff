@@ -26,8 +26,7 @@ module Liftoff
       :use_tabs,
       :path
 
-    def initialize(liftoffrc, path = nil)
-      @path = path
+    def initialize(liftoffrc)
       deprecations = DeprecationManager.new
       liftoffrc.each_pair do |attribute, value|
         if respond_to?("#{attribute}=")

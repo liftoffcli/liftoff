@@ -7,13 +7,14 @@ module Liftoff
 
     def run
       parse_command_line_options
-      LaunchPad.new.liftoff @options, @argv.first
+      LaunchPad.new.liftoff @options
     end
 
     private
 
     def parse_command_line_options
       global_options.parse!(@argv)
+      @options[:path] = @argv.first
     end
 
     def global_options

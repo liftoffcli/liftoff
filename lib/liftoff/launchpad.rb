@@ -2,9 +2,9 @@ module Liftoff
   class LaunchPad
     EX_NOINPUT = 66
 
-    def liftoff(options, path)
+    def liftoff(options)
       liftoffrc = ConfigurationParser.new(options).project_configuration
-      @config = ProjectConfiguration.new(liftoffrc, path)
+      @config = ProjectConfiguration.new(liftoffrc)
       if project_exists?
         perform_project_actions
       else
