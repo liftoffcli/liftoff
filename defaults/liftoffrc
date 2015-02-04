@@ -19,7 +19,8 @@ strict_prompts: false
 deployment_target: 8.0
 
 run_script_phases:
-  - todo.sh: Warn for TODO and FIXME comments
+  - file: todo.sh
+    name: Warn for TODO and FIXME comments
 
 templates:
   - travis.yml: .travis.yml

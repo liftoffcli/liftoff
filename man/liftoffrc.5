@@ -301,7 +301,8 @@ for more information on the format of this key.
 .Ic liftoff
 installs a single Run Script Build Phase by default:
 .Bd -literal
-  - todo.sh: Warn for TODO and FIXME comments
+  - file: todo.sh
+    name: Warn for TODO and FIXME comments
 .Ed
 .Pp
 This script turns any
@@ -319,6 +320,7 @@ syntax:
 .Ed
 .Pp
 This will insert the same script phase at the index 1 in the build phase list.
+Indexes are zero-based and optional. If you skip it, it will default to the end of the list.
 .
 .Sh WARNINGS
 .Ic liftoff

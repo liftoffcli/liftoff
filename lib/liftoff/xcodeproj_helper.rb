@@ -1,5 +1,7 @@
 module Liftoff
   class XcodeprojHelper
+
+    LAST_INDEX = -1
     def treat_warnings_as_errors(enable_errors)
       if enable_errors
         puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
@@ -41,15 +43,9 @@ module Liftoff
       if scripts
         scripts.each do |script|
 
-          # -1 means last as index
-          if script.length > 1
-            file = script["file"]
-            name = script["name"]
-            index = script.fetch("index", -1)
-          else
-            file, name = script.first
-            index = -1
-          end
+          file = script['file']
+          name = script['name']
+          index = script.fetch('index', LAST_INDEX)
 
           puts "Adding shell script build phase '#{name}'"
           add_shell_script_build_phase(file_manager.template_contents(file), name, index)
@@ -94,15 +90,7 @@ module Liftoff
         build_phase = target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
 
-        # This is not the prettiest way of achieving this but I found no other way
-        # There's probably another way that people that actually know Ruby could think of
         target.build_phases.delete(build_phase)
-
-        # Sanitize values so that no exception come about
-        if index >= target.build_phases.length || index < -1
-          index = -1
-        end
-
         target.build_phases.insert(index, build_phase)
 
         xcode_project.save
