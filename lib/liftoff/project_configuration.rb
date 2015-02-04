@@ -23,9 +23,11 @@ module Liftoff
 
     attr_writer :author,
       :company_identifier,
-      :use_tabs
+      :use_tabs,
+      :path
 
-    def initialize(liftoffrc)
+    def initialize(liftoffrc, path = nil)
+      @path = path
       deprecations = DeprecationManager.new
       liftoffrc.each_pair do |attribute, value|
         if respond_to?("#{attribute}=")
@@ -74,6 +76,9 @@ module Liftoff
       @test_target_templates[@project_template]
     end
 
+    def path
+      @path || project_name
+    end
     private
 
     def normalized_company_name

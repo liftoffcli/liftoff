@@ -4,14 +4,14 @@ module Liftoff
 
     def liftoff(options, path)
       liftoffrc = ConfigurationParser.new(options).project_configuration
-      @config = ProjectConfiguration.new(liftoffrc)
+      @config = ProjectConfiguration.new(liftoffrc, path)
       if project_exists?
         perform_project_actions
       else
         validate_template
         fetch_options
 
-        file_manager.create_project_dir(path ? path : @config.project_name) do
+        file_manager.create_project_dir(@config.path) do
           generate_project
           setup_cocoapods
           generate_templates
