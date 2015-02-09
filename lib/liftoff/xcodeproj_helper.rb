@@ -1,7 +1,7 @@
 module Liftoff
   class XcodeprojHelper
-
     LAST_INDEX = -1
+
     def treat_warnings_as_errors(enable_errors)
       if enable_errors
         puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
