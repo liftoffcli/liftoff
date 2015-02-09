@@ -111,7 +111,7 @@ describe Liftoff::ProjectConfiguration do
 
   describe '#path' do
     context 'when the path is not given in the constructor' do
-      it 'return the project name' do
+      it 'returns the project name' do
         config = Liftoff::ProjectConfiguration.new({
           :project_name => 'My Cool Project'
         })
@@ -121,9 +121,11 @@ describe Liftoff::ProjectConfiguration do
 
     end
 
-    context 'when the path is given by constructor' do
-      it 'return the given path' do
-        config = Liftoff::ProjectConfiguration.new({}, 'Another Path')
+    context 'when the path is given in the constructor' do
+      it 'returns the given path' do
+        config = Liftoff::ProjectConfiguration.new({
+            :path => 'Another Path'
+        })
 
         expect(config.path).to eq 'Another Path'
       end
