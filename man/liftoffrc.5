@@ -311,7 +311,8 @@ or
 .Ic FIXME
 comments into warnings at compilation time.
 .Bd -literal
-  - bundle_version.sh: Set version number
+  - file: bundle_version.sh
+    name: Set the version number
 .Ed
 .Pp
 This script sets the build number based on the number of
@@ -321,6 +322,16 @@ commits on
 and sets the marketing version based on the most recent
 .Ic git
 tag.
+.Pp
+You can also add an optional
+.Ic index
+key to the build phase. The value of this key (an
+.Ic integer )
+will be used to determine where to insert the build phase when adding it to the
+target. This list is zero-indexed. You can use
+.Ic -1
+to indicate that the script should be added to the end, which is the default
+behavior.
 .
 .Sh WARNINGS
 .Ic liftoff
