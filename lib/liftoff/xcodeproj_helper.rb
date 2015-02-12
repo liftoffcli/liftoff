@@ -5,7 +5,7 @@ module Liftoff
     def treat_warnings_as_errors(enable_errors)
       if enable_errors
         puts 'Setting GCC_TREAT_WARNINGS_AS_ERRORS for Release builds'
-        target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
+        application_target.build_settings('Release')['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'YES'
       end
     end
 
@@ -54,13 +54,13 @@ module Liftoff
     end
 
     def perform_extra_config(app_config, test_config)
-      {app_config => target, test_config => test_target}.each do |config, t|
+      {app_config => application_target, test_config => test_target}.each do |config, target|
         if config
           config.each do |name, settings|
             if name.downcase == "all"
-              object = t
+              object = target
             else
-              object = t.build_settings(name)
+              object = target.build_settings(name)
             end
 
             if object
@@ -77,7 +77,7 @@ module Liftoff
 
     private
 
-    def target
+    def application_target
       @target ||= ObjectPicker.choose_item('target', application_targets)
     end
 
@@ -99,18 +99,18 @@ module Liftoff
 
     def add_shell_script_build_phase(script, name, index)
       if build_phase_does_not_exist_with_name?(name)
-        build_phase = target.new_shell_script_build_phase(name)
+        build_phase = application_target.new_shell_script_build_phase(name)
         build_phase.shell_script = script
 
-        target.build_phases.delete(build_phase)
-        target.build_phases.insert(index, build_phase)
+        application_target.build_phases.delete(build_phase)
+        application_target.build_phases.insert(index, build_phase)
 
         xcode_project.save
       end
     end
 
     def build_phase_does_not_exist_with_name?(name)
-      target.build_phases.to_a.none? { |phase| phase.display_name == name }
+      application_target.build_phases.to_a.none? { |phase| phase.display_name == name }
     end
 
     def file_manager
