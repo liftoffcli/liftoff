@@ -19,6 +19,7 @@ module Liftoff
       :strict_prompts,
       :xcode_command,
       :extra_config,
+      :extra_test_config,
       :deployment_target
 
     attr_writer :author,

@@ -53,18 +53,20 @@ module Liftoff
       end
     end
 
-    def perform_extra_config(extra_config)
-      if extra_config
-        extra_config.each do |name, settings|
-          if name.downcase == "all"
-            object = target
-          else
-            object = target.build_settings(name)
-          end
+    def perform_extra_config(app_config, test_config)
+      [app_config, test_config].each do |config|
+        if config
+          config.each do |name, settings|
+            if name.downcase == "all"
+              object = target
+            else
+              object = target.build_settings(name)
+            end
 
-          if object
-            settings.each do |key, value|
-              object[key] = value
+            if object
+              settings.each do |key, value|
+                object[key] = value
+              end
             end
           end
         end
@@ -81,8 +83,16 @@ module Liftoff
       @target ||= ObjectPicker.choose_item('target', available_targets)
     end
 
+    def test_target
+      @test_target ||= ObjectPicker.choose_item('test target', available_test_targets)
+    end
+
     def available_targets
       xcode_project.targets.to_a.reject { |t| t.name.end_with?('Tests') }
+    end
+
+    def available_targets
+      xcode_project.targets.to_a.select { |t| t.name.end_with?('Tests') }
     end
 
     def add_shell_script_build_phase(script, name, index)
