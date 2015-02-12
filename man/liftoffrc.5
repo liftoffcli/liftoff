@@ -287,12 +287,21 @@ Set this key to
 .Ic false
 to disable the automatic-open functionality
 .It Ic extra_config
-type: array of dictionaries
+type: dictionary
 .br
 default: none
 .Pp
 Add additional per-configuration settings to the main application target. By
 default this key isn't set. See
+.Sx EXTRA CONFIGURATION
+for more information on the format of this key.
+.It Ic extra_test_config
+type: dictionary
+.br
+default: none
+.Pp
+Add additional per-configuration settings to the test target. By default this
+key isn't set. See
 .Sx EXTRA CONFIGURATION
 for more information on the format of this key.
 .El
@@ -559,13 +568,15 @@ in your
 .Sh EXTRA CONFIGURATION
 .Ic liftoff
 can perform additional arbitrary configuration to the main application target
-on a per-build configuration basis. In order to add arbitrary settings, you
-should add keys to the
+or the test target on a per-build configuration basis. In order to add
+arbitrary settings, you should add the
 .Ic extra_config
+or the
+.Ic extra_test_config
 key in your
-.Nm
-that correspond to the build configuration you'd like to modify. For example,
-to set all warnings on your
+.Nm ,
+and add dictionaries that correspond to the build configuration you'd like to
+modify. For example, to set all warnings on your
 .Ic Debug
 build configuration, you can set the following:
 .Pp
@@ -579,7 +590,7 @@ extra_config:
 Note that the key for the build configuration must match the name of the build
 configuration you'd like to modify exactly.
 .Pp
-If you would like to set a project-wide setting for the application target, you
+If you would like to add a setting for all available build configurations, you
 can use the special
 .Ic all
 key in the configuration:

@@ -88,7 +88,7 @@ module Liftoff
     end
 
     def perform_extra_config
-      xcode_helper.perform_extra_config(@config.extra_config)
+      xcode_helper.perform_extra_config(@config.extra_config, @config.extra_test_config)
     end
 
     def enable_static_analyzer

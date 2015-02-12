@@ -7,6 +7,12 @@ module Xcodeproj
             configuration.build_settings[key] = value
           end
         end
+
+        def merge!(hash)
+          hash.each do |key, value|
+            self[key] = value
+          end
+        end
       end
     end
   end
