@@ -85,16 +85,16 @@ module Liftoff
       @test_target ||= ObjectPicker.choose_item('test target', test_targets)
     end
 
-    def all_targets
-      xcode_project.targets.to_a
-    end
-
     def application_targets
       all_targets.reject { |t| t.name.end_with?('Tests') }
     end
 
     def test_targets
       all_targets.select { |t| t.name.end_with?('Tests') }
+    end
+
+    def all_targets
+      xcode_project.targets.to_a
     end
 
     def add_shell_script_build_phase(script, name, index)
