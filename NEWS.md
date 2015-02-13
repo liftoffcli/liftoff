@@ -1,5 +1,85 @@
 # Liftoff Changelog #
 
+## Liftoff 1.5.0 - 13 Feb 2015 ##
+
+### New Features ###
+
+* Let users add arbitrary configuration to test targets. You can now add a
+  `extra_test_config` key to your `liftoffrc` and have Liftoff perform custom
+  configuration for the test target. - [Gordon Fontenot][liftoff#213] (Thanks
+  to [Olivier Halligon][liftoff#193])
+* Allow custom ordering of script phases. This adds an optional index to
+  script phases that Liftoff will use to determine where it should insert the
+  phase. This index defaults to -1. Note that this changes the format of the
+  run script build phases key and so is a breaking change from 1.4. - [Juan
+  Pablo Civile][liftoff#210] (Thanks to [Lode Vanhove][liftoff#204])
+* Add the ability to provide a custom path from the command line. Liftoff will
+  now use this path as the root project folder if provided, defaulting to the
+  project name if it isn't provided. - [Juan Pablo Civile][liftoff#209]
+  (Thanks to [Tony DiPasquale][liftoff#77])
+* Add new run script build phase to automatically update version and bundle
+  number using Git - [Reda Lemeden][liftoff#208]
+* Users can now customize the deployment target in their `liftoffrc` - [Lode
+  Vanhove][liftoff#199]
+* Liftoff will now automatically generate a settings bundle by default. If you
+  are using CocoaPods, it will also automatically add the acknowledgements
+  from your included pods. This can be disabled in your liftoffrc with the
+  `enable_settings` key, or on the command line with the `--[no]-settings`
+  flag - [Lode Vanhove][liftoff#191]
+* Customize the test target name with the new `test_target_name` key in your
+  `liftoffrc`. This can also be set on the command line with the
+  `--test-target-name` flag - [Matt Oakes][liftoff#187] (Thanks to [Dal
+  Rupnik][liftoff#169])
+
+[liftoff#213]: https://github.com/thoughtbot/liftoff/issues/213
+[liftoff#193]: https://github.com/thoughtbot/liftoff/issues/193
+[liftoff#210]: https://github.com/thoughtbot/liftoff/issues/210
+[liftoff#204]: https://github.com/thoughtbot/liftoff/issues/204
+[liftoff#209]: https://github.com/thoughtbot/liftoff/issues/209
+[liftoff#77]: https://github.com/thoughtbot/liftoff/issues/77
+[liftoff#208]: https://github.com/thoughtbot/liftoff/issues/208
+[liftoff#199]: https://github.com/thoughtbot/liftoff/issues/199
+[liftoff#191]: https://github.com/thoughtbot/liftoff/issues/191
+[liftoff#187]: https://github.com/thoughtbot/liftoff/issues/187
+[liftoff#169]: https://github.com/thoughtbot/liftoff/issues/169
+
+### Changes ###
+
+* The format of the `run_script_phases` key has changed. If you have
+  overridden this key, you'll need to update to the new format. - [Juan Pablo
+Civile][liftoff#210]
+* The default `AppDelegate` template for Swift now has a standard header
+  comment. This keeps Liftoff's behavior in line with Xcode's. - [Gordon
+Fontenot][liftoff#211]
+* The default TODO and FIXME script will now find these comments in Swift
+  files - [Kevin Xu][liftoff#206]
+* The `Resources` folder for the default `objc` template is now properly
+  nested in the main target directory - [Gordon Fontenot][liftoff#195]
+* You can now use Liftoff's templating features with Podfiles - [Lode
+  Vanhove][liftoff#189]
+* The default Podfile has been updated for CocoaPods 0.34.x - [Keith
+  Smiley][liftoff#184]
+* The default `gitattributes` file has been updated so that `*.strings` files
+  are now treated as text instead of as binary data - [Lode
+  Vanhove][liftoff#184]
+
+[liftoff#211]: https://github.com/thoughtbot/liftoff/issues/211
+[liftoff#206]: https://github.com/thoughtbot/liftoff/issues/206
+[liftoff#195]: https://github.com/thoughtbot/liftoff/issues/195
+[liftoff#189]: https://github.com/thoughtbot/liftoff/issues/189
+[liftoff#184]: https://github.com/thoughtbot/liftoff/issues/184
+
+### Bug Fixes ###
+
+* Force UTF-8 encoding when normalizing company name. This fixes a possible
+  crash when using other locales. - [Gordon Fontenot][liftoff#181] (Thanks to
+  [Dal Rupnik][liftoff#171])
+* Liftoff no longer prints the path to CocoaPods when checking to see if it's
+  installed - [Lode Vanhove][liftoff#189]
+
+[liftoff#181]: https://github.com/thoughtbot/liftoff/issues/181
+[liftoff#171]: https://github.com/thoughtbot/liftoff/issues/171
+
 ## Liftoff 1.4.1 - 7 Oct 2014 ##
 
 ### Bug Fixes ###
