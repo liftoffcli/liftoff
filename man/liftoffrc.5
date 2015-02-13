@@ -341,6 +341,11 @@ target. This list is zero-indexed. You can use
 .Ic -1
 to indicate that the script should be added to the end, which is the default
 behavior.
+.Bd -literal
+  - file: my_custon_script.sh
+    name: Run my custom script before anything else
+    index: 0
+.Ed
 .
 .Sh WARNINGS
 .Ic liftoff
