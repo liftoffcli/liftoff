@@ -20,6 +20,7 @@
 .Op Fl -author Ar AUTHOR_NAME
 .Op Fl -prefix Ar PREFIX
 .Op Fl -identifier Ar IDENTIFIER
+.Op Ar PATH
 .
 .Sh DESCRIPTION
 .Nm
@@ -84,6 +85,11 @@ If no existing project is found,
 .Nm
 will generate a new project structure, create a new Xcode project, and perform
 the same configurations.
+.Pp
+If you pass a custom path on the command line,
+.Nm
+will use that path as the root folder for the project generation. Otherwise, it
+will use the project's name by default.
 .Pp
 The following configurations will be performed:
 .Pp
