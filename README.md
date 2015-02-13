@@ -34,6 +34,8 @@ perform the following configurations:
   warnings][deallocated-todo].
 * Add a build phase shell script that sets the version to the latest Git tag,
   and the build number to the number of commits on master.
+* Perform arbitrary configuration as defined in the user's `liftoffrc`. See
+  `liftoffrc(5)` for more information.
 * Add default [.gitignore] and [.gitattributes] files.
 * Initialize a new `git` repo and create an initial commit (if needed).
 
