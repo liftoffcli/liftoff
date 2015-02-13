@@ -97,17 +97,23 @@ The following configurations will be performed:
 .It
 Set the indentation level on the project (in spaces, 4 by default)
 .It
-Treat warnings as errors for release schemes
-.It
 Enable additional warnings at the project level
 .It
-Turn on static analysis for the project
+Treat warnings as errors for release schemes
 .It
 Add a build phase shell script to turn
 .Ic TODO
 and
 .Ic FIXME
 comments into warnings
+.It
+Add a build phase shell script to automatically set the app's version
+information based on git
+.It
+Turn on static analysis for the project
+.It
+Perform arbitrary configuration as specified by the user's
+.Xr liftoffrc 5
 .It
 Add default
 .Pa .gitignore
