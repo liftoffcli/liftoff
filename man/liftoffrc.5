@@ -311,6 +311,16 @@ Add additional per-configuration settings to the test target. By default this
 key isn't set. See
 .Sx EXTRA CONFIGURATION
 for more information on the format of this key.
+.It Ic enable_settings
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Create a settings bundle. If you also have
+.Ic use_cocoapods
+enabled, this settings bundle will automatically contain the acknowledgements
+for any installed pods.
 .El
 .
 .Sh SCRIPT PHASES
