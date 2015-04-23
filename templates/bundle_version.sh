@@ -1,6 +1,6 @@
 git=$(sh /etc/profile; which git)
 git_release_version=$("$git" describe --tags --always --abbrev=0)
-number_of_commits=$("$git" rev-list master | wc -l | tr -d ' ')
+number_of_commits=$("$git" rev-list master --count)
 target_plist="$TARGET_BUILD_DIR/$INFOPLIST_PATH"
 dsym_plist="$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist"
 
