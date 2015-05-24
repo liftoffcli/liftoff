@@ -293,6 +293,15 @@ file if it can't find one.
 Set this key to
 .Ic false
 to disable the automatic-open functionality
+.It Ic build_configurations
+type: dictionary
+.br
+default: none
+.Pp
+Add additional build configurations to the project.
+By default this key isn't set. See
+.Sx BUILD CONFIGURATIONS
+for more information on the format of this key.
 .It Ic extra_config
 type: dictionary
 .br
@@ -595,6 +604,46 @@ on the command line, or even make it your default by setting
 .Ic project_template
 in your
 .Nm .
+.
+.Sh BUILD CONFIGURATIONS
+.Ic liftoff
+can add additional build configurations to the project. In order to do
+it, you should add the
+.Ic build_configurations
+key in your
+.Nm ,
+and add dictionaries that correspond to the build configurations you'd like to
+add.
+.Pp
+A new build configuration can either be of
+.Ic debug
+type or
+.Ic release .
+.Pp
+For example, you can create build configurations that will be used when
+uploading to the App Store:
+.Pp
+.Bd -literal
+build_configurations:
+  - name: Debug-AppStore
+    type: debug
+  - name: Release-AppStore
+    type: release
+.Ed
+.Pp
+Note that the value of
+.Ic type
+key must be either
+.Ic debug
+or
+.Ic release.
+.
+.Pp
+You can use the created build configurations to create a scheme with the
+.Pa schemes
+key. You can also customize the created configurations with the
+.Pa extra_config
+key.
 .
 .Sh EXTRA CONFIGURATION
 .Ic liftoff

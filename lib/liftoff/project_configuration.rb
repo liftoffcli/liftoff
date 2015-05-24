@@ -22,7 +22,8 @@ module Liftoff
       :extra_config,
       :extra_test_config,
       :deployment_target,
-      :schemes
+      :schemes,
+      :build_configurations
 
     attr_writer :author,
       :company_identifier,

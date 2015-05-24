@@ -6,6 +6,7 @@ module Liftoff
       @test_target_name = configuration.test_target_name
       set_company_name(configuration.company)
       set_prefix(configuration.prefix)
+      create_build_configurations(configuration.build_configurations)
       configure_base_project_settings
     end
 
@@ -68,6 +69,11 @@ module Liftoff
 
     def set_company_name(company)
       xcode_project.root_object.attributes['ORGANIZATIONNAME'] = company
+    end
+
+    def create_build_configurations(build_configurations)
+      builder = BuildConfigurationBuilder.new(xcode_project)
+      builder.generate_build_configurations(build_configurations)
     end
 
     def new_test_target(name)
