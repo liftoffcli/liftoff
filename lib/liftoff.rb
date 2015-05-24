@@ -8,6 +8,7 @@ require 'find'
 require 'highline/import'
 require 'xcodeproj'
 
+require 'liftoff/build_configuration_builder'
 require 'liftoff/cli'
 require "liftoff/dependency_manager_coordinator"
 require "liftoff/dependency_manager"

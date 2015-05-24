@@ -178,6 +178,26 @@ describe Liftoff::ProjectConfiguration do
     end
   end
 
+  describe "#build_configurations" do
+    it "returns an array of build configurations" do
+      build_configurations = [
+        {
+          "name" => "Debug-CI",
+          "type" => "debug",
+        },
+        {
+          "name" => "Release-CI",
+          "type" => "release",
+        },
+      ]
+
+      config = Liftoff::ProjectConfiguration.new({})
+      config.build_configurations = build_configurations
+
+      expect(config.build_configurations).to eq(build_configurations)
+    end
+  end
+
   def build_config(name)
     app_templates = build_templates('app')
     test_templates = build_templates('test')
