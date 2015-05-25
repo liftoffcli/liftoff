@@ -26,6 +26,7 @@ build/
 
 # Cocoapods
 Pods
+Carthage
 
 # AppCode specific files
 .idea/

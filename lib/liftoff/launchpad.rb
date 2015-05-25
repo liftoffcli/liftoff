@@ -16,7 +16,7 @@ module Liftoff
           setup_dependency_managers
           generate_templates
           generate_settings
-          install_dependency_managers
+          install_dependencies
           perform_project_actions
           open_project
         end
@@ -51,7 +51,7 @@ module Liftoff
       dependency_manager_coordinator.setup_dependencies
     end
 
-    def install_dependency_managers
+    def install_dependencies
       dependency_manager_coordinator.install_dependencies
     end
 
@@ -124,12 +124,20 @@ module Liftoff
     end
 
     def dependency_managers
-      @dependency_managers ||= [cocoapods]
+      @dependency_managers ||= [cocoapods, carthage]
     end
 
     def cocoapods
       if @config.dependency_manager_enabled?("cocoapods")
         Cocoapods.new(@config)
+      else
+        NullDependencyManager.new(@config)
+      end
+    end
+
+    def carthage
+      if @config.dependency_manager_enabled?("carthage")
+        Carthage.new(@config)
       else
         NullDependencyManager.new(@config)
       end

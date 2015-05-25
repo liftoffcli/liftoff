@@ -35,7 +35,7 @@ module Liftoff
           @options[:strict_prompts] = strict_prompts
         end
 
-        opts.on('--dependency-managers [NAME(s)]', 'Comma separated list of dependency managers to enable. Available options: cocoapods') do |list|
+        opts.on('--dependency-managers [NAME(s)]', 'Comma separated list of dependency managers to enable. Available options: cocoapods,carthage') do |list|
           @options[:dependency_managers] = (list || "").split(",")
         end
 
