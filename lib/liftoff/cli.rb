@@ -35,8 +35,18 @@ module Liftoff
           @options[:strict_prompts] = strict_prompts
         end
 
+        opts.on('--dependency-managers [NAME(s)]', 'Comma separated list of dependency managers to enable. Available options: cocoapods') do |list|
+          @options[:dependency_managers] = (list || "").split(",")
+        end
+
         opts.on('--[no-]cocoapods', 'Enable/Disable Cocoapods') do |use_cocoapods|
-          @options[:use_cocoapods] = use_cocoapods
+          @options[:dependency_managers] ||= []
+
+          if use_cocoapods
+            @options[:dependency_managers] += ["cocoapods"]
+          else
+            @options[:dependency_managers] -= ["cocoapods"]
+          end
         end
 
         opts.on('--[no-]git', 'Enable/Disable git') do |configure_git|

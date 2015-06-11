@@ -130,6 +130,22 @@ describe Liftoff::ProjectConfiguration do
     end
   end
 
+  describe "#dependency_manager_enabled?" do
+    it "returns true when name is included in list" do
+      config = Liftoff::ProjectConfiguration.new({})
+      config.dependency_managers = ["cocoapods"]
+
+      expect(config.dependency_manager_enabled?("cocoapods")).to eq(true)
+    end
+
+    it "returns false when name is missing from list" do
+      config = Liftoff::ProjectConfiguration.new({})
+      config.dependency_managers = ["carthage"]
+
+      expect(config.dependency_manager_enabled?("cocoapods")).to eq(false)
+    end
+  end
+
   def build_config(name)
     app_templates = build_templates('app')
     test_templates = build_templates('test')

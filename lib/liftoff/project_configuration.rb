@@ -15,6 +15,7 @@ module Liftoff
       :app_target_templates,
       :test_target_templates,
       :use_cocoapods,
+      :dependency_managers,
       :run_script_phases,
       :strict_prompts,
       :xcode_command,
@@ -78,6 +79,10 @@ module Liftoff
 
     def path
       @path || project_name
+    end
+
+    def dependency_manager_enabled?(name)
+      dependency_managers.include?(name)
     end
 
     private

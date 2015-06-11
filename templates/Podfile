@@ -12,7 +12,7 @@ target :unit_tests, :exclusive => true do
   pod 'OHHTTPStubs'
 end
 
-<% if enable_settings && use_cocoapods %>
+<% if enable_settings && dependency_manager_enabled?("cocoapods") %>
 # Copy acknowledgements to the Settings.bundle
 
 post_install do | installer |

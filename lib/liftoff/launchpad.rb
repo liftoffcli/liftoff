@@ -13,10 +13,10 @@ module Liftoff
 
         file_manager.create_project_dir(@config.path) do
           generate_project
-          setup_cocoapods
+          setup_dependency_managers
           generate_templates
           generate_settings
-          install_cocoapods
+          install_dependency_managers
           perform_project_actions
           open_project
         end
@@ -47,12 +47,12 @@ module Liftoff
       generate_git
     end
 
-    def setup_cocoapods
-      cocoapods_setup.setup_cocoapods
+    def setup_dependency_managers
+      dependency_manager_coordinator.setup_dependencies
     end
 
-    def install_cocoapods
-      cocoapods_setup.install_cocoapods
+    def install_dependency_managers
+      dependency_manager_coordinator.install_dependencies
     end
 
     def generate_templates
@@ -80,7 +80,8 @@ module Liftoff
     end
 
     def add_script_phases
-      xcode_helper.add_script_phases(@config.run_script_phases)
+      phases = @config.run_script_phases + dependency_manager_coordinator.run_script_phases_for_dependencies
+      xcode_helper.add_script_phases(phases)
     end
 
     def enable_warnings
@@ -117,8 +118,21 @@ module Liftoff
       @file_manager ||= FileManager.new
     end
 
-    def cocoapods_setup
-      @cocoapods_setup ||= CocoapodsSetup.new(@config)
+    def dependency_manager_coordinator
+      @dependency_manager_coordinator ||=
+        DependencyManagerCoordinator.new(dependency_managers)
+    end
+
+    def dependency_managers
+      @dependency_managers ||= [cocoapods]
+    end
+
+    def cocoapods
+      if @config.dependency_manager_enabled?("cocoapods")
+        Cocoapods.new(@config)
+      else
+        NullDependencyManager.new(@config)
+      end
     end
   end
 end
