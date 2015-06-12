@@ -103,25 +103,42 @@ same fallback order when looking for templates as it does for the
 These files (and filenames) will be parsed with `ERB`, using the values
 provided at run time (or the default values from a `liftoffrc`).
 
-## License
+Contributing
+------------
 
-Liftoff is maintained by Mark Adams and Gordon Fontenot.
+See the [CONTRIBUTING] document. Thank you, [contributors]!
 
-Liftoff is Copyright (c) 2012-2015 thoughtbot, inc. It is free software, and
-may be redistributed under the terms specified in the [LICENSE] file.
+[CONTRIBUTING]: CONTRIBUTING.md
+[contributors]: https://github.com/thoughtbot/Liftoff/graphs/contributors
 
-[LICENSE]: /LICENSE.txt
+Need Help?
+----------
 
-## About thoughtbot
+We offer 1-on-1 coaching. We can help you with functional programming in Swift,
+get started writing unit tests, and convert from Objective-C to Swift.
+[Get in touch].
+
+[Get in touch]: http://coaching.thoughtbot.com/ios/?utm_source=github
+
+License
+-------
+
+Liftoff is Copyright (c) 2015 thoughtbot, inc. It is free software, and may be
+redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: /LICENSE
+
+About
+-----
 
 ![thoughtbot](https://thoughtbot.com/logo.png)
 
-Liftoff is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+Liftoff is maintained and funded by thoughtbot, inc. The names and logos for
+thoughtbot are trademarks of thoughtbot, inc.
 
-We love open source software!
-See [our other projects][community].
-We are [available for hire][hire].
+We love open source software! See [our other projects][community] or look at
+our product [case studies] and [hire us][hire] to help build your iOS app.
 
 [community]: https://thoughtbot.com/community?utm_source=github
+[case studies]: https://thoughtbot.com/ios?utm_source=github
 [hire]: https://thoughtbot.com/hire-us?utm_source=github
