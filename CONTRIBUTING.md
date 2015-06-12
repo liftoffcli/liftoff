@@ -1,5 +1,10 @@
 # Contributing to liftoff
 
+We love pull requests from everyone. Follow the thoughtbot [code of conduct]
+while contributing.
+
+[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
+
 ## Contributing a feature
 
 We love pull requests. Here's a quick guide:
