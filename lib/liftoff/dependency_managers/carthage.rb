@@ -18,7 +18,7 @@ module Liftoff
       [
         {
           "file" => "copy_frameworks.sh",
-          "name" => "Copy framworks (Carthage)",
+          "name" => "Copy frameworks (Carthage)",
         }
       ]
     end
