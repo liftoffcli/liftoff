@@ -88,7 +88,7 @@ module Liftoff
     end
 
     def resource_file?(name)
-      name.end_with?('xcassets', 'bundle')
+      name.end_with?('xcassets', 'bundle', 'xib', 'storyboard')
     end
 
     def template_file?(object)
