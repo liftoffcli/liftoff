@@ -26,12 +26,19 @@ module Liftoff
       xcode_project.new_group(name, path)
     end
 
-    def generate_scheme
+    def generate_default_scheme
+      generate_scheme(@name)
+    end
+
+    def generate_scheme(name)
       scheme = Xcodeproj::XCScheme.new
       scheme.add_build_target(app_target)
       scheme.add_test_target(unit_test_target)
       scheme.set_launch_target(app_target)
-      scheme.save_as(xcode_project.path, @name)
+      if block_given?
+        yield scheme
+      end
+      scheme.save_as(xcode_project.path, name)
     end
 
     private

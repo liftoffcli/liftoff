@@ -128,6 +128,38 @@ describe Liftoff::ProjectConfiguration do
         expect(config.path).to eq 'Another Path'
       end
     end
+    
+    describe '#schemes' do
+      it 'returns an array of schemes' do
+        schemes = [
+          {
+            "name" => "<%= project_name %>-CI",
+            "actions" => {
+              "test" => {
+                "build_configuration" => "Debug"
+              },
+              "profile" => {
+                "build_configuration" => "Release"
+              },
+              "analyze" => {
+                "build_configuration" => "Debug"
+              },
+              "archive" => {
+                "build_configuration" => "Release"
+              },
+              "launch" => {
+                "build_configuration" => "Debug"
+              }
+            }
+          }
+        ]
+
+        config = Liftoff::ProjectConfiguration.new({})
+        config.schemes = schemes
+    
+        expect(config.schemes.to_a).to eq(schemes)
+      end
+    end
   end
 
   def build_config(name)
