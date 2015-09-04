@@ -321,6 +321,15 @@ Create a settings bundle. If you also have
 .Ic use_cocoapods
 enabled, this settings bundle will automatically contain the acknowledgements
 for any installed pods.
+.It Ic schemes
+type: dictionary
+.br
+default: none
+.Pp
+Create additional custom schemes. By
+default this key isn't set. See
+.Sx CUSTOM SCHEMES
+for more information on the format of this key.
 .El
 .
 .Sh SCRIPT PHASES
@@ -622,6 +631,42 @@ extra_config:
   all:
     WARNING_CFLAGS:
       - -Weverything
+.Ed
+
+.
+.Sh CUSTOM SCHEMES
+.Ic liftoff
+can create additional custom schemes for your application. To do so, you need
+to specify a name and which build configuration will be used for each
+.Ic action
+(test, launch, profile, archive or analyze). In order to create additional
+schemes, you should add the
+.Ic schemes
+key in your
+.Nm ,
+and add dictionaries that correspond to the schemes you'd like to create.
+For example, to create a scheme that will be used when distributing your
+app to the App Store, you can set the following:
+.Pp
+.Bd -literal
+schemes:
+- name: <%= project_name %>-AppStore
+  actions:
+      test:
+          build_configuration: Debug
+      launch:
+          build_configuration: Debug
+      profile:
+          build_configuration: Release
+      archive:
+          build_configuration: Release
+      analyze:
+          build_configuration: Debug
+.Ed
+.Pp
+Note that the keys inside actions must match the predefined keys and the key
+for the build configuration must match the name of the build
+configuration you'd like to use exactly.
 .Ed
 .
 .Sh FILES

@@ -21,7 +21,8 @@ module Liftoff
       :xcode_command,
       :extra_config,
       :extra_test_config,
-      :deployment_target
+      :deployment_target,
+      :schemes
 
     attr_writer :author,
       :company_identifier,
