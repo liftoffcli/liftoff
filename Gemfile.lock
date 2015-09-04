@@ -1,14 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.19)
-      i18n (~> 0.6, >= 0.6.4)
-      multi_json (~> 1.0)
+    activesupport (4.2.4)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    claide (0.9.1)
     colored (1.2)
     diff-lcs (1.2.5)
     highline (1.6.21)
-    i18n (0.6.11)
-    multi_json (1.10.1)
+    i18n (0.7.0)
+    json (1.8.3)
+    minitest (5.8.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -17,8 +22,12 @@ GEM
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.6)
-    xcodeproj (0.19.3)
-      activesupport (~> 3.0)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    xcodeproj (0.27.1)
+      activesupport (>= 3)
+      claide (~> 0.9.1)
       colored (~> 1.2)
 
 PLATFORMS
@@ -27,4 +36,7 @@ PLATFORMS
 DEPENDENCIES
   highline (~> 1.6)
   rspec
-  xcodeproj (~> 0.19.3)
+  xcodeproj (~> 0.27.1)
+
+BUNDLED WITH
+   1.10.6
