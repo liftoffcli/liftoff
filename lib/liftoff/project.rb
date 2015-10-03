@@ -58,6 +58,7 @@ module Liftoff
         configuration.build_settings.delete('OTHER_LDFLAGS')
         configuration.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
         configuration.build_settings.delete('SKIP_INSTALL')
+        configuration.build_settings.delete('INSTALL_PATH')
         configuration.build_settings['LD_RUNPATH_SEARCH_PATHS'] = ['$(inherited)', '@executable_path/Frameworks']
       end
       target
