@@ -14,7 +14,6 @@ module Liftoff
       :project_template,
       :app_target_templates,
       :test_target_templates,
-      :use_cocoapods,
       :dependency_managers,
       :run_script_phases,
       :strict_prompts,

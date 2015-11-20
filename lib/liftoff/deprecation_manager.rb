@@ -2,6 +2,7 @@ module Liftoff
   class DeprecationManager
     DEPRECATIONS = {
       :install_todo_script => 'run_script_phases',
+      :use_cocoapods => 'dependency_managers',
     }
 
     def initialize
