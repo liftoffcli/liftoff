@@ -1,5 +1,61 @@
 # Liftoff Changelog #
 
+## Liftoff 1.6.0 - 20 Nov 2015 ##
+
+### New Features ###
+
+* Add Carthage support. You can now set the `dependency_managers` to one or
+  more dependency management systems. Right now, this supports `cocoapods` and
+  `carthage`. This also adds a `--dependency-managers` flag to the cli
+  options. The `--[no-]cocoapods` option will be removed in a future version
+  of Liftoff, and so should not be used going forward. The `use_cocoapods`
+  `liftoffrc` key has also been removed. You will now see a deprecation
+  warning if you try to set this key. - [Jake Craige][liftoff#226]
+* Define custom build configurations. You can now set a `build_configurations`
+  key in your `liftoffrc` to define custom build configurations that can be
+  used elsewhere in your `liftoffrc`. These configurations need to be copies
+  of either the `release` or `debug` schemes. See the `liftoffrc` man page for
+  more info. - [Marcelo Fabri][liftoff#224] (Thanks to [Mark
+  Adams][liftoff#71])
+* Define custom schemes in your `liftoffrc.` By default, this isn't set, but
+  if you set `schemes` in your `liftoffrc`, Liftoff will generate a scheme
+  with the specified actions. See the `liftoffrc` man page for more info. -
+  [Marcelo Fabri][liftoff#225]
+
+[liftoff#71]: https://github.com/thoughtbot/liftoff/pull/71
+[liftoff#226]: https://github.com/thoughtbot/liftoff/pull/226
+[liftoff#224]: https://github.com/thoughtbot/liftoff/pull/224
+[liftoff#225]: https://github.com/thoughtbot/liftoff/pull/225
+
+### Changes ###
+
+* `bundle_version` now uses `git rev-list --count` instead of `git rev-list |
+  wc -l | tr -d ' '` - [Giovanni Lodi][liftoff#221]
+* The default `TODO` and `FIXME` script now ignores Carthage source files in
+  addition to CocoaPods source files. - [Josh Steiner][liftoff#223]
+* Improve test target detection. We were previously just matching against the
+  word "Tests" instead of checking against the user-defined test target
+  name. - [Gordon Fontenot][liftoff#251] (Thanks to [Oliver Halligon][liftoff#218])
+
+[liftoff#221]: https://github.com/thoughtbot/liftoff/pull/221
+[liftoff#223]: https://github.com/thoughtbot/liftoff/pull/223
+[liftoff#251]: https://github.com/thoughtbot/liftoff/pull/251
+[liftoff#218]: https://github.com/thoughtbot/liftoff/pull/218
+
+### Bug Fixes ###
+
+* Unset `INSTALL_PATH` for projects. We previously had this set to nothing,
+  which caused problems where archiving an app would try to create a generic
+  archive instead of an iOS app archive - [Marcelo Fabri][liftoff#245] (Thanks
+  to [Jake Craige][liftoff#235])
+* Storyboards and XIBs are now properly treated as resources. Previously, they
+  were added to Compile Sources, which could lead to crashes in some versions
+  of Xcode. - [Marcelo Fabri][liftoff#238]
+
+[liftoff#245]: https://github.com/thoughtbot/liftoff/pull/245
+[liftoff#235]: https://github.com/thoughtbot/liftoff/pull/235
+[liftoff#238]: https://github.com/thoughtbot/liftoff/pull/238
+
 ## Liftoff 1.5.0 - 13 Feb 2015 ##
 
 ### New Features ###
