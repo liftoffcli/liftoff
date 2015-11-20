@@ -10,6 +10,7 @@
 .Op Fl -version
 .Op Fl -help
 .Op Fl -[no-]strict-prompts
+.Op Fl -dependency-managers Ar NAMES
 .Op Fl -[no-]cocoapods
 .Op Fl -[no-]git
 .Op Fl -no-open
@@ -43,6 +44,8 @@ display a help message and exit
 enable or disable strict prompts. If this is enabled,
 .Nm
 will only prompt for values that don't have a default set.
+.It Fl -dependency-managers Ar NAMES
+specify the dependency managers to use for the project
 .It Fl -[no-]cocoapods
 enable or disable CocoaPods support
 .It Fl -[no-]git

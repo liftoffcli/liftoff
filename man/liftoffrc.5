@@ -148,24 +148,36 @@ Note that this does
 affect the default templates. If you choose to be incorrect with your
 indentation settings, we recommend that you also override the default templates
 in order to be consistently wrong.
-.It Ic use_cocoapods
-type: boolean
+.It Ic dependency_managers
+type: array 
 .br
 default:
-.Ic true
+.Ic cocoapods
 .Pp
-Generate a template
-.Pa Podfile
-and run
-.Ic pod install
-inside the project directory to install a default set of dependencies.
+Specify the dependency managers to use.
 .Pp
-The
-.Pa Podfile
-can be overridden by adding a custom template. If you override this template,
-you should probably override the
-.Pa UnitTests-Prefix.pch
-template as well, since it imports the default pods if this key is enabled.
+Currently, this accepts
+.Ic cocoapods
+and/or
+.Ic carthage
+as options. For each dependency manager listed,
+.Ic liftoff
+will install the default dependency file, as well as perform any necessary
+actions.
+.Pp
+For example, if you specify
+.Ic carthage
+as your dependency manager,
+.Ic liftoff
+will link the default
+.Pa Cartfile
+into place, run
+.Ic carthage update ,
+and add a run script build phase with Carthage's
+.Ic copy-frameworks
+command.
+.Pp
+This replaces the old `use_cocoapods` key.
 .It Ic strict_prompts
 type: boolean
 .br
