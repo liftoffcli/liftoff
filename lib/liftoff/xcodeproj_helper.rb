@@ -90,11 +90,11 @@ module Liftoff
     end
 
     def application_targets
-      all_targets.reject { |t| t.name.end_with?(@test_target_name) }
+      all_targets.reject { |t| t.name == @test_target_name }
     end
 
     def test_targets
-      all_targets.select { |t| t.name.end_with?(@test_target_name) }
+      all_targets.select { |t| t.name == @test_target_name }
     end
 
     def all_targets
