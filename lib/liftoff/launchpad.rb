@@ -111,7 +111,7 @@ module Liftoff
     end
 
     def xcode_helper
-      @xcode_helper ||= XcodeprojHelper.new
+      @xcode_helper ||= XcodeprojHelper.new(@config)
     end
 
     def file_manager
