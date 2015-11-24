@@ -12,6 +12,7 @@ require 'liftoff/build_configuration_builder'
 require 'liftoff/cli'
 require "liftoff/dependency_manager_coordinator"
 require "liftoff/dependency_manager"
+require "liftoff/dependency_managers/bundler"
 require "liftoff/dependency_managers/carthage"
 require "liftoff/dependency_managers/cocoapods"
 require "liftoff/dependency_managers/null_dependency_manager"
