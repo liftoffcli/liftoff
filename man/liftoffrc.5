@@ -149,7 +149,7 @@ affect the default templates. If you choose to be incorrect with your
 indentation settings, we recommend that you also override the default templates
 in order to be consistently wrong.
 .It Ic dependency_managers
-type: array 
+type: array
 .br
 default:
 .Ic cocoapods
@@ -157,9 +157,10 @@ default:
 Specify the dependency managers to use.
 .Pp
 Currently, this accepts
-.Ic cocoapods
+.Ic cocoapods ,
+.Ic carthage ,
 and/or
-.Ic carthage
+.Ic bundler
 as options. For each dependency manager listed,
 .Ic liftoff
 will install the default dependency file, as well as perform any necessary
@@ -492,9 +493,10 @@ This template is installed to
 .Pa Gemfile ,
 and contains a set of default gems for use with the project. Right now, it
 contains
-.Ic CocoaPods
+.Ic XCPretty
 and
-.Ic XCPretty .
+.Ic CocoaPods
+if the cocoapods dependency manager is enabled.
 .It Pa test.sh
 This template is installed to
 .Pa bin/test

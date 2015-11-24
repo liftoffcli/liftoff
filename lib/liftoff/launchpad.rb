@@ -124,7 +124,7 @@ module Liftoff
     end
 
     def dependency_managers
-      @dependency_managers ||= [cocoapods, carthage]
+      @dependency_managers ||= [cocoapods, carthage, bundler]
     end
 
     def cocoapods
@@ -138,6 +138,14 @@ module Liftoff
     def carthage
       if @config.dependency_manager_enabled?("carthage")
         Carthage.new(@config)
+      else
+        NullDependencyManager.new(@config)
+      end
+    end
+
+    def bundler
+      if @config.dependency_manager_enabled?("bundler")
+        Bundler.new(@config)
       else
         NullDependencyManager.new(@config)
       end
