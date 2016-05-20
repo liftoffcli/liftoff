@@ -2,10 +2,15 @@ source 'https://github.com/CocoaPods/Specs'
 
 platform :ios, '<%= deployment_target %>'
 
-# Add Application pods here
+# Uncomment this line if you use Swift
+# use_frameworks!
 
-target :unit_tests, :exclusive => true do
-  link_with '<%= test_target_name %>'
+target '<%= project_name %>' do
+  # Application Pods
+end
+
+abstract_target :unit_tests do
+  target '<%= test_target_name %>'
   pod 'Specta'
   pod 'Expecta'
   pod 'OCMock'
