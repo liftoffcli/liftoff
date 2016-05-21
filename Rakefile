@@ -72,7 +72,7 @@ namespace :homebrew do
     task :build do
       formula = File.read('homebrew/liftoff.rb')
       formula.gsub!('__VERSION__', Liftoff::VERSION)
-      formula.gsub!('__SHA__', `shasum #{GH_PAGES_DIR}/Liftoff-#{Liftoff::VERSION}.tar.gz`.split.first)
+      formula.gsub!('__SHA__', `shasum -a 256 #{GH_PAGES_DIR}/Liftoff-#{Liftoff::VERSION}.tar.gz`.split.first)
       File.write("#{HOMEBREW_FORMULAE_DIR}/Formula/liftoff.rb", formula)
     end
   end
