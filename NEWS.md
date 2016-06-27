@@ -1,5 +1,39 @@
 # Liftoff Changelog #
 
+## Liftoff 1.8.1 - 27 June 2016 ##
+
+### Changes ###
+
+ - Bumped dependencies to their most recent versions to reduce
+   warnings/collisions - [Gordon Fontenot][liftoff#276]
+
+[liftoff#276]: https://github.com/thoughtbot/liftoff/pull/276
+
+## Liftoff 1.8.0 - 20 May 2016 ##
+
+### New Features ###
+
+* Bundler is now listed as a dependency manager like CocoaPods and Carthage.
+  This means you can enable or disable it the same way you would other
+  dependency managers. It's still enabled by default. - [Edward
+  Loveall][liftoff#260]
+
+[liftoff#260]: https://github.com/thoughtbot/liftoff/pull/260
+
+### Changes ###
+
+* Bumped dependency versions to reduce warnings/collisions - [Sabatino Masala][liftoff#263]
+
+[liftoff#263]: https://github.com/thoughtbot/liftoff/pull/263
+
+## Liftoff 1.7.0 - 20 May 2016 ##
+
+### New Features ###
+
+* Now compatible with CocoaPods 1.0 - [Mason Phillips][liftoff#268]
+
+[liftoff#268]: https://github.com/thoughtbot/liftoff/pull/268
+
 ## Liftoff 1.6.0 - 20 Nov 2015 ##
 
 ### New Features ###
