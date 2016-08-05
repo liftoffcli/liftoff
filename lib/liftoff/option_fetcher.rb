@@ -10,6 +10,7 @@ module Liftoff
       fetch_option_for(:company_identifier, 'Company identifier')
       fetch_option_for(:prefix, 'Prefix')
       fetch_option_for(:test_target_name, 'Test target name')
+      fetch_option_for(:project_template, 'Project language')
     end
 
     private
