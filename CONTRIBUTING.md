@@ -11,7 +11,7 @@ We love pull requests. Here's a quick guide:
 
 1. Clone the repo:
 
-        git clone https://github.com/thoughtbot/liftoff.git
+        git clone https://github.com/liftoffcli/liftoff.git
 
 2. Run the tests. We only take pull requests with passing tests, and it's great
    to know that you have a clean slate:
