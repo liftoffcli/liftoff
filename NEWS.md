@@ -7,7 +7,7 @@
  - Bumped dependencies to their most recent versions to reduce
    warnings/collisions - [Gordon Fontenot][liftoff#276]
 
-[liftoff#276]: https://github.com/thoughtbot/liftoff/pull/276
+[liftoff#276]: https://github.com/liftoffcli/liftoff/pull/276
 
 ## Liftoff 1.8.0 - 20 May 2016 ##
 
@@ -18,13 +18,13 @@
   dependency managers. It's still enabled by default. - [Edward
   Loveall][liftoff#260]
 
-[liftoff#260]: https://github.com/thoughtbot/liftoff/pull/260
+[liftoff#260]: https://github.com/liftoffcli/liftoff/pull/260
 
 ### Changes ###
 
 * Bumped dependency versions to reduce warnings/collisions - [Sabatino Masala][liftoff#263]
 
-[liftoff#263]: https://github.com/thoughtbot/liftoff/pull/263
+[liftoff#263]: https://github.com/liftoffcli/liftoff/pull/263
 
 ## Liftoff 1.7.0 - 20 May 2016 ##
 
@@ -32,7 +32,7 @@
 
 * Now compatible with CocoaPods 1.0 - [Mason Phillips][liftoff#268]
 
-[liftoff#268]: https://github.com/thoughtbot/liftoff/pull/268
+[liftoff#268]: https://github.com/liftoffcli/liftoff/pull/268
 
 ## Liftoff 1.6.0 - 20 Nov 2015 ##
 
@@ -56,10 +56,10 @@
   with the specified actions. See the `liftoffrc` man page for more info. -
   [Marcelo Fabri][liftoff#225]
 
-[liftoff#71]: https://github.com/thoughtbot/liftoff/pull/71
-[liftoff#226]: https://github.com/thoughtbot/liftoff/pull/226
-[liftoff#224]: https://github.com/thoughtbot/liftoff/pull/224
-[liftoff#225]: https://github.com/thoughtbot/liftoff/pull/225
+[liftoff#71]: https://github.com/liftoffcli/liftoff/pull/71
+[liftoff#226]: https://github.com/liftoffcli/liftoff/pull/226
+[liftoff#224]: https://github.com/liftoffcli/liftoff/pull/224
+[liftoff#225]: https://github.com/liftoffcli/liftoff/pull/225
 
 ### Changes ###
 
@@ -71,10 +71,10 @@
   word "Tests" instead of checking against the user-defined test target
   name. - [Gordon Fontenot][liftoff#251] (Thanks to [Oliver Halligon][liftoff#218])
 
-[liftoff#221]: https://github.com/thoughtbot/liftoff/pull/221
-[liftoff#223]: https://github.com/thoughtbot/liftoff/pull/223
-[liftoff#251]: https://github.com/thoughtbot/liftoff/pull/251
-[liftoff#218]: https://github.com/thoughtbot/liftoff/pull/218
+[liftoff#221]: https://github.com/liftoffcli/liftoff/pull/221
+[liftoff#223]: https://github.com/liftoffcli/liftoff/pull/223
+[liftoff#251]: https://github.com/liftoffcli/liftoff/pull/251
+[liftoff#218]: https://github.com/liftoffcli/liftoff/pull/218
 
 ### Bug Fixes ###
 
@@ -86,9 +86,9 @@
   were added to Compile Sources, which could lead to crashes in some versions
   of Xcode. - [Marcelo Fabri][liftoff#238]
 
-[liftoff#245]: https://github.com/thoughtbot/liftoff/pull/245
-[liftoff#235]: https://github.com/thoughtbot/liftoff/pull/235
-[liftoff#238]: https://github.com/thoughtbot/liftoff/pull/238
+[liftoff#245]: https://github.com/liftoffcli/liftoff/pull/245
+[liftoff#235]: https://github.com/liftoffcli/liftoff/pull/235
+[liftoff#238]: https://github.com/liftoffcli/liftoff/pull/238
 
 ## Liftoff 1.5.0 - 13 Feb 2015 ##
 
@@ -121,17 +121,17 @@
   `--test-target-name` flag - [Matt Oakes][liftoff#187] (Thanks to [Dal
   Rupnik][liftoff#169])
 
-[liftoff#213]: https://github.com/thoughtbot/liftoff/issues/213
-[liftoff#193]: https://github.com/thoughtbot/liftoff/issues/193
-[liftoff#210]: https://github.com/thoughtbot/liftoff/issues/210
-[liftoff#204]: https://github.com/thoughtbot/liftoff/issues/204
-[liftoff#209]: https://github.com/thoughtbot/liftoff/issues/209
-[liftoff#77]: https://github.com/thoughtbot/liftoff/issues/77
-[liftoff#208]: https://github.com/thoughtbot/liftoff/issues/208
-[liftoff#199]: https://github.com/thoughtbot/liftoff/issues/199
-[liftoff#191]: https://github.com/thoughtbot/liftoff/issues/191
-[liftoff#187]: https://github.com/thoughtbot/liftoff/issues/187
-[liftoff#169]: https://github.com/thoughtbot/liftoff/issues/169
+[liftoff#213]: https://github.com/liftoffcli/liftoff/issues/213
+[liftoff#193]: https://github.com/liftoffcli/liftoff/issues/193
+[liftoff#210]: https://github.com/liftoffcli/liftoff/issues/210
+[liftoff#204]: https://github.com/liftoffcli/liftoff/issues/204
+[liftoff#209]: https://github.com/liftoffcli/liftoff/issues/209
+[liftoff#77]: https://github.com/liftoffcli/liftoff/issues/77
+[liftoff#208]: https://github.com/liftoffcli/liftoff/issues/208
+[liftoff#199]: https://github.com/liftoffcli/liftoff/issues/199
+[liftoff#191]: https://github.com/liftoffcli/liftoff/issues/191
+[liftoff#187]: https://github.com/liftoffcli/liftoff/issues/187
+[liftoff#169]: https://github.com/liftoffcli/liftoff/issues/169
 
 ### Changes ###
 
@@ -153,11 +153,11 @@ Fontenot][liftoff#211]
   are now treated as text instead of as binary data - [Lode
   Vanhove][liftoff#184]
 
-[liftoff#211]: https://github.com/thoughtbot/liftoff/issues/211
-[liftoff#206]: https://github.com/thoughtbot/liftoff/issues/206
-[liftoff#195]: https://github.com/thoughtbot/liftoff/issues/195
-[liftoff#189]: https://github.com/thoughtbot/liftoff/issues/189
-[liftoff#184]: https://github.com/thoughtbot/liftoff/issues/184
+[liftoff#211]: https://github.com/liftoffcli/liftoff/issues/211
+[liftoff#206]: https://github.com/liftoffcli/liftoff/issues/206
+[liftoff#195]: https://github.com/liftoffcli/liftoff/issues/195
+[liftoff#189]: https://github.com/liftoffcli/liftoff/issues/189
+[liftoff#184]: https://github.com/liftoffcli/liftoff/issues/184
 
 ### Bug Fixes ###
 
@@ -167,8 +167,8 @@ Fontenot][liftoff#211]
 * Liftoff no longer prints the path to CocoaPods when checking to see if it's
   installed - [Lode Vanhove][liftoff#189]
 
-[liftoff#181]: https://github.com/thoughtbot/liftoff/issues/181
-[liftoff#171]: https://github.com/thoughtbot/liftoff/issues/171
+[liftoff#181]: https://github.com/liftoffcli/liftoff/issues/181
+[liftoff#171]: https://github.com/liftoffcli/liftoff/issues/171
 
 ## Liftoff 1.4.1 - 7 Oct 2014 ##
 
@@ -206,15 +206,15 @@ Fontenot][liftoff#211]
   feature completely. - [Gordon Fontenot][liftoff#172] ([Thanks to
   @asmod3us][liftoff#166])
 
-[liftoff#175]: https://github.com/thoughtbot/liftoff/issues/175
-[liftoff#174]: https://github.com/thoughtbot/liftoff/issues/174
-[liftoff#142]: https://github.com/thoughtbot/liftoff/issues/142
-[liftoff#170]: https://github.com/thoughtbot/liftoff/issues/170
-[liftoff#160]: https://github.com/thoughtbot/liftoff/issues/160
-[liftoff#177]: https://github.com/thoughtbot/liftoff/issues/177
-[liftoff#178]: https://github.com/thoughtbot/liftoff/issues/178
-[liftoff#172]: https://github.com/thoughtbot/liftoff/issues/172
-[liftoff#166]: https://github.com/thoughtbot/liftoff/issues/166
+[liftoff#175]: https://github.com/liftoffcli/liftoff/issues/175
+[liftoff#174]: https://github.com/liftoffcli/liftoff/issues/174
+[liftoff#142]: https://github.com/liftoffcli/liftoff/issues/142
+[liftoff#170]: https://github.com/liftoffcli/liftoff/issues/170
+[liftoff#160]: https://github.com/liftoffcli/liftoff/issues/160
+[liftoff#177]: https://github.com/liftoffcli/liftoff/issues/177
+[liftoff#178]: https://github.com/liftoffcli/liftoff/issues/178
+[liftoff#172]: https://github.com/liftoffcli/liftoff/issues/172
+[liftoff#166]: https://github.com/liftoffcli/liftoff/issues/166
 
 ### Changes ###
 
@@ -228,16 +228,16 @@ Fontenot][liftoff#211]
 * Bump deployment target to 8.0. Welcome to the future. - [Gordon
   Fontenot][liftoff#176]
 
-[liftoff#180]: https://github.com/thoughtbot/liftoff/issues/180
-[liftoff#179]: https://github.com/thoughtbot/liftoff/issues/179
-[liftoff#175]: https://github.com/thoughtbot/liftoff/issues/175
-[liftoff#176]: https://github.com/thoughtbot/liftoff/issues/176
+[liftoff#180]: https://github.com/liftoffcli/liftoff/issues/180
+[liftoff#179]: https://github.com/liftoffcli/liftoff/issues/179
+[liftoff#175]: https://github.com/liftoffcli/liftoff/issues/175
+[liftoff#176]: https://github.com/liftoffcli/liftoff/issues/176
 
 ### Bug Fixes ###
 
 - OS 10.10 support. - [Gordon Fontenot][liftoff#173]
 
-[liftoff#173]: https://github.com/thoughtbot/liftoff/issues/173
+[liftoff#173]: https://github.com/liftoffcli/liftoff/issues/173
 
 ## Liftoff 1.3 - 16 May 2014 ##
 
@@ -255,10 +255,10 @@ Fontenot][liftoff#211]
 * Add `setup`, `test`, and `README` templates to the project. - [Gordon
   Fontenot][liftoff#154]
 
-[liftoff#147]: https://github.com/thoughtbot/liftoff/issues/147
-[liftoff#146]: https://github.com/thoughtbot/liftoff/issues/146
-[liftoff#152]: https://github.com/thoughtbot/liftoff/issues/152
-[liftoff#154]: https://github.com/thoughtbot/liftoff/issues/154
+[liftoff#147]: https://github.com/liftoffcli/liftoff/issues/147
+[liftoff#146]: https://github.com/liftoffcli/liftoff/issues/146
+[liftoff#152]: https://github.com/liftoffcli/liftoff/issues/152
+[liftoff#154]: https://github.com/liftoffcli/liftoff/issues/154
 
 ### Changes ###
 
@@ -272,11 +272,11 @@ Fontenot][liftoff#211]
   confusion about where to add new pods after initial installation - [Gordon
   Fontenot][liftoff#145] ([Thanks to Mark Flowers][liftoff#144])
 
-[liftoff#153]: https://github.com/thoughtbot/liftoff/issues/153
-[liftoff#70]: https://github.com/thoughtbot/liftoff/issues/70
-[liftoff#143]: https://github.com/thoughtbot/liftoff/issues/143
-[liftoff#145]: https://github.com/thoughtbot/liftoff/issues/145
-[liftoff#144]: https://github.com/thoughtbot/liftoff/issues/144
+[liftoff#153]: https://github.com/liftoffcli/liftoff/issues/153
+[liftoff#70]: https://github.com/liftoffcli/liftoff/issues/70
+[liftoff#143]: https://github.com/liftoffcli/liftoff/issues/143
+[liftoff#145]: https://github.com/liftoffcli/liftoff/issues/145
+[liftoff#144]: https://github.com/liftoffcli/liftoff/issues/144
 
 ### Bug Fixes ###
 
@@ -285,8 +285,8 @@ Fontenot][liftoff#211]
   silently. This change brings us back in line with Xcode's default behavior.
   - [Gordon Fontenot][liftoff#151] ([Thanks to James Frost][liftoff#149])
 
-[liftoff#151]: https://github.com/thoughtbot/liftoff/issues/151
-[liftoff#149]: https://github.com/thoughtbot/liftoff/issues/149
+[liftoff#151]: https://github.com/liftoffcli/liftoff/issues/151
+[liftoff#149]: https://github.com/liftoffcli/liftoff/issues/149
 
 ## Liftoff 1.2 - March 28, 2014 ##
 
@@ -311,12 +311,12 @@ Fontenot][liftoff#211]
   you will probably want to override those as well. - [Gordon
   Fontenot][liftoff#125] ([Thanks to Magnus Ottosson][liftoff#119])
 
-[liftoff#126]: https://github.com/thoughtbot/liftoff/issues/126
-[liftoff#127]: https://github.com/thoughtbot/liftoff/issues/127
-[liftoff#120]: https://github.com/thoughtbot/liftoff/issues/120
-[liftoff#125]: https://github.com/thoughtbot/liftoff/issues/125
-[liftoff#118]: https://github.com/thoughtbot/liftoff/issues/118
-[liftoff#119]: https://github.com/thoughtbot/liftoff/issues/119
+[liftoff#126]: https://github.com/liftoffcli/liftoff/issues/126
+[liftoff#127]: https://github.com/liftoffcli/liftoff/issues/127
+[liftoff#120]: https://github.com/liftoffcli/liftoff/issues/120
+[liftoff#125]: https://github.com/liftoffcli/liftoff/issues/125
+[liftoff#118]: https://github.com/liftoffcli/liftoff/issues/118
+[liftoff#119]: https://github.com/liftoffcli/liftoff/issues/119
 
 ### Changes ###
 
@@ -329,17 +329,17 @@ Fontenot][liftoff#211]
   file, and linking all other plists properly. - [Gordon Fontenot][liftoff#122]
   ([Thanks to @mattyohe][liftoff#121])
 
-[liftoff#134]: https://github.com/thoughtbot/liftoff/issues/134
-[liftoff#133]: https://github.com/thoughtbot/liftoff/issues/133
-[liftoff#122]: https://github.com/thoughtbot/liftoff/issues/122
-[liftoff#121]: https://github.com/thoughtbot/liftoff/issues/121
+[liftoff#134]: https://github.com/liftoffcli/liftoff/issues/134
+[liftoff#133]: https://github.com/liftoffcli/liftoff/issues/133
+[liftoff#122]: https://github.com/liftoffcli/liftoff/issues/122
+[liftoff#121]: https://github.com/liftoffcli/liftoff/issues/121
 
 ### Bug Fixes ###
 
 * Set the deployment target at the project level. This mimics the behavior
   when creating a new project with Xcode. - [Gordon Fontenot][liftoff#123]
 
-[liftoff#123]: https://github.com/thoughtbot/liftoff/issues/123
+[liftoff#123]: https://github.com/liftoffcli/liftoff/issues/123
 
 ## Liftoff 1.1.1 - March 18, 2014 ##
 
@@ -355,8 +355,8 @@ Fontenot][liftoff#211]
   disable RubyGems while running Liftoff. - Gordon Fontenot ([Thanks to
   @iOSDevil, Jim Rutherford, and @endoze][liftoff#113])
 
-[liftoff#111]: https://github.com/thoughtbot/liftoff/issues/111
-[liftoff#113]: https://github.com/thoughtbot/liftoff/issues/113
+[liftoff#111]: https://github.com/liftoffcli/liftoff/issues/111
+[liftoff#113]: https://github.com/liftoffcli/liftoff/issues/113
 
 ## Liftoff 1.1 - March 14, 2014 ##
 
@@ -378,7 +378,7 @@ Fontenot][liftoff#211]
   DiPasquale][liftoff#94])
 * Open new projects after creation - Mark Adams
 
-[liftoff#94]: https://github.com/thoughtbot/liftoff/issues/94
+[liftoff#94]: https://github.com/liftoffcli/liftoff/issues/94
 
 ### Changes ###
 
@@ -391,7 +391,7 @@ Fontenot][liftoff#211]
   to manually link frameworks anymore. - Gordon Fontenot
 * Prefer new @import over #import - Mark Adams
 
-[liftoff#80]: https://github.com/thoughtbot/liftoff/issues/80
+[liftoff#80]: https://github.com/liftoffcli/liftoff/issues/80
 
 ### Bug Fixes ###
 
@@ -409,10 +409,10 @@ Fontenot][liftoff#211]
 * Set SDKROOT at the project level - Gordon Fontenot ([Thanks to Tony
   DiPasquale][liftoff#97])
 
-[liftoff#107]: https://github.com/thoughtbot/liftoff/issues/107
-[liftoff#87]: https://github.com/thoughtbot/liftoff/issues/87
-[liftoff#81]: https://github.com/thoughtbot/liftoff/issues/81
-[liftoff#97]: https://github.com/thoughtbot/liftoff/issues/97
+[liftoff#107]: https://github.com/liftoffcli/liftoff/issues/107
+[liftoff#87]: https://github.com/liftoffcli/liftoff/issues/87
+[liftoff#81]: https://github.com/liftoffcli/liftoff/issues/81
+[liftoff#97]: https://github.com/liftoffcli/liftoff/issues/97
 
 ## Liftoff 1.0 - March 7, 2014 ##
 
