@@ -42,7 +42,7 @@ namespace :homebrew do
 
   desc 'Checkout homebrew repo locally'
   task :checkout do
-    `git clone git@github.com:thoughtbot/homebrew-formulae.git #{HOMEBREW_FORMULAE_DIR}`
+    `git clone git@github.com:liftoffcli/homebrew-formulae.git #{HOMEBREW_FORMULAE_DIR}`
   end
 
   desc 'Check in the new Homebrew formula'
@@ -84,7 +84,7 @@ namespace :tarball do
 
   desc 'Checkout gh-pages'
   task :checkout do
-    `git clone --branch gh-pages git@github.com:thoughtbot/liftoff.git #{GH_PAGES_DIR}`
+    `git clone --branch gh-pages git@github.com:liftoffcli/liftoff.git #{GH_PAGES_DIR}`
   end
 
   desc 'Move tarball into gh-pages'
