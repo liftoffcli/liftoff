@@ -24,8 +24,6 @@ run_script_phases:
     name: Warn for TODO and FIXME comments
   - file: bundle_version.sh
     name: Set version number
-  - file: swiftlint.sh
-    name: Swift Lint Phase
 
 templates:
   - travis.yml: .travis.yml
