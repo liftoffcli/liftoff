@@ -1,8 +1,3 @@
-#!/usr/bin/env ruby
-#
-# This is a stub of the liftoff executable for development purposes.
-# The actual executable is located at src/liftoff
-
 require 'optparse'
 require 'fileutils'
 require 'yaml'

@@ -1,8 +1,8 @@
 module Liftoff
   class ProjectConfiguration
     attr_accessor :project_name,
-      :prefix,
       :company,
+      :prefix,
       :test_target_name,
       :configure_git,
       :configure_swiftlint,
