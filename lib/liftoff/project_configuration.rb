@@ -2,9 +2,9 @@ module Liftoff
   class ProjectConfiguration
     attr_accessor :project_name,
       :company,
-      :prefix,
       :test_target_name,
       :configure_git,
+      :configure_swiftlint,
       :enable_settings,
       :warnings_as_errors,
       :enable_static_analyzer,

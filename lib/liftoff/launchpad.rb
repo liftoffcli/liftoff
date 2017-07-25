@@ -45,6 +45,7 @@ module Liftoff
       perform_extra_config
       save_project
       generate_git
+      generate_swiftlint
     end
 
     def setup_dependency_managers
@@ -69,6 +70,10 @@ module Liftoff
 
     def generate_git
       GitSetup.new(@config).setup
+    end
+
+    def generate_swiftlint
+      SwiftLintSetup.new(@config).setup
     end
 
     def set_indentation_level
