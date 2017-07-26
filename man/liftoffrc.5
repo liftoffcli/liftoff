@@ -96,6 +96,15 @@ Create
 .Ic .gitignore ,
 .Ic .gitattributes ,
 and initialize git repo if needed.
+.It Ic configure_swiftlint
+type: boolean
+.br
+default:
+.Ic true
+.Pp
+Imports the default template of swiftlint
+and add script phases to perform the lint command
+on build. 
 .It Ic warnings_as_errors
 type: boolean
 .br
@@ -484,6 +493,10 @@ meaning.
 .Ic liftoff
 installs a number of templates by default:
 .Bl -tag -width 10
+.It Pa swiftlint
+This template is installed to
+.Pa .swiftlint.yml
+and contains a default lint rules to use with SwiftLint.
 .It Pa travis.yml
 This template is installed to
 .Pa .travis.yml ,

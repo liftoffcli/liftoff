@@ -13,6 +13,7 @@
 .Op Fl -dependency-managers Ar NAMES
 .Op Fl -[no-]cocoapods
 .Op Fl -[no-]git
+.Op Fl -[no-]swiftlint
 .Op Fl -no-open
 .Op Fl -[no-]settings
 .Op Fl -template Ar TEMPLATE_NAME
@@ -51,6 +52,10 @@ enable or disable CocoaPods support
 .It Fl -[no-]git
 enable or disable
 .Xr git 1
+configuration
+.It Fl -[no-]swiftlint
+enable or disable
+.Xr SwiftLint
 configuration
 .It Fl -no-open
 Don't open Xcode after project generation
