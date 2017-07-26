@@ -55,6 +55,10 @@ module Liftoff
           @options[:configure_git] = configure_git
         end
 
+        opts.on('--[no-]swiftlint', 'Enable/Disable swiftlint') do |configure_swiftlint|
+          @options[:configure_swiftlint] = configure_swiftlint
+        end
+
         opts.on('--no-open', "Don't open Xcode after generation") do
           @options[:xcode_command] = false
         end

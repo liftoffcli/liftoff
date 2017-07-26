@@ -14,6 +14,15 @@ module Liftoff
       end
     end
 
+    def run_script_phases
+      [
+        {
+          "file" => "swiftlint.sh",
+          "name" => "Execute SwiftLint",
+        }
+      ]
+    end
+
     private
 
     def generate_files
