@@ -2,6 +2,10 @@
 
 **Liftoff is a CLI for creating and configuring iOS Xcode projects.**
 
+> 👋 We need your help!
+> We're looking for contributors and people willing to take over Liftoff maintaince.
+> If you're interested, we'd love to hear from you! 👍
+
 ## Installation
 
     brew tap liftoffcli/formulae
@@ -127,6 +131,8 @@ See the [CONTRIBUTING] document. Thank you, [contributors]!
 [CONTRIBUTING]: CONTRIBUTING.md
 [contributors]: https://github.com/liftoffcli/Liftoff/graphs/contributors
 
+We'd also love some help for maintaining Liftoff up-to-date on a more regular basis. If you're interested, we'd love to hear from you!
+
 License
 -------
 
@@ -142,3 +148,11 @@ About
 
 Liftoff was originally maintained and funded by thoughtbot, inc. The names and
 logos for thoughtbot are trademarks of thoughtbot, inc.
+
+Similar projects
+----------------
+
+* [XcodeGen by @yonaskolb](https://github.com/yonaskolb/XcodeGen)
+* [xcake by @jcampbell05](https://github.com/jcampbell05/xcake)
+* [struct by @lyptt](https://github.com/lyptt/struct)
+* [Cookie-Cutter](http://cookiecutter.readthedocs.io/en/latest/)
