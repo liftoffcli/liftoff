@@ -3,7 +3,7 @@
 **Liftoff is a CLI for creating and configuring iOS Xcode projects.**
 
 > 👋 We need your help!
-> We're looking for contributors and people willing to take over Liftoff maintaince.
+> We're looking for contributors and people willing to take over Liftoff maintenance.
 > If you're interested, we'd love to hear from you! 👍
 
 ## Installation
