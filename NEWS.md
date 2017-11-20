@@ -1,5 +1,15 @@
 # Liftoff Changelog #
 
+## Liftoff 1.8.2 - 20 November 2017 ##
+
+### Changes ###
+
+* Dependencies have been updated to their most recent versions to avoid
+  running into `SIGABORT` when trying to create projects with Xcode 9. -
+  [Oliver Halligon][liftoff#290]
+
+[liftoff#290]: https://github.com/liftoffcli/liftoff/pull/290
+
 ## Liftoff 1.8.1 - 27 June 2016 ##
 
 ### Changes ###
