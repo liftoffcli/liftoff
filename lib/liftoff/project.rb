@@ -3,6 +3,7 @@ module Liftoff
     def initialize(configuration)
       @name = configuration.project_name
       @deployment_target = configuration.deployment_target
+      @swift_version = configuration.swift_version
       @test_target_name = configuration.test_target_name
       set_company_name(configuration.company)
       set_prefix(configuration.prefix)
@@ -97,6 +98,7 @@ module Liftoff
         configuration.build_settings['ASSETCATALOG_COMPILER_APPICON_NAME'] = 'AppIcon'
         configuration.build_settings['SDKROOT'] = 'iphoneos'
         configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = @deployment_target.to_s
+        configuration.build_settings['SWIFT_VERSION'] = @swift_version.to_s
       end
     end
 
