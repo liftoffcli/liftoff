@@ -17,6 +17,7 @@ dependency_managers: cocoapods
 enable_settings: true
 strict_prompts: false
 deployment_target: 8.0
+swift_version: 4.0
 
 run_script_phases:
   - file: todo.sh
