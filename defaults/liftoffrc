@@ -31,6 +31,9 @@ templates:
   - setup.sh: bin/setup
   - README.md: README.md
 
+additional_resource_suffixes:
+  - txt
+
 warnings:
   - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
   - GCC_WARN_MISSING_PARENTHESES

@@ -88,7 +88,13 @@ module Liftoff
     end
 
     def resource_file?(name)
-      name.end_with?('xcassets', 'bundle', 'xib', 'storyboard')
+      suffixes = ['xcassets', 'bundle', 'xib', 'storyboard'].concat(@config.additional_resource_suffixes)
+      suffixes.each do |suffix|
+        if name.end_with?(suffix)
+          return true
+        end
+      end 
+      return false
     end
 
     def template_file?(object)

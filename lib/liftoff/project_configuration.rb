@@ -11,6 +11,7 @@ module Liftoff
       :indentation_level,
       :warnings,
       :templates,
+      :additional_resource_suffixes,
       :project_template,
       :app_target_templates,
       :test_target_templates,
@@ -65,6 +66,10 @@ module Liftoff
       templates.each do |template|
         template.each_pair(&block)
       end
+    end
+
+    def additional_resource_suffixes
+      @additional_resource_suffixes ||= []
     end
 
     def get_binding

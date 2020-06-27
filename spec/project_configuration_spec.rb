@@ -73,6 +73,16 @@ describe Liftoff::ProjectConfiguration do
     end
   end
 
+  describe '#additional_resource_suffixes' do
+    it 'returns an array of suffixes' do
+      additional_resource_suffixes = ['foo', 'bar']
+
+      config = Liftoff::ProjectConfiguration.new({:additional_resource_suffixes => additional_resource_suffixes})
+
+      expect(config.additional_resource_suffixes).to eq(['foo', 'bar'])
+    end
+  end
+
   describe '#app_target_groups' do
     context 'when the project_template is set to swift' do
       it 'returns the swift app target groups' do
