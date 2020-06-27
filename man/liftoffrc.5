@@ -491,10 +491,10 @@ meaning.
 .Ic liftoff
 installs a number of templates by default:
 .Bl -tag -width 10
-.It Pa travis.yml
+.It Pa circle.yml
 This template is installed to
-.Pa .travis.yml ,
-and contains a default setup for Travis integration.
+.Pa circle.yml ,
+and contains a default setup for CircleCI integration.
 .It Pa Gemfile.rb
 This template is installed to
 .Pa Gemfile ,
@@ -509,7 +509,7 @@ This template is installed to
 .Pa bin/test
 and enables the running of tests from the command line. This is used by the
 default
-.Pa travis.yml
+.Pa circle.yml
 template to determine build status.
 .El
 .Pp
@@ -517,13 +517,13 @@ template to determine build status.
 expects templates in the following format:
 .Pp
 .Bd -literal
-  - travis.yml: .travis.yml
+  - circle.yml: circle.yml
 .Ed
 .Pp
 This will install the template named
-.Pa travis.yml
+.Pa circle.yml
 found inside the templates directory to
-.Pa .travis.yml
+.Pa circle.yml
 inside the project directory.
 .Pp
 This file will be parsed with ERB with the project configuration, giving you

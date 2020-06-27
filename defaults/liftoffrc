@@ -26,7 +26,7 @@ run_script_phases:
     name: Set version number
 
 templates:
-  - travis.yml: .travis.yml
+  - circle.yml: .circle.yml
   - test.sh: bin/test
   - setup.sh: bin/setup
   - README.md: README.md
