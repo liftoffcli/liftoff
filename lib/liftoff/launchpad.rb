@@ -45,6 +45,7 @@ module Liftoff
       perform_extra_config
       save_project
       generate_git
+      generate_swiftlint
     end
 
     def setup_dependency_managers
@@ -69,6 +70,13 @@ module Liftoff
 
     def generate_git
       GitSetup.new(@config).setup
+    end
+
+    def generate_swiftlint
+      if @config.configure_swiftlint
+          swiftlint.setup
+          xcode_helper.add_script_phases(swiftlint.run_script_phases)
+      end
     end
 
     def set_indentation_level
@@ -116,6 +124,10 @@ module Liftoff
 
     def file_manager
       @file_manager ||= FileManager.new
+    end
+
+    def swiftlint
+      @swiftlint ||= SwiftLintSetup.new(@config)
     end
 
     def dependency_manager_coordinator

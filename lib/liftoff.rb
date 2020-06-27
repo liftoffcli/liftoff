@@ -16,6 +16,7 @@ require "liftoff/dependency_managers/bundler"
 require "liftoff/dependency_managers/carthage"
 require "liftoff/dependency_managers/cocoapods"
 require "liftoff/dependency_managers/null_dependency_manager"
+require 'liftoff/swiftlint_setup'
 require 'liftoff/settings_generator'
 require 'liftoff/configuration_parser'
 require 'liftoff/deprecation_manager'

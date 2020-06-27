@@ -9,6 +9,7 @@
 
 test_target_name: UnitTests
 configure_git: true
+configure_swiftlint: true
 warnings_as_errors: true
 enable_static_analyzer: true
 indentation_level: 4
